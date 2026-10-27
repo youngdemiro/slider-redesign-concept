@@ -246,9 +246,12 @@ window.Boat3D = async function (container, opts = {}) {
   }
   // open bow (175, 210 BR): gunwale caps and liner walls carry on past the windshield to a short
   // closed nose; the bow sole rises a little towards the nose, loungers along both sides (seating)
-  const XN = L - X(.55), BW0 = Bo(X(3.6)) - .26;
-  // kept clear of the bottom where the keel sweeps up to the stem
-  const soleB = x => Math.max(SOLE + .1 * Math.min(1, Math.max(0, (x - (XA - ARC)) / (XN - XA + ARC))), keel(x) + .4 * Math.tan(dead(x) * Math.PI / 180) + .06);
+  // the bow sole is kept clear of the bottom where the keel sweeps up to the stem; the open bow ends
+  // where that floor would come within 35 cm of the gunwale (much shorter on the shallow 175)
+  const floorMin = x => keel(x) + .4 * Math.tan(dead(x) * Math.PI / 180) + .06;
+  let XN = L - X(.55); while (XN > XA && floorMin(XN) > zg(XN) - .35) XN -= .02;
+  const BW0 = Bo(X(3.6)) - .26;
+  const soleB = x => Math.max(SOLE + .1 * Math.min(1, Math.max(0, (x - (XA - ARC)) / (XN - XA + ARC))), floorMin(x));
   if (DECK === "bow") {
     for (const side of [1, -1]) {
       const nose = [];
@@ -446,7 +449,7 @@ window.Boat3D = async function (container, opts = {}) {
   if (DECK === "bow") for (const side of [1, -1]) {
     const x0 = xa(BW0) + .1, x1 = XN - .02, top = [], front = [], W = x => Math.min(.42, Math.max(.16, Bo(x) - .3));
     for (let i = 0; i <= 30; i++) {
-      const x = x0 + (x1 - x0) * i / 30, yo = Math.max(.04, Bo(x) - .26), yi = Math.max(.02, yo - W(x)), zc = soleB(x) + .44;
+      const x = x0 + (x1 - x0) * i / 30, yo = Math.max(.04, Bo(x) - .26), yi = Math.max(.02, yo - W(x)), zc = Math.min(soleB(x) + .44, zg(x) - .1);
       top.push([V(x, side * yo, zc), V(x, side * (yi + .03), zc + .01), V(x, side * yi, zc - .04)]);
       front.push([V(x, side * yi, zc - .04), V(x, side * (yi + .02), soleB(x))]);
     }
