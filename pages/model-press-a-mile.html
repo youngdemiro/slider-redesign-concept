@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Страница модели · Пресса · A · Мерная миля</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Model press A — own idea: the magazine's measured mile drawn as a track. Two runs of Slider 210
+   with 175 hp — trim in and trim out — slide along one 0–80 km/h scale, the acceleration time
+   sits on each run, and the tester's notes from the same article follow as short log lines. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head .h2{margin-top:18px}
+.head p{max-width:42ch;color:var(--sand-3)}
+.mile{margin-top:56px;padding:36px 0 8px;border-top:1px solid rgba(234,228,217,.15)}
+.scale{position:relative;height:22px;margin-left:220px;font:400 12px/1 var(--f-body);color:var(--mist)}
+.scale span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.scale span:first-child{transform:none}.scale span:last-child{transform:translateX(-100%)}
+.run{display:grid;grid-template-columns:220px minmax(0,1fr);align-items:center;margin-top:18px}
+.run h4{font:400 15px/1.3 var(--f-body);color:var(--sand-3)}
+.run h4 small{display:block;margin-top:4px;font-size:12px;color:var(--mist)}
+.track{position:relative;height:56px;border-radius:999px;background:repeating-linear-gradient(90deg,rgba(234,228,217,.1) 0 1px,transparent 1px 12.5%),rgba(234,228,217,.04)}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,rgba(183,154,107,.15),rgba(183,154,107,.55));display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.bar b{height:44px;padding:0 18px;border-radius:999px;background:var(--sand);color:var(--sea);display:flex;align-items:center;font:300 22px/1 var(--f-display);white-space:nowrap}
+.bar b small{font:500 12px var(--f-body);margin-left:6px}
+.t{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--sand)}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;border-top:1px solid rgba(234,228,217,.15)}
+.n{padding:24px 28px 0 0}
+.n+.n{padding-left:28px;border-left:1px solid rgba(234,228,217,.12)}
+.n h5{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+.n p{margin-top:14px;font:300 20px/1.3 var(--f-display);letter-spacing:-.01em}
+.src{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid rgba(234,228,217,.12);font-size:13px;color:var(--mist)}
+.src .btn{border-color:rgba(234,228,217,.45);color:var(--sand)}
+@media (max-width:900px){.scale{margin-left:0}.run{grid-template-columns:1fr;gap:10px}.notes{grid-template-columns:1fr}.n,.n+.n{padding:20px 0;border-left:0;border-bottom:1px solid rgba(234,228,217,.12)}.bar b{font-size:18px;height:40px;padding:0 12px}.t{font-size:11px}}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="head"><div><span class="eyebrow">Тест в прессе</span><h2 class="h2">На мерной миле «КиЯ»</h2></div>
+    <p>Журнал «Катера и Яхты» гонял Slider 210 с мотором 175 л.с. и записал разгон и максимальную скорость.</p></div>
+  <div class="mile">
+    <div class="scale"><span style="left:0">0</span><span style="left:25%">20</span><span style="left:50%">40</span><span style="left:75%">60</span><span style="left:100%">80 км/ч</span></div>
+    <div class="run"><h4>Мотор поджат<small>разгон 15–17 с</small></h4><div class="track"><div class="bar" style="width:92.5%"><b>74<small>км/ч</small></b></div></div></div>
+    <div class="run"><h4>Мотор откинут<small>разгон 17–19 с</small></h4><div class="track"><div class="bar" style="width:96.25%"><b>77<small>км/ч</small></b></div></div></div>
+  </div>
+  <div class="notes">
+    <div class="n"><h5>Старт</h5><p>«Старт и выход на глиссирование у всех трех катеров ровные, без экстремальных «кобр»»</p></div>
+    <div class="n"><h5>Волна</h5><p>«Поперечная короткая волна до 0.5 м высотой всеми катерами преодолевалась мягко»</p></div>
+    <div class="n"><h5>Отделка</h5><p>«Ни одна заклепка и ни один саморез не видны снаружи»</p></div>
+  </div>
+  <div class="src"><span>«Катера и Яхты» №5 (239), сентябрь–октябрь 2012. Андрей Чернавин. Тест Slider 175, 210 и 210 BR.</span><a class="btn" href="../sections/assets/proof/kiya-2012-slider-175-210-210br.pdf" target="_blank">Читать тест целиком · PDF</a></div>
+</section>
+<div class="variant-tag">Модель · пресса · A · мерная миля (своя идея)</div>
+</body>
+</html>

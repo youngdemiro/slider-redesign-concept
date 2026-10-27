@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Модели · A · В одном масштабе</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Models A — "One scale": every hull drawn at its real length on a shared waterline,
+   so the difference between 5 m and 11.7 m is seen, not read. Own idea. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:64px}
+.head p{max-width:38ch;color:var(--mist)}
+.filters{display:flex;gap:6px;margin-top:28px}
+.chip{height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(234,228,217,.22);font:500 13px/1 var(--f-body);color:var(--mist);transition:.2s}
+.chip.on{background:var(--sand);color:var(--sea);border-color:var(--sand)}
+
+.rows{border-top:1px solid rgba(234,228,217,.12)}
+.row{display:grid;grid-template-columns:200px minmax(0,1fr) 220px;align-items:center;gap:32px;padding:18px 0;border-bottom:1px solid rgba(234,228,217,.12);transition:background .3s,opacity .3s}
+.row .nm b{display:block;font:300 24px/1 var(--f-display);letter-spacing:-.01em}
+.row .nm span{font-size:13px;color:var(--mist)}
+.track{position:relative;padding:14px 0 18px}
+.track::after{content:"";position:absolute;left:0;right:0;bottom:22px;height:1px;background:linear-gradient(90deg,rgba(147,164,170,.45),rgba(147,164,170,.05))}
+.track img{position:relative;height:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.35));transition:transform .5s var(--ease)}
+.row .meta{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.row .meta small{display:block;font-size:12px;color:var(--mist)}
+.row .meta b{font:500 15px var(--f-body)}
+.row .go{font:500 13px var(--f-body);color:var(--brass);opacity:0;transform:translateX(-6px);transition:.3s}
+.row:hover{background:linear-gradient(90deg,rgba(30,57,67,0),rgba(30,57,67,.5) 30%,rgba(30,57,67,0))}
+.row:hover .track img{transform:translateX(10px)}
+.row:hover .go{opacity:1;transform:none}
+.rows.filtered .row:not(.match){opacity:.18}
+.ruler{display:grid;grid-template-columns:200px minmax(0,1fr) 220px;gap:32px;margin-top:14px}
+.ruler div{display:flex;justify-content:space-between;font:500 11px/1 var(--f-body);color:var(--mist);letter-spacing:.08em;border-top:1px solid rgba(147,164,170,.35);padding-top:8px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:56px;gap:24px;flex-wrap:wrap}
+.foot p{color:var(--mist);font-size:14px}
+
+@media (max-width:900px){
+  .head{flex-direction:column;align-items:start}
+  .filters{flex-wrap:wrap}
+  .row{grid-template-columns:1fr auto;gap:10px 16px}
+  .track{grid-column:1/-1;order:3}
+  .row .meta{flex-direction:column;align-items:end;gap:2px}.row .go{display:none}
+  .ruler{grid-template-columns:1fr}.ruler>span{display:none}
+}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="head">
+    <div>
+      <span class="eyebrow">Модельный ряд</span>
+      <h2 class="h2" style="margin-top:18px">Семь катеров<br>в одном масштабе</h2>
+      <div class="filters" id="filters"><button class="chip on" data-t="all">Все</button><button class="chip" data-t="open">Открытые</button><button class="chip" data-t="cabin">С каютой</button><button class="chip" data-t="hard">Хардтоп</button></div>
+    </div>
+    <p>Силуэты нарисованы в одном масштабе по длине. От пятиметрового боурайдера до почти двенадцатиметрового круизера.</p>
+  </div>
+
+  <div class="rows" id="rows">
+    <a class="row" data-t="open" href="#"><div class="nm"><b>Slider 175</b><span>Боурайдер · 5 мест</span></div><div class="track"><img src="../directions/assets/profile-175.svg" style="width:29.9%" alt=""></div><div class="meta"><div><small>5,0 м · до 100 л.с.</small><b>от 1 865 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="cabin" href="#"><div class="nm"><b>Slider 180</b><span>Каютный · 7 мест</span></div><div class="track"><img src="../directions/assets/profile-180.svg" style="width:36.0%" alt=""></div><div class="meta"><div><small>6,02 м · до 150 л.с.</small><b>от 2 400 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="cabin" href="../pages/model-210.html" target="_top"><div class="nm"><b>Slider 210</b><span>Каютный · 8 мест</span></div><div class="track"><img src="../directions/assets/profile-210.svg" style="width:37.2%" alt=""></div><div class="meta"><div><small>6,21 м · до 175 л.с.</small><b>от 2 800 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="open" href="#"><div class="nm"><b>Slider 210 BR</b><span>Боурайдер · 8 мест</span></div><div class="track"><img src="../directions/assets/profile-210BR.svg" style="width:37.2%" alt=""></div><div class="meta"><div><small>6,21 м · до 175 л.с.</small><b>от 2 950 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="hard" href="#"><div class="nm"><b>Slider 210 ST</b><span>Хардтоп · 8 мест</span></div><div class="track"><img src="../directions/assets/profile-210ST.svg" style="width:37.2%" alt=""></div><div class="meta"><div><small>6,21 м · до 175 л.с.</small><b>от 3 200 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="cabin" href="#"><div class="nm"><b>Slider 230</b><span>Каютный · 8 мест</span></div><div class="track"><img src="../directions/assets/profile-230.svg" style="width:40.9%" alt=""></div><div class="meta"><div><small>6,85 м · до 250 л.с.</small><b>от 3 150 000 ₽</b></div><span class="go">Смотреть →</span></div></a>
+    <a class="row" data-t="cabin" href="#"><div class="nm"><b>Slider 377</b><span>Sport Cabin · до 12 чел</span></div><div class="track"><img src="../directions/assets/profile-377.png" style="width:70.0%" alt=""></div><div class="meta"><div><small>11,7 м · моторы до 2 × 225 л.с.</small><b>по запросу</b></div><span class="go">Смотреть →</span></div></a>
+  </div>
+  <div class="ruler"><span></span><div style="width:70%"><span>0</span><span>2 м</span><span>4 м</span><span>6 м</span><span>8 м</span><span>10 м</span><span>11,7 м</span></div><span></span></div>
+
+  <div class="foot"><p>Цена «от» указана за базовую комплектацию. Окраска и опции считаются в конфигураторе.</p><div style="display:flex;gap:10px"><a class="btn" href="#">Сравнить модели</a><a class="btn solid" href="#">Собрать свой катер</a></div></div>
+</section>
+<span class="variant-tag">Модели · A · В одном масштабе · своя идея</span>
+<script>
+const rows=document.getElementById("rows");
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));
+  const t=b.dataset.t;rows.classList.toggle("filtered",t!=="all");
+  rows.querySelectorAll(".row").forEach(r=>r.classList.toggle("match",r.dataset.t===t))});
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Конфигуратор · B · По шагам · 3D</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}</script>
+<style>
+/* Configurator teaser B — "Steps", after Malibu Build Your Boat (Monks): the first four steps of the
+   real configurator live in one framed module on the homepage — numbered step bar on top, the hull
+   in the middle, a list of choices with prices on the right and a running total docked at the bottom.
+   The fifth step (request) hands over to the full configurator with everything already filled in.
+   3D pilot: Slider 210 is a live 3D model (assets/boat3d.js); each step moves the camera, the tower,
+   targa, high bow rail and ladder appear on the hull. 175 and 180 fall back to the 2D profile for now. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:44px}
+.head p{max-width:38ch;color:var(--mist)}
+.frame{border-radius:24px;background:radial-gradient(80% 90% at 38% 55%,var(--sea-3) 0%,var(--sea-2) 55%,#10232A 100%);border:1px solid rgba(234,228,217,.08);overflow:hidden}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid rgba(234,228,217,.1)}
+.steps button{position:relative;display:flex;align-items:center;gap:12px;height:64px;padding:0 24px;font:500 13px/1 var(--f-body);color:var(--mist);text-align:left;transition:color .25s}
+.steps button+button{border-left:1px solid rgba(234,228,217,.06)}
+.steps i{font:400 11px/1 var(--f-display);font-style:normal;color:rgba(147,164,170,.6)}
+.steps button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.steps button.on{color:var(--sand)}.steps button.on::after{transform:none}.steps button.on i{color:var(--brass)}
+.steps button.done i::before{content:"✓ ";color:var(--brass)}
+.body{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:560px}
+.view{position:relative;display:grid;place-items:center;padding:40px 48px 28px}
+.view .num{position:absolute;z-index:2;pointer-events:none;left:48px;top:34px;font:300 13px/1.5 var(--f-body);color:var(--mist)}
+.view .num b{display:block;font:300 34px/1 var(--f-display);color:var(--sand);letter-spacing:-.01em;margin-bottom:6px}
+#hull{width:100%;max-width:760px;filter:drop-shadow(0 30px 24px rgba(0,0,0,.45))}
+#stage3d{position:absolute;inset:0;cursor:grab;touch-action:pan-y}
+#stage3d:active{cursor:grabbing}
+.view.is3d #hull,.view:not(.is3d) #stage3d,.view:not(.is3d) .cams,.view:not(.is3d) .drag{display:none}
+.cams{position:absolute;z-index:2;left:48px;bottom:24px;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(13,28,35,.55);border:1px solid rgba(234,228,217,.12);backdrop-filter:blur(8px)}
+.cams button{height:32px;padding:0 14px;border-radius:999px;font:500 12px/1 var(--f-body);color:var(--mist);transition:background .2s,color .2s}
+.cams button.on{background:var(--sand);color:var(--sea)}
+.drag{position:absolute;z-index:2;right:26px;bottom:32px;font-size:12px;color:var(--mist);pointer-events:none}
+.soon{position:absolute;z-index:2;right:26px;bottom:32px;font-size:12px;color:var(--mist)}
+.view.is3d .soon{display:none}
+.tag3d{display:inline-block;margin-left:8px;padding:3px 7px 2px;border-radius:999px;border:1px solid rgba(183,154,107,.7);color:var(--brass);font:500 10px/1 var(--f-body);letter-spacing:.08em;vertical-align:2px}
+.side{border-left:1px solid rgba(234,228,217,.08);padding:30px 26px;display:flex;flex-direction:column}
+.side h3{font:300 22px/1.1 var(--f-display);color:var(--sand)}
+.side .hint{font-size:13px;color:var(--mist);margin:8px 0 18px}
+.opts{display:grid;gap:6px;overflow:auto}
+.opt{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;min-height:52px;padding:8px 14px;border-radius:12px;border:1px solid rgba(234,228,217,.1);text-align:left;color:var(--sand);transition:border-color .2s,background .2s}
+.opt:hover{border-color:rgba(234,228,217,.3)}
+.opt.on{border-color:var(--brass);background:rgba(183,154,107,.08)}
+.opt .dot{width:22px;height:22px;border-radius:50%;background:var(--c,transparent);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.opt .box{width:18px;height:18px;border-radius:5px;border:1px solid rgba(234,228,217,.4);display:grid;place-items:center;font-size:12px;color:var(--sea)}
+.opt.on .box{background:var(--brass);border-color:var(--brass)}
+.opt.on .box::before{content:"✓"}
+.opt span{font-size:14px;line-height:1.3}
+.opt span small{display:block;font-size:12px;color:var(--mist)}
+.opt b{font:500 13px/1 var(--f-body);color:var(--mist);white-space:nowrap}
+.opt.on b{color:var(--sand)}
+.nav{display:flex;gap:8px;margin-top:auto;padding-top:18px}
+.nav .btn{height:44px;flex:1}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 26px 18px 48px;border-top:1px solid rgba(234,228,217,.1);background:rgba(13,28,35,.55)}
+.bar .sum{font-size:13px;color:var(--mist)}
+.bar .sum em{font-style:normal;color:var(--sand)}
+.bar .tot{display:flex;align-items:center;gap:26px}
+.bar .tot small{display:block;font-size:12px;color:var(--mist);text-align:right}
+.bar .tot b{display:block;font:300 28px/1 var(--f-display);color:var(--sand);letter-spacing:-.02em;margin-top:4px}
+@media (max-width:900px){
+  .head{flex-direction:column;align-items:start;gap:16px}
+  .steps{display:flex;overflow-x:auto;scrollbar-width:none}.steps button{flex:none;padding:0 18px}
+  .body{grid-template-columns:1fr}
+  .body{min-height:0}.view{min-height:340px;padding:72px 16px 44px}.view .num{left:18px;top:20px}
+  .cams{left:12px;right:12px;bottom:12px;justify-content:space-between}.cams button{padding:0 10px}.drag{display:none}
+  .side{border-left:0;border-top:1px solid rgba(234,228,217,.08);padding:22px 16px}
+  .bar{flex-direction:column;align-items:stretch;padding:18px 16px}.bar .tot{flex-direction:column;align-items:stretch;gap:14px}.bar .tot small{text-align:left}.bar .tot b{white-space:nowrap}
+}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="head">
+    <div><span class="eyebrow" style="color:var(--brass)">Конфигуратор</span><h2 class="h2" style="margin-top:18px">Соберите свой Slider<br>за пять шагов</h2></div>
+    <p>Первые четыре шага можно пройти прямо здесь. Цена пересчитывается сразу, по прайсу верфи.</p>
+  </div>
+  <div class="frame">
+    <div class="steps" id="steps">
+      <button data-s="0" class="on"><i>01</i>Модель</button>
+      <button data-s="1"><i>02</i>Цвет корпуса</button>
+      <button data-s="2"><i>03</i>Зона окраски</button>
+      <button data-s="3"><i>04</i>Оборудование</button>
+      <button data-s="4"><i>05</i>Заявка</button>
+    </div>
+    <div class="body">
+      <div class="view is3d" id="view">
+        <div id="stage3d"></div>
+        <div id="hull"></div>
+        <div class="num"><b id="v-name">Slider 210</b><span id="v-meta">6,21 м · 8 мест · до 175 л.с.</span></div>
+        <div class="cams" id="cams"><button data-v="three" class="on">Три четверти</button><button data-v="side">Борт</button><button data-v="stern">Корма</button><button data-v="top">Сверху</button></div>
+        <div class="drag">Покрутите катер мышью</div>
+        <div class="soon">3D-модель этой версии готовится</div>
+      </div>
+      <div class="side">
+        <h3 id="s-title">Выберите модель</h3>
+        <p class="hint" id="s-hint">Три модели доступны в быстрой сборке, остальные в полном конфигураторе.</p>
+        <div class="opts" id="opts"></div>
+        <div class="nav"><button class="btn" id="back">Назад</button><button class="btn solid" id="fwd">Далее</button></div>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="sum" id="sum"></div>
+      <div class="tot"><div><small>Итого от</small><b id="total"></b></div><a class="btn solid" href="#">Продолжить в конфигураторе →</a></div>
+    </div>
+  </div>
+</section>
+<span class="variant-tag">Конфигуратор · B · По шагам · 3D-пилот</span>
+<script src="../directions/assets/paint-data.js"></script>
+<script src="assets/hull.js"></script>
+<script src="assets/boat3d.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const MODELS={175:{t:"Боурайдер",meta:"5,0 м · 5 мест · до 100 л.с."},180:{t:"Каютный",meta:"6,02 м · 7 мест · до 150 л.с."},210:{t:"Каютный",meta:"6,21 м · 8 мест · до 175 л.с."}};
+// exterior options and prices from the yard's price list (models.json, Slider 210)
+// the fourth field names the part that appears on the 3D hull
+const EXTRA=[["Высокий носовой рейлинг",125000,"railHigh"],["Носовой трап",115000,"ladder"],["Тарга для буксировки водного лыжника",140000,"targa"],["Тауэр для буксировки вэйкборда",180000,"tower"],["Защита киля",75000],["Подводная подсветка транца",95000]];
+const hull=Hull($("hull"),{model:"210",zone:"none",color:"#2B2C7C"});
+const CAM=["three","side","side","three","stern"];
+let boat=null, cam="three";
+const ready=Boat3D($("stage3d"),{zone:"none",color:"#2B2C7C",view:"three",review:/review/.test(location.hash)}).then(b=>{boat=b;sync3d(true);return b});
+function look(v){cam=v;boat&&boat.view(v);document.querySelectorAll("#cams button").forEach(b=>b.classList.toggle("on",b.dataset.v===v))}
+// keep the 3D hull in step with the 2D state: paint, equipment, camera
+let painted="";
+function sync3d(force){
+  if(!boat)return;
+  const s=hull.state, key=s.zone+s.color;
+  if(force||key!==painted){painted=key;boat.set({zone:s.zone,color:s.color})}
+  const on={};EXTRA.forEach(([n,,k])=>{if(k&&st.extra.has(n))on[k]=1});boat.equip(on);
+}
+const st={step:0,extra:new Set()};
+const STEPS=[
+  {title:"Выберите модель",hint:"Три модели доступны в быстрой сборке, остальные в полном конфигураторе.",
+   list:()=>["175","180","210"].map(m=>({on:hull.state.model===m,lead:"",label:`Slider ${m}${m==="210"?'<span class="tag3d">3D</span>':""}<small>${MODELS[m].t} · ${MODELS[m].meta}</small>`,price:"от "+rub(PAINT[m].base),act:()=>hull.set({model:m})}))},
+  {title:"Цвет корпуса",hint:"Десять заводских цветов. Любой другой подберём по палитре Ashland.",
+   list:()=>COLORS.map(c=>({on:hull.state.zone!=="none"&&hull.state.color===c.hex,lead:`<i class="dot" style="--c:${c.hex}"></i>`,label:c.name,price:"",act:()=>hull.set({color:c.hex,zone:hull.state.zone==="none"?"full":hull.state.zone})}))},
+  {title:"Зона окраски",hint:"Цвет можно нанести ниже привального бруса, выше или на весь корпус.",
+   list:()=>["none","below","above","full"].map(z=>({on:hull.state.zone===z,lead:`<i class="dot" style="--c:${z==="none"?"#F4F4F2":hull.state.color}"></i>`,label:z==="none"?"Белый гелькоут<small>как в базовой комплектации</small>":ZONES[z],price:z==="none"?"включено":"+ "+rub(PAINT[hull.state.model].paint[z]),act:()=>hull.set({zone:z})}))},
+  {title:"Оборудование",hint:"Самое частое из внешнего оборудования. Электрика, акустика и салон в полном конфигураторе.",
+   list:()=>EXTRA.map(([n,p,k])=>({on:st.extra.has(n),lead:`<i class="box"></i>`,label:n+(k&&hull.state.model==="210"?"<small>видно на 3D-модели</small>":""),price:"+ "+rub(p),act:()=>st.extra.has(n)?st.extra.delete(n):st.extra.add(n)}))},
+  {title:"Заявка",hint:"Конфигурация уже заполнена. Останется выбрать мотор и оставить телефон, менеджер верфи перезвонит в течение рабочего дня.",
+   list:()=>[{on:true,lead:"",label:"Мотор Yamaha или Mercury<small>подберём под модель и задачи</small>",price:"шаг 1 из 2",act:()=>{}},{on:false,lead:"",label:"Контакты и удобное время<small>без предоплаты</small>",price:"шаг 2 из 2",act:()=>{}}]}
+];
+let items=[];
+function render(){
+  const s=hull.state, d=PAINT[s.model], S=STEPS[st.step];
+  document.querySelectorAll("#steps button").forEach((b,i)=>{b.classList.toggle("on",i===st.step);b.classList.toggle("done",i<st.step)});
+  {const bar=document.getElementById("steps"),on=bar.children[st.step];if(on&&bar.scrollWidth>bar.clientWidth)bar.scrollTo({left:bar.scrollLeft+on.getBoundingClientRect().left-bar.getBoundingClientRect().left-(bar.clientWidth-on.offsetWidth)/2,behavior:"smooth"});}   // phones: keep the active step in view
+  $("s-title").textContent=S.title; $("s-hint").textContent=S.hint;
+  items=S.list();
+  $("opts").innerHTML=items.map((o,i)=>`<button class="opt${o.on?" on":""}" data-i="${i}">${o.lead||"<i></i>"}<span>${o.label}</span><b>${o.price}</b></button>`).join("");
+  $("back").style.visibility=st.step?"visible":"hidden";
+  $("fwd").textContent=st.step<3?`Далее: ${STEPS[st.step+1].title.toLowerCase()}`:st.step===3?"К заявке":"Открыть конфигуратор";
+  $("v-name").textContent=`Slider ${s.model}`; $("v-meta").textContent=MODELS[s.model].meta;
+  const paint=s.zone==="none"?0:d.paint[s.zone], extra=EXTRA.filter(([n])=>st.extra.has(n)).reduce((a,[,p])=>a+p,0);
+  const colour=s.zone==="none"?"белый":COLORS.find(c=>c.hex===s.color).name.toLowerCase()+", "+ZONES[s.zone].toLowerCase();
+  $("sum").innerHTML=`<em>Slider ${s.model}</em> · ${colour} · опций: ${st.extra.size}`;
+  $("total").textContent=rub(d.base+paint+extra);
+  $("view").classList.toggle("is3d",s.model==="210");
+  sync3d();
+}
+$("opts").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;items[b.dataset.i].act();render()});
+const go=n=>{st.step=n;look(CAM[n]);render()};
+$("steps").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(+b.dataset.s)});
+$("fwd").addEventListener("click",()=>{if(st.step<4)go(st.step+1)});
+$("back").addEventListener("click",()=>{if(st.step>0)go(st.step-1)});
+$("cams").addEventListener("click",e=>{const b=e.target.closest("button");if(b)look(b.dataset.v)});
+// review: #s=N opens step N already filled in, #v=side|stern|top picks the camera
+const m=location.hash.match(/s=(\d)/); if(m){st.step=+m[1]; if(st.step>=1)hull.set({zone:"full"}); if(st.step>=3){st.extra.add(EXTRA[0][0]);st.extra.add(EXTRA[3][0])}}
+const vm=location.hash.match(/v=(\w+)/);
+ready.then(()=>{boat.view(vm?vm[1]:CAM[st.step],1);look(vm?vm[1]:CAM[st.step])});
+render();
+</script>
+</body>
+</html>

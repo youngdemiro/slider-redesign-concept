@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Страница модели · Владельцы · A · Сезон на борту</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Model owners A — own idea: one owner's season, told in his own words, with the one thing he would
+   change printed as plainly as the praise. An honest minus from an owner reads more like trust than
+   any number. The video plays in place; two more owners follow as quiet rows. */
+.top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.top .eyebrow{color:var(--ink-3)}
+blockquote{margin:20px 0 0;font:300 clamp(30px,3vw,46px)/1.12 var(--f-display);letter-spacing:-.02em}
+.who{margin-top:24px;font-size:15px;color:var(--ink-2)}
+.who b{font-weight:500;color:var(--ink)}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border-top:1px solid rgba(19,24,27,.14)}
+.pm div{padding:18px 20px 0 0}
+.pm div+div{padding-left:20px;border-left:1px solid rgba(19,24,27,.14)}
+.pm h4{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.pm p{margin-top:12px;font-size:15px;color:var(--ink-2)}
+.fine{margin-top:18px;font-size:12px;color:var(--ink-3)}
+.more{margin-top:80px;border-top:1px solid rgba(19,24,27,.14)}
+.more h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(19,24,27,.14)}
+.row b{font:300 22px/1.1 var(--f-display)}
+.row p{color:var(--ink-2)}
+.row a{font:500 13px var(--f-body);color:var(--ink);white-space:nowrap;border-bottom:1px solid var(--brass)}
+@media (max-width:900px){.top{grid-template-columns:1fr}.pm{grid-template-columns:1fr}.pm div+div{padding-left:0;border-left:0;border-top:1px solid rgba(19,24,27,.14);margin-top:18px}.row{grid-template-columns:1fr;gap:8px}}
+.v{position:relative;border-radius:10px;overflow:hidden;background:var(--sea);cursor:pointer;aspect-ratio:16/9}
+.v img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.v:hover img{transform:scale(1.03)}
+.v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center}
+.play::after{content:"";margin-left:6px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent var(--sea)}
+.vfoot{position:absolute;left:16px;bottom:14px;padding:7px 12px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="top">
+    <div>
+      <span class="eyebrow">Владельцы о Slider 210</span>
+      <blockquote>«Жил на лодке почти целый сезон, чувствовал себя комфортно, ни в чем практически не нуждался!»</blockquote>
+      <p class="who"><b>Александр Х.</b> · сравнивает с другими своими лодками</p>
+      <div class="pm">
+        <div><h4>Что понравилось</h4><p>«у слайдера побольше каюта, он мореходнее»</p></div>
+        <div><h4>Что меньше</h4><p>«но поменьше кокпит»</p></div>
+      </div>
+      <p class="fine">Орфография и пунктуация автора сохранены.</p>
+    </div>
+    <div class="v" data-yt="Et5SS7vBESQ"><img src="assets/owners/v-alex-210.jpg" alt="Видео: отзыв Александра Х. о Slider 210"><span class="play"></span><span class="vfoot">Видео Александра Х.</span></div>
+  </div>
+  <div class="more">
+    <h3>Ещё владельцы 210</h3>
+    <div class="row"><b>Александр</b><p>«идет легко, на глиссер выходит уверенно и быстро, очень комфортно - нет лишних вибраций»</p><a href="https://www.youtube.com/watch?v=DgXwB99nzUY" target="_blank">Смотреть видео</a></div>
+    <div class="row"><b>Владимир</b><p>Ролик о насыщенном отдыхе на воде</p><a href="https://www.youtube.com/watch?v=_ir-v_ufNHc" target="_blank">Смотреть видео</a></div>
+    <div class="row"><b>Александр, 2021</b><p>«Сегодня первый выезд на Слайдере 210, с лодочным мотором Ямаха 150. Впечатления не передоваемые, мы счастливы!»</p><a href="#">Все отзывы</a></div>
+  </div>
+</section>
+<div class="variant-tag">Модель · владельцы · A · сезон на борту (своя идея)</div>
+<script>
+// the video loads only on click (youtube-nocookie), so the page stays light and makes no requests to YouTube before that
+document.querySelectorAll("[data-yt]").forEach(v=>v.addEventListener("click",()=>{if(v.querySelector("iframe"))return;
+  v.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видео владельца"></iframe>`)}));
+</script>
+</body>
+</html>

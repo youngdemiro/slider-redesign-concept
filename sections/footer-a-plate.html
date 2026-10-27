@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Подвал · A · Табличка строителя</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Footer A — own idea: the legal details set as a builder's plate, the kind riveted inside every
+   hull. Contacts lead on the left, the plate on the right, then quiet link columns. */
+footer{padding:96px var(--gutter) 32px}
+.top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,6vw,104px);align-items:start}
+.addr{font:300 clamp(28px,3vw,44px)/1.1 var(--f-display);letter-spacing:-.02em;margin-top:20px}
+.tel{display:grid;gap:6px;margin-top:36px;font:300 clamp(20px,1.8vw,26px)/1.2 var(--f-display)}
+.tel a{width:max-content}
+.tel small{font:400 13px/1 var(--f-body);color:var(--mist);margin-left:12px}
+.mail{display:inline-block;margin-top:18px;font:500 15px var(--f-body);color:var(--brass)}
+.top .b{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.top .btn:not(.solid){border-color:rgba(234,228,217,.45)}
+
+.plate{position:relative;border:1px solid rgba(183,154,107,.55);border-radius:6px;padding:34px 34px 30px;background:linear-gradient(160deg,rgba(183,154,107,.07),rgba(183,154,107,0) 60%)}
+.plate i{position:absolute;width:7px;height:7px;border-radius:50%;background:rgba(183,154,107,.55)}
+.plate i:nth-of-type(1){top:12px;left:12px}.plate i:nth-of-type(2){top:12px;right:12px}
+.plate i:nth-of-type(3){bottom:12px;left:12px}.plate i:nth-of-type(4){bottom:12px;right:12px}
+.plate h3{font:500 10px/1 var(--f-body);letter-spacing:.26em;text-transform:uppercase;color:var(--brass);text-align:center}
+.plate img{height:18px;margin:18px auto 22px}
+.plate dl{display:grid;grid-template-columns:auto minmax(0,1fr);border-top:1px solid rgba(183,154,107,.3)}
+.plate dt,.plate dd{padding:10px 0;border-bottom:1px solid rgba(183,154,107,.3);font-size:13px}
+.plate dt{color:var(--mist);padding-right:20px;font:500 10px/1.9 var(--f-body);letter-spacing:.16em;text-transform:uppercase}
+.plate dd{margin:0;text-align:right}
+
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:96px;padding-top:40px;border-top:1px solid rgba(234,228,217,.12)}
+.cols h4{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:18px}
+.cols a{display:block;width:max-content;font-size:15px;padding:5px 0;color:var(--sand-3);transition:color .2s}
+.cols a:hover{color:var(--sand)}
+.base{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:72px;padding-top:24px;border-top:1px solid rgba(234,228,217,.12);font-size:13px;color:var(--mist)}
+.base nav{display:flex;gap:24px;flex-wrap:wrap}
+.base a:hover{color:var(--sand)}
+@media (max-width:900px){
+  footer{padding-top:72px}
+  .top{grid-template-columns:1fr;gap:56px}
+  .addr{font-size:25px}
+  .plate{padding:30px 22px 26px}
+  .cols{grid-template-columns:1fr 1fr;gap:36px 20px;margin-top:64px}
+  .base{flex-direction:column;margin-top:48px}
+}
+</style>
+</head>
+<body class="on-sea">
+<footer class="on-sea">
+  <div class="top">
+    <div>
+      <span class="eyebrow">Верфь и центральный офис продаж</span>
+      <p class="addr">Тверская обл., Конаково,<br>ул. Промышленная, 12</p>
+      <div class="tel">
+        <a href="tel:+74824246050">+7 (4824) 24-60-50</a>
+        <a href="tel:+79256494303">+7 925 649-43-03</a>
+      </div>
+      <a class="mail" href="mailto:info@slider-boat.ru">info@slider-boat.ru</a>
+      <div class="b"><a class="btn solid" href="#">Собрать свой катер</a><a class="btn" href="https://yandex.ru/maps/?text=Конаково%2C%20ул.%20Промышленная%2C%2012" target="_blank">Как доехать</a></div>
+    </div>
+    <div class="plate"><i></i><i></i><i></i><i></i>
+      <h3>Строитель</h3>
+      <img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER">
+      <dl>
+        <dt>Компания</dt><dd>ООО «ФОР МАРИН»</dd>
+        <dt>Строим с</dt><dd>2003 года</dd>
+        <dt>Верфь</dt><dd>Конаково, с 2019 года</dd>
+        <dt>Сертификация</dt><dd>НИИ «ЛОТ», Санкт-Петербург</dd>
+        <dt>ИНН / КПП</dt><dd>6949114901 / 694901001</dd>
+        <dt>Почта</dt><dd>171252, Конаково, а/я 40</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div><h4>Модели</h4><a href="#">Slider 175</a><a href="#">Slider 180</a><a href="#">Slider 210</a><a href="#">Slider 210BR</a><a href="#">Slider 210 ST</a><a href="#">Slider 230</a><a href="#">Slider 377</a></div>
+    <div><h4>Верфь</h4><a href="#">О компании</a><a href="#">Производство</a><a href="#">Тесты в прессе</a><a href="#">Отзывы владельцев</a><a href="#">Журнал</a></div>
+    <div><h4>Владельцам</h4><a href="#">Хранение и ремонт</a><a href="#">Доставка по России</a><a href="#">Вопросы и ответы</a><a href="#">Конфигуратор</a></div>
+    <div><h4>Где купить</h4><a href="#">Шоурум в Конаково</a><a href="#">Санкт-Петербург</a><a href="#">Тольятти</a><a href="#">Контакты</a></div>
+  </div>
+
+  <div class="base">
+    <span>© 2026 ООО «ФОР МАРИН»</span>
+    <nav><a href="https://t.me/sliderboat" target="_blank">Telegram</a><a href="https://rutube.ru/channel/70956989/" target="_blank">RuTube</a><a href="https://vk.ru/slider_boat" target="_blank">ВКонтакте</a><a href="#">Реквизиты</a><a href="/privacy-policy/">Политика конфиденциальности</a></nav>
+  </div>
+</footer>
+<div class="variant-tag">Подвал · A · табличка строителя (своя идея)</div>
+</body>
+</html>

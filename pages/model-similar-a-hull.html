@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Страница модели · Похожие модели · A · Один корпус</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Model similar A — own idea: 210, 210 BR and 210 ST share length, beam and freeboard, so the three
+   side profiles are stacked on one waterline and switched in place. Only the rows that differ are
+   listed. The neighbours by length (180 and 230) follow as two quiet rows drawn at the same scale. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head .eyebrow{color:var(--ink-3)}
+.head .h2{margin-top:18px}
+.head p{max-width:40ch;color:var(--ink-2)}
+.tabs{display:inline-flex;gap:4px;margin-top:56px;padding:4px;border-radius:999px;background:var(--sand-2)}
+.tab{height:42px;padding:0 20px;border-radius:999px;font:500 14px/1 var(--f-body);color:var(--ink-2);transition:background .25s,color .25s}
+.tab small{margin-left:6px;font-size:11px;color:var(--ink-3)}
+.tab.on{background:var(--sea);color:var(--sand)}.tab.on small{color:var(--mist)}
+.stage{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end;margin-top:40px}
+.boat{position:relative;aspect-ratio:2695/889}
+.boat img{position:absolute;left:0;bottom:0;width:100%;height:auto;opacity:0;transform:translateX(-14px);transition:opacity .5s var(--ease),transform .7s var(--ease)}
+.boat img.on{opacity:1;transform:none}
+.water{height:1px;margin-top:-2px;background:linear-gradient(90deg,rgba(19,24,27,.35),rgba(19,24,27,.04))}
+.dims{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--ink-3)}
+.diff{border-top:1px solid rgba(19,24,27,.14)}
+.diff h4{padding:18px 0 4px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.d{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(19,24,27,.1)}
+.d span{font-size:13px;color:var(--ink-3)}
+.d b{font:400 16px/1.35 var(--f-body)}
+.d b i{font-style:normal;margin-left:8px;font-size:13px;font-weight:500;color:#82663B}
+.say{margin-top:22px;font-size:15px;color:var(--ink-2)}
+.go{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.go .btn.dark:hover{background:var(--sea-3)}
+.near{margin-top:88px;border-top:1px solid rgba(19,24,27,.14)}
+.near h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:200px 400px minmax(0,1fr) auto;gap:32px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(19,24,27,.14)}
+.row b{font:300 24px/1 var(--f-display);letter-spacing:-.01em}
+.row .pf{position:relative}
+.row .pf img{height:auto;transition:transform .5s var(--ease)}
+.row .pf::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:linear-gradient(90deg,rgba(19,24,27,.25),rgba(19,24,27,0))}
+.row p{font-size:14px;color:var(--ink-2)}
+.row p em{display:block;font-style:normal;font-size:15px;color:var(--ink)}
+.row a{font:500 13px var(--f-body);white-space:nowrap;border-bottom:1px solid var(--brass)}
+.row:hover .pf img{transform:translateX(10px)}
+.fine{margin-top:18px;font-size:12px;color:var(--ink-3)}
+@media (max-width:900px){
+  .tabs{display:flex;width:100%}.tab{flex:1;padding:0 8px}.tab small{display:none}
+  .stage{grid-template-columns:1fr}
+  .dims{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+  .d{grid-template-columns:110px minmax(0,1fr)}
+  .row{grid-template-columns:1fr auto;gap:10px 16px}.row .pf{grid-column:1/-1;order:3}.row p{grid-column:1/-1;order:4}
+}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="head">
+    <div><span class="eyebrow">Похожие модели</span><h2 class="h2">Тот же корпус,<br>другая палуба</h2></div>
+    <p>У 210, 210 BR и 210 ST одинаковые длина, ширина и высота борта. Меняется то, что сверху: каюта, открытый нос или хардтоп.</p>
+  </div>
+
+  <div class="tabs" id="tabs"><button class="tab on" data-m="210">210<small>эта модель</small></button><button class="tab" data-m="BR">210 BR<small>bow rider</small></button><button class="tab" data-m="ST">210 ST<small>хардтоп</small></button></div>
+
+  <div class="stage">
+    <div>
+      <div class="boat" id="boat">
+        <img class="on" data-m="210" src="../directions/assets/profile-210.svg" style="width:99.7%" alt="Slider 210, вид сбоку">
+        <img data-m="BR" src="../directions/assets/profile-210BR.svg" style="width:99.9%" alt="Slider 210 BR, вид сбоку">
+        <img data-m="ST" src="../directions/assets/profile-210ST.svg" alt="Slider 210 ST, вид сбоку">
+      </div>
+      <div class="water"></div>
+      <div class="dims"><span>Длина 6,21 м</span><span>Ширина 2,30 м</span><span>Борт на миделе 1,42 м</span><span>Мотор до 175 л.с.</span></div>
+    </div>
+    <div>
+      <div class="diff">
+        <h4 id="dh">Чем отличаются</h4>
+        <div class="d"><span>Компоновка</span><b id="v-type"></b></div>
+        <div class="d"><span>Спальные места</span><b id="v-sleep"></b></div>
+        <div class="d"><span>Масса корпуса</span><b id="v-mass"></b></div>
+        <div class="d"><span>Запас топлива</span><b id="v-fuel"></b></div>
+        <div class="d"><span>Цена</span><b id="v-price"></b></div>
+      </div>
+      <p class="say" id="v-say"></p>
+      <div class="go" id="v-go"></div>
+    </div>
+  </div>
+
+  <div class="near">
+    <h3>Нужна другая длина</h3>
+    <a class="row" href="https://slider-boat.ru/catalog/slider-180/"><b>Slider 180</b><div class="pf"><img src="../directions/assets/profile-180.svg" style="width:88%" alt=""></div><p><em>на 19 см короче, на 400 000 ₽ дешевле</em>6,02 м · 7 мест · до 150 л.с. · от 2&nbsp;400&nbsp;000&nbsp;₽</p><span class="btn" style="height:40px;padding:0 18px">Смотреть</span></a>
+    <a class="row" href="https://slider-boat.ru/catalog/slider-230/"><b>Slider 230</b><div class="pf"><img src="../directions/assets/profile-230.svg" style="width:100%" alt=""></div><p><em>на 64 см длиннее, мотор до 250 л.с.</em>6,85 м · 8 мест · от 3&nbsp;150&nbsp;000&nbsp;₽</p><span class="btn" style="height:40px;padding:0 18px">Смотреть</span></a>
+  </div>
+  <p class="fine">Силуэты в каждом блоке нарисованы в одном масштабе. Цена «от» указана за базовую комплектацию.</p>
+</section>
+<div class="variant-tag">Модель · похожие · A · один корпус (своя идея)</div>
+<script>
+// every value below is from models.json / the catalog pages of slider-boat.ru
+const M={
+  "210":{type:"Каютный катер",sleep:"3 места в каюте",mass:"810 кг",fuel:"200 л",price:"от 2 800 000 ₽",
+    say:"Вы смотрите эту модель. Каюта под носом, 8 пассажиров.",go:'<a class="btn dark" href="model-210.html#build" target="_top">Собрать 210</a>'},
+  "BR":{type:"Bow rider, открытый нос",sleep:"Без каюты",mass:"840 кг",fuel:"200 л",price:"от 2 950 000 ₽",d:"+150 000 ₽",
+    say:"«Эффектный многоцелевой bow rider. Спортивный характер в сочетании с удобством и функциональностью».",
+    go:'<a class="btn dark" href="https://slider-boat.ru/catalog/slider-210br/">Смотреть 210 BR</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=53">Собрать</a>'},
+  "ST":{type:"Хардтоп Sport Top",sleep:"3 места в каюте",mass:"800 кг",fuel:"240 л",price:"от 3 200 000 ₽",d:"+400 000 ₽",fd:"+40 л",
+    say:"«Универсальный хардтоп с впечатляюще просторным кокпитом и множеством рундуков под сидениями-трансформерами».",
+    go:'<a class="btn dark" href="https://slider-boat.ru/catalog/slider-210-st/">Смотреть 210 ST</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=1200">Собрать</a>'}
+};
+const $=id=>document.getElementById(id);
+function show(k){const m=M[k];
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.m===k));
+  document.querySelectorAll("#boat img").forEach(i=>i.classList.toggle("on",i.dataset.m===k));
+  $("dh").textContent=k==="210"?"Чем отличаются":"По сравнению с 210";
+  $("v-type").textContent=m.type;$("v-sleep").textContent=m.sleep;$("v-mass").textContent=m.mass;
+  $("v-fuel").innerHTML=m.fuel+(m.fd?`<i>${m.fd}</i>`:"");
+  $("v-price").innerHTML=m.price+(m.d?`<i>${m.d}</i>`:"");
+  $("v-say").textContent=m.say;$("v-go").innerHTML=m.go}
+$("tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t)show(t.dataset.m)});
+show(new URLSearchParams(location.hash.slice(1)).get("m")||"210");
+</script>
+</body>
+</html>

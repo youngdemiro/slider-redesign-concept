@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Доказательства · A · Проверено не нами</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Proof A — "Checked by others": three kinds of outside proof stacked in one order —
+   the magazine's measured mile, owners' own videos, the shows where the boats stood. Own idea. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:64px}
+.head p{max-width:40ch;color:var(--mist)}
+.tier{display:grid;grid-template-columns:180px minmax(0,1fr);gap:40px;padding:48px 0;border-top:1px solid rgba(234,228,217,.12)}
+.tier>h3{font:500 11px/1.6 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+.tier>h3 b{display:block;font:300 13px/1 var(--f-display);color:var(--brass);letter-spacing:.04em;margin-bottom:10px}
+
+.press{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px;align-items:center}
+.mag{display:block;position:relative;max-width:300px;transform:rotate(-2deg);box-shadow:0 30px 60px rgba(0,0,0,.45);transition:transform .5s var(--ease)}
+.mag:hover{transform:rotate(0) translateY(-4px)}
+.mag img{width:100%;border-radius:2px}
+.mag span{position:absolute;left:12px;bottom:12px;background:var(--sea);color:var(--sand);font:500 12px/1 var(--f-body);padding:9px 12px;border-radius:999px}
+blockquote{font:300 clamp(24px,2.4vw,34px)/1.25 var(--f-display);letter-spacing:-.01em}
+.cite{margin-top:18px;font-size:14px;color:var(--mist)}
+.mile{margin-top:32px;border-top:1px solid rgba(234,228,217,.12)}
+.mile div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid rgba(234,228,217,.12);font-size:14px}
+.mile span{color:var(--mist)}
+.mile b{font:400 18px/1 var(--f-display)}
+.mile .cap{display:block;border:0;padding:0 0 10px;font:500 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+
+.videos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.v{cursor:pointer}
+.v .th{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--sea-2)}
+.v img,.v iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;transition:transform 1s var(--ease)}
+.v:hover img{transform:scale(1.04)}
+.v .play{position:absolute;left:16px;bottom:16px;width:48px;height:48px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.v .play::before{content:"";margin-left:4px;border-left:13px solid var(--sea);border-top:8px solid transparent;border-bottom:8px solid transparent}
+.v:hover .play{transform:scale(1.08)}
+.v p{margin-top:16px;font-size:15px;line-height:1.5}
+.v small{display:block;margin-top:8px;font-size:13px;color:var(--mist)}
+
+.shows{display:flex;flex-wrap:wrap;gap:12px 48px}
+.shows div b{display:block;font:300 22px/1.2 var(--f-display)}
+.shows div span{font-size:13px;color:var(--mist)}
+@media (max-width:900px){
+  .head{flex-direction:column;align-items:start;margin-bottom:32px}
+  .tier{grid-template-columns:1fr;gap:24px;padding:36px 0}
+  .press{grid-template-columns:1fr;gap:32px}
+  .mag{max-width:220px}
+  .videos{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:calc(-1 * var(--gutter));padding-right:var(--gutter);scrollbar-width:none}
+  .videos .v{flex:none;width:78%;scroll-snap-align:start}
+  .shows{flex-direction:column;gap:18px}
+}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="head">
+    <div>
+      <span class="eyebrow">Доказательства</span>
+      <h2 class="h2" style="margin-top:18px">Проверено не нами</h2>
+    </div>
+    <p>Журнал замерял скорость на мерной миле, владельцы снимают свои сезоны, катера стоят на выставках рядом с конкурентами.</p>
+  </div>
+
+  <div class="tier">
+    <h3><b>01</b>Пресса</h3>
+    <div class="press">
+      <a class="mag" href="assets/proof/kiya-2012-slider-175-210-210br.pdf" target="_blank"><img src="assets/proof/kiya-p1.jpg" alt="Журнал «Катера и Яхты», тест Slider 175, 210 и 210 BR"><span>Читать тест · PDF</span></a>
+      <div>
+        <blockquote>«Ни одна заклёпка и ни один саморез не видны снаружи»</blockquote>
+        <p class="cite">Андрей Чернавин, «Катера и Яхты», №5 (239), 2012. Тест Slider 175, 210 и 210 BR</p>
+        <div class="mile">
+          <span class="cap">Замер журнала, максимальная скорость</span>
+          <div><span>Slider 210, 175 л.с.</span><b>77 км/ч</b></div>
+          <div><span>Slider 210 BR, 150 л.с.</span><b>74 км/ч</b></div>
+          <div><span>Slider 175, 90 л.с.</span><b>68 км/ч</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3><b>02</b>Владельцы</h3>
+    <div class="videos">
+      <div class="v" data-yt="LUQ2anyghUY"><div class="th"><img src="assets/proof/v-yuri-230.jpg" alt=""><span class="play"></span></div><p>«Делали-делали и доделали нашу красавицу! Ура!»</p><small>Юрий · Slider 230</small></div>
+      <div class="v" data-yt="Et5SS7vBESQ"><div class="th"><img src="assets/proof/v-alex-210.jpg" alt=""><span class="play"></span></div><p>«Жил на лодке почти целый сезон, чувствовал себя комфортно»</p><small>Александр Х. · Slider 210</small></div>
+      <div class="v" data-yt="HB4-zitZVZM"><div class="th"><img src="assets/proof/v-spb-210br.jpg" alt=""><span class="play"></span></div><p>«Безупречно ведёт себя на воде, даже при наличии волн»</p><small>Компания «На катере СПб» · Slider 210 BR</small></div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <h3><b>03</b>Выставки</h3>
+    <div class="shows">
+      <div><b>Moscow Boat Show</b><span>Крокус Экспо, 2026 · весь модельный ряд</span></div>
+      <div><b>SPIBS</b><span>Санкт-Петербург, яхт-клуб «Светлана», 2025</span></div>
+      <div><b>«Яхты и гольф»</b><span>Завидово</span></div>
+    </div>
+  </div>
+</section>
+<div class="variant-tag">Доказательства · A · проверено не нами</div>
+<script>
+// a card swaps its cover for the YouTube player only when clicked
+document.querySelectorAll(".v").forEach(v=>v.addEventListener("click",()=>{
+  const th=v.querySelector(".th");if(th.querySelector("iframe"))return;
+  th.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видеоотзыв"></iframe>`;
+}));
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Верфь · A · Что мы делаем сами</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Yard A — "What we make ourselves": the yard's own side drawing of the 210 with numbered pins.
+   In-house parts vs bought-in parts, so "full cycle" is shown on the boat itself. Own idea. */
+.head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:end;margin-bottom:56px}
+.head p{max-width:46ch;color:var(--ink-2)}
+.filters{display:flex;gap:6px;margin-top:28px;flex-wrap:wrap}
+.chip{height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(19,24,27,.18);font:500 13px/1 var(--f-body);color:var(--ink-2);transition:.2s}
+.chip.on{background:var(--sea);color:var(--sand);border-color:var(--sea)}
+
+.board{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:56px;align-items:center}
+.draw{position:relative}
+.draw img{width:100%;height:auto;filter:saturate(.15) contrast(.95);opacity:.9}
+.pin{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  font:500 12px/1 var(--f-body);background:var(--sea);color:var(--sand);box-shadow:0 0 0 6px rgba(13,28,35,.12);transition:transform .3s var(--ease),background .3s,opacity .3s}
+.pin.buy{background:var(--sand);color:var(--sea);box-shadow:0 0 0 1px var(--sea),0 0 0 6px rgba(13,28,35,.08)}
+.pin.hot{transform:translate(-50%,-50%) scale(1.25)}
+.list{list-style:none;padding:0;border-top:1px solid rgba(19,24,27,.14)}
+.list li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:16px;padding:16px 0;border-bottom:1px solid rgba(19,24,27,.14);transition:opacity .3s}
+.list i{font:500 12px/30px var(--f-body);font-style:normal;text-align:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:var(--sand)}
+.list li.buy i{background:none;color:var(--sea);box-shadow:inset 0 0 0 1px var(--sea)}
+.list b{display:block;font:500 15px/1.35 var(--f-body)}
+.list span{display:block;font-size:14px;line-height:1.5;color:var(--ink-2);margin-top:2px}
+.list em{font:500 11px/30px var(--f-body);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.list li.buy em{color:var(--brass)}
+.dim .pin:not(.match),.dim .list li:not(.match){opacity:.2}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:88px;border-top:1px solid rgba(19,24,27,.14)}
+.facts div{padding:28px 28px 0 0}
+.facts div+div{padding-left:28px;border-left:1px solid rgba(19,24,27,.14)}
+.facts b{display:block;white-space:nowrap;font:300 clamp(26px,2.4vw,38px)/1 var(--f-display);letter-spacing:-.02em}
+.facts span{display:block;margin-top:12px;font-size:14px;color:var(--ink-2);max-width:26ch}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:56px}
+.foot p{font-size:14px;color:var(--ink-2)}
+
+@media (max-width:900px){
+  .head,.board{grid-template-columns:1fr;gap:28px}
+  .pin{width:24px;height:24px;font-size:11px;box-shadow:0 0 0 4px rgba(13,28,35,.12)}
+  .facts{grid-template-columns:1fr 1fr;margin-top:56px}
+  .facts div{padding:22px 16px 22px 0}
+  .facts div+div{padding-left:0;border-left:0}
+  .facts div:nth-child(even){padding-left:16px;border-left:1px solid rgba(19,24,27,.14)}
+  .facts div:nth-child(n+3){border-top:1px solid rgba(19,24,27,.14)}
+}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="head">
+    <div>
+      <span class="eyebrow" style="color:var(--ink-3)">Верфь</span>
+      <h2 class="h2" style="margin-top:18px">Почти всё на этом катере мы делаем сами</h2>
+      <div class="filters" id="filters"><button class="chip on" data-f="all">Всё</button><button class="chip" data-f="own">Делаем сами</button><button class="chip" data-f="buy">Покупаем у лучших</button></div>
+    </div>
+    <p>Верфь полного цикла в Конаково. Проектируем корпуса, формуем, собираем, делаем стёкла, привальный брус и мебель. Покупаем только то, что делают лучше нас: смолы, фурнитуру и моторы.</p>
+  </div>
+
+  <div class="board" id="board">
+    <div class="draw">
+      <img src="../directions/assets/profile-210.svg" alt="Slider 210, вид сбоку">
+      <span class="pin" data-k="own" style="left:40%;top:80%">1</span>
+      <span class="pin" data-k="own" style="left:47%;top:13%">2</span>
+      <span class="pin" data-k="own" style="left:64%;top:51%">3</span>
+      <span class="pin" data-k="own" style="left:21%;top:41%">4</span>
+      <span class="pin buy" data-k="buy" style="left:76%;top:20%">5</span>
+      <span class="pin buy" data-k="buy" style="left:8%;top:40%">6</span>
+    </div>
+    <ol class="list" id="list">
+      <li data-k="own"><i>1</i><div><b>Корпус</b><span>Послойная формовка, шпангоутная секция, пенозаполнение. Смолы и гелькоуты Ashland.</span></div><em>Своё</em></li>
+      <li data-k="own"><i>2</i><div><b>Ветровое стекло</b><span>Алюминиевая рама, открываемая центральная секция. Продаём его и другим верфям.</span></div><em>Своё</em></li>
+      <li data-k="own"><i>3</i><div><b>Привальный брус</b><span>Анодированный алюминиевый профиль со вставкой из квартопрена.</span></div><em>Своё</em></li>
+      <li data-k="own"><i>4</i><div><b>Мебель и обивка</b><span>Кресла, диваны, пульт. Отсюда фиксированная цена и полная базовая комплектация.</span></div><em>Своё</em></li>
+      <li class="buy" data-k="buy"><i>5</i><div><b>Фурнитура</b><span>Osculati, Италия, и Attwood, США.</span></div><em>Партнёры</em></li>
+      <li class="buy" data-k="buy"><i>6</i><div><b>Мотор</b><span>Yamaha или Mercury по контракту с официальными дистрибьюторами.</span></div><em>Партнёры</em></li>
+    </ol>
+  </div>
+
+  <div class="facts">
+    <div><b>2003</b><span>Строим катера Slider</span></div>
+    <div><b>Конаково</b><span>Своя верфь с 2019 года, новая площадка с 2025</span></div>
+    <div><b>НИИ «ЛОТ»</b><span>Ходовые испытания и сертификация каждой модели</span></div>
+    <div><b>1–3 мес</b><span>Постройка катера под заказ</span></div>
+  </div>
+  <div class="foot">
+    <p>Конаково, ул. Промышленная, 12. Шоурум со всем модельным рядом.</p>
+    <a class="btn dark" href="#">Приехать на верфь</a>
+  </div>
+</section>
+<div class="variant-tag">Верфь · A · что мы делаем сами</div>
+<script>
+const board=document.getElementById("board"),pins=[...board.querySelectorAll(".pin")],items=[...board.querySelectorAll(".list li")];
+function filter(f){
+  board.classList.toggle("dim",f!=="all");
+  [...pins,...items].forEach(e=>e.classList.toggle("match",e.dataset.k===f));
+  document.querySelectorAll("#filters .chip").forEach(c=>c.classList.toggle("on",c.dataset.f===f));
+}
+document.getElementById("filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(c)filter(c.dataset.f)});
+// hovering a row lifts its pin, and the other way round
+items.forEach((li,i)=>{const on=v=>pins[i].classList.toggle("hot",v);li.addEventListener("mouseenter",()=>on(true));li.addEventListener("mouseleave",()=>on(false))});
+pins.forEach((p,i)=>{p.addEventListener("mouseenter",()=>items[i].style.background="rgba(19,24,27,.04)");p.addEventListener("mouseleave",()=>items[i].style.background="")});
+const f=new URLSearchParams(location.hash.slice(1)).get("f");if(f)filter(f);   // review: #f=own|buy
+</script>
+</body>
+</html>

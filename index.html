@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · концепт редизайна</title>
+<link rel="stylesheet" href="system/tokens.css">
+<style>
+/* Homepage assembly for review: the chosen hero B is inlined (its scroll scrub needs the page's
+   own scroll); every other chosen section is its own file in an auto-height iframe.
+   Generated from scroll/hero-b-window.html + sections/*.html — edit those, not this. */
+body{background:var(--sea)}
+
+/* Hero B — "Window" (Wajer): the page opens on sand with the headline and a small rounded window
+   of drone footage (top-down shot as on Wajer). Scrolling opens the window to full bleed
+   while the footage plays; the sales copy lands on the water at the end. */
+.scrub{position:relative;height:340vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sand)}
+.win{position:absolute;inset:0;will-change:clip-path}
+.win canvas{position:absolute;inset:0;width:100%;height:100%;transform-origin:50% 50%;will-change:transform}
+.win::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,28,35,.45),rgba(13,28,35,0) 30%,rgba(13,28,35,0) 55%,rgba(13,28,35,.75));opacity:var(--shade,0)}
+header{position:absolute;z-index:5;inset:0 0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px;padding-inline:var(--gutter);color:var(--ink);transition:color .4s}
+header.light{color:var(--sand)}
+header nav{display:flex;gap:30px;font:500 13px/1 var(--f-body);letter-spacing:.06em}
+header .logo{position:relative;width:150px;height:22px}
+header .logo img{position:absolute;inset:0;height:22px;transition:opacity .4s}
+header .logo .w{opacity:0}header.light .logo .w{opacity:1}header.light .logo .b{opacity:0}
+header .r{justify-self:end;display:flex;gap:28px;align-items:center;font:500 13px/1 var(--f-body)}
+.title{position:absolute;z-index:3;left:0;right:0;top:15vh;text-align:center;color:var(--ink);will-change:transform,opacity}
+.title h1{font:300 clamp(40px,5.6vw,92px)/.95 var(--f-display);letter-spacing:-.025em;margin-top:18px}
+.title .eyebrow{color:var(--brass)}
+.copy{position:absolute;z-index:3;left:var(--gutter);right:var(--gutter);bottom:56px;display:flex;justify-content:space-between;align-items:end;gap:40px;color:var(--sand);opacity:0}
+.copy h2{font:300 clamp(34px,4vw,64px)/1 var(--f-display);letter-spacing:-.02em;margin:16px 0 18px}
+.copy p{max-width:42ch;color:rgba(234,228,217,.85);margin-bottom:24px}
+.copy .cta{display:flex;gap:12px}
+.seal{position:relative;width:150px;height:150px;flex:none;border-radius:50%;background:rgba(234,228,217,.12);backdrop-filter:blur(10px);border:1px solid rgba(234,228,217,.35);display:grid;place-items:center;text-align:center}
+.seal b{font:300 14px/1.25 var(--f-display)}
+.seal small{display:block;font:500 9px/1.3 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-top:6px}
+/* 901–1279 px: three centred columns no longer fit, so the logo moves to the left and the phone hides */
+@media (min-width:901px) and (max-width:1279px){header{grid-template-columns:auto 1fr auto;gap:32px}header .logo{order:-1}header nav{justify-content:center;gap:20px;letter-spacing:.02em;white-space:nowrap}header .r .phone{display:none}}
+@media (max-width:900px){header nav,header .r .phone{display:none}header{grid-template-columns:auto 1fr auto}.copy{flex-direction:column;align-items:start}.seal{display:none}}
+
+iframe.sec{display:block;width:100%;height:600px;border:0}
+</style>
+</head>
+<body>
+<section class="scrub" id="scrub">
+  <div class="stage">
+    <div class="win" id="win"><canvas id="cv"></canvas></div>
+    <header id="hd">
+      <nav><a href="#">Модели</a><a href="#">Верфь</a><a href="#">Владельцам</a><a href="#">Где купить</a></nav>
+      <a class="logo" href="#"><img class="b" src="directions/assets/slider-horizontal-black.svg" alt="SLIDER"><img class="w" src="directions/assets/slider-horizontal-white.svg" alt=""></a>
+      <div class="r"><a class="phone" href="tel:+74824246050">+7 482 424-60-50</a><a class="btn" href="#">Конфигуратор</a></div>
+    </header>
+    <div class="title" id="title"><span class="eyebrow">Верфь в Конаково · с 2003 года</span><h1>Свой берег<br>начинается здесь</h1></div>
+    <div class="copy" id="copy">
+      <div><span class="eyebrow">Семь моделей · от 5 до 11,7 м</span><h2>Соберите свой Slider</h2><p>Цвет корпуса, отделка, мотор и оборудование. Корпус, стёкла и мебель мы делаем сами в Конаково.</p><div class="cta"><a class="btn solid" href="#">Модельный ряд</a><a class="btn" href="#">Конфигуратор</a></div></div>
+      <div class="seal"><div><b>Стиль,<br>дизайн,<br>уверенность</b><small>Катера и Яхты</small></div></div>
+    </div>
+  </div>
+</section>
+<iframe class="sec" src="sections/facts-b-four.html" title="Факты о верфи"></iframe>
+<iframe class="sec" src="sections/models-a-scale.html" title="Модельный ряд"></iframe>
+<iframe class="sec" src="sections/config-b-3d.html" title="Конфигуратор"></iframe>
+<iframe class="sec" src="sections/yard-a-parts.html" title="Верфь"></iframe>
+<iframe class="sec" src="sections/proof-a-checked.html" title="Доказательства"></iframe>
+<iframe class="sec" src="sections/buy-c-questions.html" title="Как купить"></iframe>
+<iframe class="sec" src="sections/visit-b-yard.html" title="Где посмотреть вживую"></iframe>
+<iframe class="sec" src="sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="scroll/scrub.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const lerp=(a,b,t)=>a+(b-a)*t;
+Scrub({section:$("scrub"),canvas:$("cv"),count:116,src:i=>`scroll/frames/f${String(i).padStart(3,"0")}.webp`,onProgress:p=>{
+  const t=ease(seg(p,0,.55)), W=innerWidth, H=innerHeight;
+  // window: starts as a 44vw x 40vh rounded frame in the lower half, ends full bleed
+  const w0=Math.min(W*.44,720), h0=H*.40, top0=H*.50;
+  const top=lerp(top0,0,t), bottom=lerp(H-top0-h0,0,t), side=lerp((W-w0)/2,0,t), r=lerp(Math.min(h0/2,220),0,t);
+  $("win").style.clipPath=`inset(${top}px ${side}px ${bottom}px ${side}px round ${r}px)`;
+  // scale the whole frame into the window so the boats are visible while it is small
+  const ww=W-2*side, wh=H-top-bottom, sc=Math.max(ww/W,wh/H), dx=(side+ww/2)-W/2, dy=(top+wh/2)-H/2;
+  $("cv").style.transform=`translate(${dx}px,${dy}px) scale(${sc})`;
+  $("win").style.setProperty("--shade",t);
+  $("title").style.transform=`translateY(${-t*220}px)`; $("title").style.opacity=1-ease(seg(p,.04,.2));
+  $("hd").classList.toggle("light",top<20&&side<40);
+  const c=ease(seg(p,.62,.8)); $("copy").style.opacity=c; $("copy").style.transform=`translateY(${(1-c)*30}px)`;
+}});
+</script>
+<script>
+// each section iframe takes the height of its content and hides its review label
+function fit(f){
+  const d=f.contentDocument;if(!d||!d.body||f.dataset.fit||d.location.href==="about:blank")return;f.dataset.fit=1;
+  d.querySelectorAll(".variant-tag").forEach(e=>e.remove());
+  const h=()=>{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+"px"};
+  h();new ResizeObserver(h).observe(d.body);
+}
+document.querySelectorAll("iframe.sec").forEach(f=>{f.addEventListener("load",()=>fit(f));fit(f)});
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Страница модели · Галерея · A · По чертежу</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Model gallery A — own idea: the side profile is the map. The visitor picks a part of the boat on the
+   drawing (the whole hull, the cockpit, the cabin under the foredeck), that part lights up, and the
+   photos below change to it. Same drawing as the lineup and the build step, so the page stays one object. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head .eyebrow{color:var(--ink-3)}
+.head .h2{margin-top:18px}
+.head p{max-width:40ch;color:var(--ink-2)}
+.map{position:relative;margin-top:48px}
+.map img{width:100%;height:auto;display:block}
+.map button{position:absolute;border-radius:10px;border:1px dashed transparent;transition:background .3s,border-color .3s}
+.map button span{position:absolute;left:50%;top:-34px;transform:translateX(-50%);white-space:nowrap;height:28px;padding:0 12px;border-radius:999px;display:flex;align-items:center;font:500 12px/1 var(--f-body);background:var(--sand-2);color:var(--ink-2);transition:background .3s,color .3s}
+.map button:hover{border-color:rgba(19,24,27,.35)}
+.map button.on{background:rgba(183,154,107,.16);border-color:var(--brass)}
+.map button.on span{background:var(--ink);color:var(--sand)}
+/* zones on the 2687 x 832 drawing, in % of the image box */
+#z-ext{left:1%;top:14%;width:98%;height:84%}
+#z-cock{left:12%;top:22%;width:30%;height:44%}
+#z-cab{left:46%;top:28%;width:34%;height:40%}
+#z-ext span{top:auto;bottom:-36px}
+.shots{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;margin-top:64px;height:620px}
+.shots figure{position:relative;border-radius:8px;overflow:hidden;background:var(--sand-2)}
+.shots figure:first-child{grid-row:1/3}
+.shots figure:nth-child(4){grid-column:2/4}
+.shots img{width:100%;height:100%;object-fit:cover;transition:opacity .4s}
+.shots figcaption{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 24px);padding:7px 11px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+.note{margin-top:20px;font-size:13px;color:var(--ink-3)}
+@media (max-width:900px){.shots figure:not(:first-child) figcaption{display:none}}
+@media (max-width:900px){
+  .map button span{font-size:11px;padding:0 9px;height:24px;top:-28px}
+  #z-ext span{bottom:-30px}
+  .shots{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto;margin-top:56px}
+  .shots figure{aspect-ratio:4/3}
+  .shots figure:first-child{grid-row:auto;grid-column:1/3}
+  .shots figure:nth-child(4){grid-column:1/3}
+}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="head">
+    <div><span class="eyebrow">Галерея</span><h2 class="h2">Обойдите катер</h2></div>
+    <p>Выберите часть катера на чертеже, и фотографии покажут её вблизи.</p>
+  </div>
+  <div class="map" id="map">
+    <img src="../directions/assets/profile-210.svg" alt="Slider 210, вид сбоку">
+    <button id="z-ext" data-z="ext" class="on"><span>Экстерьер</span></button>
+    <button id="z-cock" data-z="cock"><span>Кокпит</span></button>
+    <button id="z-cab" data-z="cab"><span>Каюта</span></button>
+  </div>
+  <div class="shots" id="shots"></div>
+  <p class="note">Фото с выставок и ходовых испытаний. Комплектация и цвет на фото могут отличаться от базовых.</p>
+</section>
+<div class="variant-tag">Модель · галерея · A · по чертежу (своя идея)</div>
+<script>
+// captions name what the yard lists for this model (standard equipment, options and their prices)
+const Z={
+  ext:[["water-bow","На ходу"],["ext-bow-red","Носовые рейлинги, якорный отсек с лючком"],["ext-deck","Палубное покрытие под тик, опция"],["water-stern","На ходу, вид с кормы"]],
+  cock:[["cock-overview","Кокпит"],["cock-helm","Пульт с местом для эхолота"],["cock-table","Задний диван и столик, опция"],["cock-chairs","Кресла водителя и пассажира"]],
+  cab:[["cab-berth","V-образный диван на троих"],["cab-hatch","Световой открывающийся люк"],["cab-door","Сдвижная дверь каюты с замком"],["cab-wide","Каюта, вид от двери"]]
+};
+const shots=document.getElementById("shots");
+function show(z){
+  document.querySelectorAll("#map button").forEach(b=>b.classList.toggle("on",b.dataset.z===z));
+  shots.innerHTML=Z[z].map(([f,c])=>`<figure><img src="assets/210/gal/${f}.jpg" alt="${c}"><figcaption>${c}</figcaption></figure>`).join("");
+}
+document.getElementById("map").addEventListener("click",e=>{const b=e.target.closest("button");if(b)show(b.dataset.z)});
+const h=location.hash.match(/z=(\w+)/); show(h?h[1]:"ext");   // review: #z=cock | #z=cab
+</script>
+</body>
+</html>

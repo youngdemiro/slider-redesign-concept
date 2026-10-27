@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Факты · B · Четыре факта</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Facts B — four facts in four columns on a sand band, one large word each and a single line
+   of proof. Breaks the dark run between hero and models. After Axopar's and Saxdor's stat rows. */
+.strip{padding:72px var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.f{padding:0 32px;border-left:1px solid rgba(19,24,27,.14)}
+.f:first-child{padding-left:0;border-left:0}
+.f .eyebrow{color:var(--ink-3)}
+.f b{display:block;margin-top:22px;font:300 clamp(28px,2.7vw,42px)/1.05 var(--f-display);letter-spacing:-.02em}
+.f p{margin-top:16px;font-size:14px;line-height:1.55;color:var(--ink-2);max-width:26ch}
+@media (max-width:900px){
+  .strip{padding-block:56px}
+  .grid{grid-template-columns:1fr 1fr;gap:40px 0}
+  .f:nth-child(odd){padding-left:0;border-left:0}
+  .f:nth-child(even){padding:0 0 0 20px}
+  .f b{font-size:26px}
+  .f p{font-size:13px}
+}
+</style>
+</head>
+<body>
+<section class="strip">
+  <div class="grid">
+    <div class="f"><span class="eyebrow">Строим с</span><b>2003</b><p>Оригинальные собственные разработки верфи</p></div>
+    <div class="f"><span class="eyebrow">Своя верфь</span><b>Конаково</b><p>Производство полного цикла: корпус, комплектующие и мебель</p></div>
+    <div class="f"><span class="eyebrow">Сертификация</span><b>НИИ «ЛОТ»</b><p>Все модели прошли ходовые испытания</p></div>
+    <div class="f"><span class="eyebrow">Моторы</span><b>Yamaha<br>Mercury</b><p>По контракту с дистрибьюторами</p></div>
+  </div>
+</section>
+<div class="variant-tag">Факты · B · четыре факта (Axopar, Saxdor)</div>
+</body>
+</html>
