@@ -54,20 +54,20 @@
       <h3>Что красим</h3>
       <div class="zones" id="zones"></div>
       <div class="total"><small>Итого от</small><b id="total"></b></div>
-      <a class="btn solid" href="#">Дальше: оборудование и мотор →</a>
+      <a class="btn solid" href="https://slider-boat.ru/configurator/?cater=52">Дальше: оборудование и мотор →</a>
       <p class="fine">Мотор Yamaha или Mercury подберём на следующем шаге.</p>
     </div>
   </div>
 </section>
 <div class="variant-tag">Модель · собрать · A · цвет прямо здесь (своя идея)</div>
-<script src="../directions/assets/paint-data.js"></script>
-<script src="../sections/assets/hull.js"></script>
-<script src="../sections/assets/boat3d.js"></script>
+<script src="../directions/assets/paint-data.js?v=7"></script>
+<script src="../sections/assets/hull.js?v=7"></script>
+<script src="../sections/assets/boat3d.js?v=7"></script>
 <script>
 const $=id=>document.getElementById(id), P=PAINT["210"];
 const st={color:"#2B2C7C",zone:"full"};
 const ZL=[["none","Белый гелькоут, как в базовой комплектации"],["below","Ниже привального бруса"],["above","Выше привального бруса"],["full","Весь корпус"]];
-let boat=null; Boat3D($("boat"),{zone:st.zone,color:st.color,view:"three"}).then(b=>{boat=b});
+let boat=null; Boat3D($("boat"),{model:"210",zone:st.zone,color:st.color,view:"three"}).then(b=>{boat=b});
 function render(){
   $("sw").innerHTML=COLORS.map(c=>`<button style="--c:${c.hex}" class="${c.hex===st.color&&st.zone!=="none"?"on":""}" data-c="${c.hex}" aria-label="${c.name}"></button>`).join("");
   $("swn").textContent=st.zone==="none"?"Корпус белый":COLORS.find(c=>c.hex===st.color).name;

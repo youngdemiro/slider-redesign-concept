@@ -7,7 +7,7 @@
 <title>SLIDER 175 · концепт редизайна</title>
 <link rel="stylesheet" href="../system/tokens.css">
 <style>
-/* Model page assembly for review (Slider 175, same sections as the 180 page: no press section, the similar models run on the dark ground): every chosen section is its own file in an
+/* Model page assembly for review (Slider 175, same sections as the 180 page: a press section from the 2012 «КиЯ» test, the similar models on the sand ground): every chosen section is its own file in an
    auto-height iframe, backgrounds alternate sea / sand. Edit pages/model-*.html, not this. */
 body{background:var(--sea)}
 iframe.sec{display:block;width:100%;height:600px;border:0}
@@ -20,6 +20,7 @@ iframe.sec{display:block;width:100%;height:600px;border:0}
 <iframe class="sec" id="gallery" src="model-175-gallery.html" title="Галерея"></iframe>
 <iframe class="sec" id="kit" src="model-175-kit.html" title="Комплектация"></iframe>
 <iframe class="sec" id="owners" src="model-175-owners.html" title="Владелец о Slider 175"></iframe>
+<iframe class="sec" id="press" src="model-175-press.html" title="Тест в прессе"></iframe>
 <iframe class="sec" id="similar" src="model-175-similar.html" title="Похожие модели"></iframe>
 <iframe class="sec" id="footer" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
 <script>
@@ -34,6 +35,9 @@ function fit(f){
   h();new ResizeObserver(h).observe(d.body);
 }
 document.querySelectorAll("iframe.sec").forEach(f=>{f.addEventListener("load",()=>fit(f));fit(f)});
+// links to a section (#config, #build…) land again once the frames above it have their real height
+const toHash=()=>{const t=location.hash&&document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView()};
+addEventListener("load",()=>{toHash();setTimeout(toHash,700)});
 </script>
 <div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
 </body>

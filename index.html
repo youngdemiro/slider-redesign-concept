@@ -49,24 +49,24 @@ iframe.sec{display:block;width:100%;height:600px;border:0}
   <div class="stage">
     <div class="win" id="win"><canvas id="cv"></canvas></div>
     <header id="hd">
-      <nav><a href="#">Модели</a><a href="#">Верфь</a><a href="#">Владельцам</a><a href="#">Где купить</a></nav>
+      <nav><a href="#models">Модели</a><a href="#yard">Верфь</a><a href="#buy">Владельцам</a><a href="#visit">Где купить</a></nav>
       <a class="logo" href="#"><img class="b" src="directions/assets/slider-horizontal-black.svg" alt="SLIDER"><img class="w" src="directions/assets/slider-horizontal-white.svg" alt=""></a>
-      <div class="r"><a class="phone" href="tel:+74824246050">+7 482 424-60-50</a><a class="btn" href="#">Конфигуратор</a></div>
+      <div class="r"><a class="phone" href="tel:+74824246050">+7 482 424-60-50</a><a class="btn" href="#config">Конфигуратор</a></div>
     </header>
     <div class="title" id="title"><span class="eyebrow">Верфь в Конаково · с 2003 года</span><h1>Свой берег<br>начинается здесь</h1></div>
     <div class="copy" id="copy">
-      <div><span class="eyebrow">Семь моделей · от 5 до 11,7 м</span><h2>Соберите свой Slider</h2><p>Цвет корпуса, отделка, мотор и оборудование. Корпус, стёкла и мебель мы делаем сами в Конаково.</p><div class="cta"><a class="btn solid" href="#">Модельный ряд</a><a class="btn" href="#">Конфигуратор</a></div></div>
+      <div><span class="eyebrow">Семь моделей · от 5 до 11,7 м</span><h2>Соберите свой Slider</h2><p>Цвет корпуса, отделка, мотор и оборудование. Корпус, стёкла и мебель мы делаем сами в Конаково.</p><div class="cta"><a class="btn solid" href="#models">Модельный ряд</a><a class="btn" href="#config">Конфигуратор</a></div></div>
       <div class="seal"><div><b>Стиль,<br>дизайн,<br>уверенность</b><small>Катера и Яхты</small></div></div>
     </div>
   </div>
 </section>
 <iframe class="sec" src="sections/facts-b-four.html" title="Факты о верфи"></iframe>
-<iframe class="sec" src="sections/models-a-scale.html" title="Модельный ряд"></iframe>
-<iframe class="sec" src="sections/config-b-3d.html" title="Конфигуратор"></iframe>
-<iframe class="sec" src="sections/yard-a-parts.html" title="Верфь"></iframe>
-<iframe class="sec" src="sections/proof-a-checked.html" title="Доказательства"></iframe>
-<iframe class="sec" src="sections/buy-c-questions.html" title="Как купить"></iframe>
-<iframe class="sec" src="sections/visit-b-yard.html" title="Где посмотреть вживую"></iframe>
+<iframe class="sec" id="models" src="sections/models-a-scale.html" title="Модельный ряд"></iframe>
+<iframe class="sec" id="config" src="sections/config-b-3d.html" title="Конфигуратор"></iframe>
+<iframe class="sec" id="yard" src="sections/yard-a-parts.html" title="Верфь"></iframe>
+<iframe class="sec" id="proof" src="sections/proof-a-checked.html" title="Доказательства"></iframe>
+<iframe class="sec" id="buy" src="sections/buy-c-questions.html" title="Как купить"></iframe>
+<iframe class="sec" id="visit" src="sections/visit-b-yard.html" title="Где посмотреть вживую"></iframe>
 <iframe class="sec" src="sections/footer-a-plate.html" title="Подвал"></iframe>
 <script src="scroll/scrub.js"></script>
 <script>
@@ -96,6 +96,9 @@ function fit(f){
   h();new ResizeObserver(h).observe(d.body);
 }
 document.querySelectorAll("iframe.sec").forEach(f=>{f.addEventListener("load",()=>fit(f));fit(f)});
+// links to a section (#config, #build…) land again once the frames above it have their real height
+const toHash=()=>{const t=location.hash&&document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView()};
+addEventListener("load",()=>{toHash();setTimeout(toHash,700)});
 </script>
 <div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
 </body>

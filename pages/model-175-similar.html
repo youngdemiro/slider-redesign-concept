@@ -6,44 +6,44 @@
 <title>SLIDER · Slider 175 · Похожие модели</title>
 <link rel="stylesheet" href="../system/tokens.css">
 <style>
-/* Slider 175 similar models, same as the 180 page: the next step up, 180 with a cabin and 210 BR as the
-   bigger bow rider, at true scale over a faint 175 outline. */
+/* Slider 175 similar models on the sand ground (between the dark press and footer), colours as on 210 BR. */
 .head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head .eyebrow{color:var(--ink-3)}
 .head .h2{margin-top:18px}
-.head p{max-width:40ch;color:var(--sand-3)}
-.tabs{display:inline-flex;gap:4px;margin-top:56px;padding:4px;border-radius:999px;background:var(--sea-2)}
-.tab{height:42px;padding:0 20px;border-radius:999px;font:500 14px/1 var(--f-body);color:var(--sand-3);transition:background .25s,color .25s}
-.tab small{margin-left:6px;font-size:11px;color:var(--mist)}
-.tab.on{background:var(--sand);color:var(--sea)}.tab.on small{color:var(--ink-3)}
+.head p{max-width:40ch;color:var(--ink-2)}
+.tabs{display:inline-flex;gap:4px;margin-top:56px;padding:4px;border-radius:999px;background:var(--sand-2)}
+.tab{height:42px;padding:0 20px;border-radius:999px;font:500 14px/1 var(--f-body);color:var(--ink-2);transition:background .25s,color .25s}
+.tab small{margin-left:6px;font-size:11px;color:var(--ink-3)}
+.tab.on{background:var(--sea);color:var(--sand)}.tab.on small{color:var(--mist)}
 .stage{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end;margin-top:40px}
 .boat{position:relative;aspect-ratio:2691/836}
 .boat img{position:absolute;left:0;bottom:0;height:auto;opacity:0;transform:translateX(-14px);transition:opacity .5s var(--ease),transform .7s var(--ease)}
 .boat img.on{opacity:1;transform:none}
-.boat img.ghost{opacity:.14;transform:none;filter:grayscale(1) brightness(1.6)}
+.boat img.ghost{opacity:.18;transform:none;filter:grayscale(1)}
 .boat img.ghost.hide{opacity:0}
-.water{height:1px;margin-top:-2px;background:linear-gradient(90deg,rgba(234,228,217,.05),rgba(234,228,217,.4))}
-.dims{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--mist)}
-.diff{border-top:1px solid rgba(234,228,217,.14)}
-.diff h4{padding:18px 0 4px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
-.d{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(234,228,217,.1)}
-.d span{font-size:13px;color:var(--mist)}
+.water{height:1px;margin-top:-2px;background:linear-gradient(90deg,rgba(19,24,27,.35),rgba(19,24,27,.04))}
+.dims{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--ink-3)}
+.diff{border-top:1px solid rgba(19,24,27,.14)}
+.diff h4{padding:18px 0 4px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.d{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(19,24,27,.1)}
+.d span{font-size:13px;color:var(--ink-3)}
 .d b{font:400 16px/1.35 var(--f-body)}
-.d b i{font-style:normal;margin-left:8px;font-size:13px;font-weight:500;color:var(--brass)}
-.say{margin-top:22px;font-size:15px;color:var(--sand-3)}
+.d b i{font-style:normal;margin-left:8px;font-size:13px;font-weight:500;color:#82663B}
+.say{margin-top:22px;font-size:15px;color:var(--ink-2)}
 .go{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
-.go .btn:not(.solid){border-color:rgba(234,228,217,.45)}
-.near{margin-top:88px;border-top:1px solid rgba(234,228,217,.14)}
-.near h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
-.row{display:grid;grid-template-columns:200px 400px minmax(0,1fr) auto;gap:32px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(234,228,217,.14)}
+.go .btn.dark:hover{background:var(--sea-3)}
+.near{margin-top:88px;border-top:1px solid rgba(19,24,27,.14)}
+.near h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:200px 400px minmax(0,1fr) auto;gap:32px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(19,24,27,.14)}
 .row b{font:300 24px/1 var(--f-display);letter-spacing:-.01em}
 .row .pf{position:relative}
 .row .pf img{height:auto;transition:transform .5s var(--ease)}
-.row .pf::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:linear-gradient(90deg,rgba(234,228,217,.3),rgba(234,228,217,0))}
-.row p{font-size:14px;color:var(--sand-3)}
-.row p em{display:block;font-style:normal;font-size:15px;color:var(--sand)}
-.row .btn{height:40px;padding:0 18px;border-color:rgba(234,228,217,.45)}
+.row .pf::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:linear-gradient(90deg,rgba(19,24,27,.25),rgba(19,24,27,0))}
+.row p{font-size:14px;color:var(--ink-2)}
+.row p em{display:block;font-style:normal;font-size:15px;color:var(--ink)}
+.row .btn{height:40px;padding:0 18px}
 .row:hover .pf img{transform:translateX(10px)}
-.fine{margin-top:18px;font-size:12px;color:var(--mist)}
+.fine{margin-top:18px;font-size:12px;color:var(--ink-3)}
 @media (max-width:900px){
   .tabs{display:flex;width:100%}.tab{flex:1;padding:0 8px}.tab small{display:none}
   .stage{grid-template-columns:1fr}
@@ -53,8 +53,8 @@
 }
 </style>
 </head>
-<body class="on-sea">
-<section class="section on-sea">
+<body>
+<section class="section">
   <div class="head">
     <div><span class="eyebrow">Похожие модели</span><h2 class="h2">Если нужно<br>больше места</h2></div>
     <p>Силуэты стоят на одной ватерлинии в одном масштабе. Светлый контур — сам 175: видно, сколько длины добавляют 180 с каютой и 210 BR.</p>
@@ -101,15 +101,15 @@
 const M={
   "175":{len:"5,00 м",tr:"2,10 м",fuel:"5",hp:"100 л.с.",mass:"540 кг",price:"от 1 865 000 ₽",
     dims:["Длина 5,00 м","Ширина 2,10 м","5 пассажиров","Мотор до 100 л.с."],
-    say:"Вы смотрите эту модель. Открытый нос, 5 пассажиров.",go:'<a class="btn solid" href="model-175.html#build" target="_top">Собрать 175</a>'},
+    say:"Вы смотрите эту модель. Открытый нос, 5 пассажиров.",go:'<a class="btn dark" href="model-175.html#build" target="_top">Собрать 175</a>'},
   "180":{len:"6,02 м",dl:"+102 см",tr:"2,23 м",dtr:"+13 см",fuel:"7",df:"+2",hp:"150 л.с.",dhp:"+50 л.с.",mass:"750 кг",dm:"+210 кг",price:"от 2 400 000 ₽",d:"+535 000 ₽",
     dims:["Длина 6,02 м","Ширина 2,23 м","7 пассажиров","Мотор до 150 л.с."],
     say:"«Яркий каютный катер классической компоновки. Просторная планировка, большая каюта».",
-    go:'<a class="btn solid" href="model-180.html" target="_top">Смотреть 180</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=51">Собрать</a>'},
+    go:'<a class="btn dark" href="model-180.html" target="_top">Смотреть 180</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=51">Собрать</a>'},
   "BR":{len:"6,21 м",dl:"+121 см",tr:"2,30 м",dtr:"+20 см",fuel:"8",df:"+3",hp:"175 л.с.",dhp:"+75 л.с.",mass:"840 кг",dm:"+300 кг",price:"от 2 950 000 ₽",d:"+1 085 000 ₽",
     dims:["Длина 6,21 м","Ширина 2,30 м","8 пассажиров","Мотор до 175 л.с."],
     say:"«Эффектный многоцелевой bow rider. Спортивный характер в сочетании с удобством и функциональностью».",
-    go:'<a class="btn solid" href="model-210BR.html" target="_top">Смотреть 210 BR</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=53">Собрать</a>'}
+    go:'<a class="btn dark" href="model-210BR.html" target="_top">Смотреть 210 BR</a><a class="btn" href="https://slider-boat.ru/configurator/?cater=53">Собрать</a>'}
 };
 const $=id=>document.getElementById(id), w=(v,dv)=>v+(dv?`<i>${dv}</i>`:"");
 function show(k){const m=M[k];

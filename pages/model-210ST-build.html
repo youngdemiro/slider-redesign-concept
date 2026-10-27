@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SLIDER · Slider 210 ST · Собрать</title>
 <link rel="stylesheet" href="../system/tokens.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}</script>
 <style>
-/* Slider 210 ST build, same step as the 230 page. There is no 3D model of 210 ST, so the side
-   profile takes the colour instead: the yard's own paint-zone outlines of 210 ST are washed over it (hull.js). */
+/* Slider 210 ST build, same as the 210 page (model-build-a-paint): its 3D model (boat3d.js, model "210ST") takes
+   the colour and the paint zone the visitor picks, the price follows from this model's price list,
+   and the button opens the yard's configurator for this boat. */
 .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,4vw,64px);align-items:stretch}
 .stage{position:relative;min-height:560px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 50% 30%,#1E3943,#0D1C23 70%)}
-#boat{position:absolute;left:6%;right:6%;top:50%;transform:translateY(-42%);filter:drop-shadow(0 24px 22px rgba(0,0,0,.45))}
+#boat{position:absolute;inset:0;cursor:grab;touch-action:pan-y}
 .stage .tag{position:absolute;left:24px;top:22px;font:300 26px/1 var(--f-display)}
 .stage .tag small{display:block;margin-top:8px;font:400 13px var(--f-body);color:var(--mist)}
 .stage .drag{position:absolute;left:24px;bottom:20px;font-size:12px;color:var(--mist)}
@@ -40,6 +42,7 @@
     <div class="stage">
       <div id="boat"></div>
       <div class="tag">Slider 210 ST<small>6,21 м · 8 мест · до 175 л.с.</small></div>
+      <div class="drag">Потяните, чтобы повернуть</div>
     </div>
     <div class="side">
       <span class="eyebrow">Собрать эту модель</span>
@@ -57,19 +60,20 @@
   </div>
 </section>
 <div class="variant-tag">Slider 210 ST · собрать</div>
-<script src="../directions/assets/paint-data.js"></script>
-<script src="../sections/assets/hull.js"></script>
+<script src="../directions/assets/paint-data.js?v=7"></script>
+<script src="../sections/assets/hull.js?v=7"></script>
+<script src="../sections/assets/boat3d.js?v=7"></script>
 <script>
 const $=id=>document.getElementById(id), P=PAINT["210ST"];
 const st={color:"#2B2C7C",zone:"full"};
 const ZL=[["none","Белый гелькоут, как в базовой комплектации"],["below","Ниже привального бруса"],["above","Выше привального бруса"],["full","Весь корпус"]];
-const boat=Hull($("boat"),{model:"210ST",zone:st.zone,color:st.color});
+let boat=null; Boat3D($("boat"),{model:"210ST",zone:st.zone,color:st.color,view:"three"}).then(b=>{boat=b});
 function render(){
   $("sw").innerHTML=COLORS.map(c=>`<button style="--c:${c.hex}" class="${c.hex===st.color&&st.zone!=="none"?"on":""}" data-c="${c.hex}" aria-label="${c.name}"></button>`).join("");
   $("swn").textContent=st.zone==="none"?"Корпус белый":COLORS.find(c=>c.hex===st.color).name;
   $("zones").innerHTML=ZL.map(([z,l])=>`<button data-z="${z}" class="${z===st.zone?"on":""}"><span>${l}</span><b>${z==="none"?"включено":"+ "+rub(P.paint[z])}</b></button>`).join("");
   $("total").textContent=rub(P.base+(st.zone==="none"?0:P.paint[st.zone]));
-  boat.set({color:st.color,zone:st.zone});
+  boat&&boat.set({color:st.color,zone:st.zone});
 }
 $("sw").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.color=b.dataset.c;if(st.zone==="none")st.zone="full";render()});
 $("zones").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.zone=b.dataset.z;render()});

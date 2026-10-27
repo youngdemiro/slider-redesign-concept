@@ -35,6 +35,9 @@ function fit(f){
   h();new ResizeObserver(h).observe(d.body);
 }
 document.querySelectorAll("iframe.sec").forEach(f=>{f.addEventListener("load",()=>fit(f));fit(f)});
+// links to a section (#config, #build…) land again once the frames above it have their real height
+const toHash=()=>{const t=location.hash&&document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView()};
+addEventListener("load",()=>{toHash();setTimeout(toHash,700)});
 </script>
 <div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
 </body>

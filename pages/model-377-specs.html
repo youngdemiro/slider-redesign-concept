@@ -31,7 +31,8 @@ details[open] summary::after{transform:rotate(45deg)}
 .tbl h4{grid-column:1/-1;padding:24px 0 8px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
 .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
 @media (max-width:900px){
-  .keys{grid-template-columns:1fr 1fr;gap:40px 0}
+  .keys{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 0}
+  .k{padding-right:16px}.k+.k{padding-left:16px}.k b{font-size:42px}
   .k:nth-child(3){padding-left:0;border-left:0}
   .tbl{grid-template-columns:1fr}
   summary{font-size:21px}
