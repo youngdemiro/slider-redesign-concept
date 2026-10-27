@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 210 BR · Владельцы</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 210 BR owners, same as the 230 page. The yard has two reviews of 210 BR: the charter company «На катере СПБ»
+   (with a video) leads, its boat «Стремительный» on the poster, and Kirill, who moved up from a 175BR, follows as a quiet row.
+   Every quote is verbatim from slider-boat.ru/reviews. The video plays in place. */
+.top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.top .eyebrow{color:var(--ink-3)}
+blockquote{margin:20px 0 0;font:300 clamp(24px,2.3vw,34px)/1.18 var(--f-display);letter-spacing:-.015em}
+.who{margin-top:24px;font-size:15px;color:var(--ink-2)}
+.who b{font-weight:500;color:var(--ink)}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border-top:1px solid rgba(19,24,27,.14)}
+.pm div{padding:18px 20px 0 0}
+.pm div+div{padding-left:20px;border-left:1px solid rgba(19,24,27,.14)}
+.pm h4{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.pm p{margin-top:12px;font-size:15px;color:var(--ink-2)}
+.fine{margin-top:18px;font-size:12px;color:var(--ink-3)}
+.more{margin-top:80px;border-top:1px solid rgba(19,24,27,.14)}
+.more h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(19,24,27,.14)}
+.row b{font:300 22px/1.1 var(--f-display)}
+.row p{color:var(--ink-2)}
+.row a{font:500 13px var(--f-body);color:var(--ink);white-space:nowrap;border-bottom:1px solid var(--brass)}
+@media (max-width:900px){.top{grid-template-columns:1fr}.pm{grid-template-columns:1fr}.pm div+div{padding-left:0;border-left:0;border-top:1px solid rgba(19,24,27,.14);margin-top:18px}.row{grid-template-columns:1fr;gap:8px}}
+.v{position:relative;border-radius:10px;overflow:hidden;background:var(--sea);cursor:pointer;aspect-ratio:16/9}
+.v img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.v:hover img{transform:scale(1.03)}
+.v.ph{margin:0;cursor:default}
+.v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center}
+.play::after{content:"";margin-left:6px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent var(--sea)}
+.vfoot{position:absolute;left:16px;bottom:14px;padding:7px 12px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="top">
+    <div>
+      <span class="eyebrow">Владельцы о Slider 210 BR</span>
+      <blockquote>«Катер безупречно ведет себя на воде, даже при наличии волн, обладая прекрасной остойчивостью.»</blockquote>
+      <p class="who"><b>«На катере СПБ»</b> · компания, катер «Стремительный»</p>
+      <div class="pm">
+        <div><h4>Скорость</h4><p>«Мотор 150 л.с. позволяет развивать скорость 65 км/час.»</p></div>
+        <div><h4>Для пассажиров</h4><p>«2 мягких дивана в открытой носовой части, 2 кресла и мягкий диван в кормовой»</p></div>
+      </div>
+      <p class="fine">Орфография и пунктуация авторов сохранены.</p>
+    </div>
+    <div class="v" data-yt="HB4-zitZVZM"><img src="assets/210BR/water-spb.jpg" alt="Видео: компания «На катере СПБ» о Slider 210 BR" style="object-position:50% 60%"><span class="play" style="left:78%;top:34%"></span><span class="vfoot">Видео «На катере СПБ»</span></div>
+  </div>
+  <div class="more">
+    <h3>Ещё владельцы 210 BR</h3>
+    <div class="row"><b>Кирилл</b><p>«Обновился! Кастомный 210 BR вышел вчера с завода Слайдер в Конаково.» Раньше у него был 175BR: «есть с чем сравнить».</p><a href="https://slider-boat.ru/reviews/otzyv-kirilla-o-katere-210-br/" target="_blank">Читать отзыв</a></div>
+    <div class="row"><b>«На катере СПБ»</b><p>«Скорость и комфорт – вот основные его характеристики.»</p><a href="https://slider-boat.ru/reviews/kompaniya-na-katere-spb-o-slider-210-br/" target="_blank">Читать отзыв</a></div>
+  </div>
+</section>
+<div class="variant-tag">Slider 210 BR · владельцы</div>
+<script>
+// the video loads only on click (youtube-nocookie), so the page stays light and makes no requests to YouTube before that
+document.querySelectorAll("[data-yt]").forEach(v=>v.addEventListener("click",()=>{if(v.querySelector("iframe"))return;
+  v.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видео владельца"></iframe>`)}));
+</script>
+</body>
+</html>

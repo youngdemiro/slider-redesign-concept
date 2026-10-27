@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER 210BR · концепт редизайна</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Model page assembly for review (Slider 210 BR, same sections as the 230 page: no press section, the similar models run on the dark ground): every chosen section is its own file in an
+   auto-height iframe, backgrounds alternate sea / sand. Edit pages/model-*.html, not this. */
+body{background:var(--sea)}
+iframe.sec{display:block;width:100%;height:600px;border:0}
+</style>
+</head>
+<body>
+<iframe class="sec" id="top" data-vh src="model-210BR-hero.html" title="Slider 210 BR"></iframe>
+<iframe class="sec" id="specs" src="model-210BR-specs.html" title="Характеристики"></iframe>
+<iframe class="sec" id="build" src="model-210BR-build.html" title="Собрать эту модель"></iframe>
+<iframe class="sec" id="gallery" src="model-210BR-gallery.html" title="Галерея"></iframe>
+<iframe class="sec" id="kit" src="model-210BR-kit.html" title="Комплектация"></iframe>
+<iframe class="sec" id="owners" src="model-210BR-owners.html" title="Владелец о Slider 210 BR"></iframe>
+<iframe class="sec" id="similar" src="model-210BR-similar.html" title="Похожие модели"></iframe>
+<iframe class="sec" id="footer" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script>
+// the hero is 100vh inside its frame, so that frame gets the window height first and is measured after
+const vh=()=>document.querySelectorAll("iframe[data-vh]").forEach(f=>f.style.height=Math.max(innerHeight,680)+"px");
+vh();addEventListener("resize",vh);
+// each section iframe takes the height of its content and hides its review label
+function fit(f){
+  const d=f.contentDocument;if(!d||!d.body||f.dataset.fit||d.location.href==="about:blank")return;f.dataset.fit=1;
+  d.querySelectorAll(".variant-tag").forEach(e=>e.remove());
+  const h=()=>{f.style.height=Math.ceil(d.body.getBoundingClientRect().height)+"px"};
+  h();new ResizeObserver(h).observe(d.body);
+}
+document.querySelectorAll("iframe.sec").forEach(f=>{f.addEventListener("load",()=>fit(f));fit(f)});
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>
