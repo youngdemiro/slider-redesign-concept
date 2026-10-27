@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Где купить</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Where to buy, from dillers.md and dillers__*.md: the yard's own sales office in Konakovo first (the only place
+   with the whole line), then the two official dealers (Saint Petersburg, Tolyatti), then every city the yard lists
+   with a finder: type a city and see who serves it. Each city row carries the slug of its yard page as its id
+   (#sankt-peterburg, #tolyatti…), so the footer and other pages can link straight to it. */
+.yard{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,4vw,72px);align-items:stretch}
+.yard .ph{position:relative;min-height:520px;border-radius:10px;overflow:hidden}
+.yard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.yard .ph span{position:absolute;left:18px;bottom:16px;padding:7px 12px;border-radius:999px;background:rgba(13,28,35,.7);color:var(--sand);font-size:12px;backdrop-filter:blur(6px)}
+.yard .eyebrow{color:var(--ink-3)}
+.yard h2{margin-top:18px}
+.yard>div>p{margin-top:18px;color:var(--ink-2);max-width:42ch}
+dl{display:grid;grid-template-columns:110px minmax(0,1fr);margin-top:32px;border-top:1px solid rgba(19,24,27,.14)}
+dt,dd{padding:14px 0;border-bottom:1px solid rgba(19,24,27,.14)}
+dt{font-size:13px;color:var(--ink-3)}
+dd{font-size:15px}
+dd a{display:block}
+dd a:hover{color:var(--ink-2)}
+.yard .b{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.head2{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head2 p{max-width:44ch;color:var(--sand-3)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px}
+.card{display:flex;flex-direction:column;padding:34px 34px 30px;border-radius:12px;border:1px solid rgba(234,228,217,.14);background:linear-gradient(160deg,rgba(30,57,67,.55),rgba(13,28,35,0) 70%);scroll-margin-top:100px}
+.card .city{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+.card h3{margin-top:18px;font:300 clamp(26px,2.6vw,38px)/1.05 var(--f-display);letter-spacing:-.015em}
+.card .adr{margin-top:16px;color:var(--sand-3);max-width:36ch}
+.card ul{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid rgba(234,228,217,.12)}
+.card li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(234,228,217,.12);font-size:15px}
+.card li span{color:var(--mist);font-size:13px}
+.card li a:hover{color:var(--brass)}
+.card li .ph2{color:var(--sand);font-size:15px;text-align:right}.card li .ph2 a{display:block}
+.card .b{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:28px}
+.card .btn{border-color:rgba(234,228,217,.45)}
+.find{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,5vw,96px)}
+.find>div:first-child{position:sticky;top:110px;align-self:start}
+.find .eyebrow{color:var(--ink-3)}
+.find h2{margin-top:18px}
+.find>div>p{margin-top:18px;color:var(--ink-2);max-width:36ch}
+.search{position:relative;margin-top:32px}
+.search input{width:100%;height:56px;padding:0 20px 0 48px;border-radius:999px;border:1px solid rgba(19,24,27,.25);background:transparent;font:400 16px var(--f-body);color:var(--ink);outline:none;transition:border-color .2s}
+.search input:focus{border-color:var(--ink)}
+.search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);opacity:.55}
+.rows{border-top:1px solid rgba(19,24,27,.14)}
+.row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr) auto;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(19,24,27,.12);scroll-margin-top:100px;transition:background .3s}
+.row b{font:300 20px/1.1 var(--f-display);letter-spacing:-.01em}
+.row span{font-size:14px;color:var(--ink-2)}
+.row span em{font-style:normal;color:var(--ink)}
+.row a{font-size:14px;white-space:nowrap}
+.row a:hover{color:var(--ink-2)}
+.row.dealer b::after{content:"дилер";display:inline-block;margin-left:10px;padding:4px 8px 3px;border-radius:999px;border:1px solid #82663B;color:#82663B;font:500 10px/1 var(--f-body);letter-spacing:.08em;vertical-align:4px}
+.row.hit{background:rgba(183,154,107,.14)}
+.row[hidden]{display:none}
+.none{padding:22px 0;color:var(--ink-2)}
+@media (max-width:900px){
+  .yard,.find{grid-template-columns:1fr}
+  .find>div:first-child{position:static}
+  .card li .ph2{text-align:left}
+  .yard .ph{min-height:0;aspect-ratio:4/3}
+  .cards{grid-template-columns:1fr}
+  .card{padding:26px 20px 22px}
+  .card li{flex-direction:column;gap:2px}
+  .row{grid-template-columns:1fr auto;gap:6px 14px}
+  .row span{grid-column:1/-1;grid-row:2}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a class="on" href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head">
+  <div class="crumbs"><a href="../index.html">Главная</a> / Где купить</div>
+  <h1>Где купить SLIDER</h1>
+  <p class="lead">Центральный офис продаж на верфи в Конаково и официальные дилеры в Санкт-Петербурге и Тольятти. Если в вашем городе дилера нет, офис в Конаково подберёт модель, подготовит катер, установит мотор и оборудование и доставит его.</p>
+</section>
+
+<section class="section" id="konakovo">
+  <div class="yard">
+    <div class="ph"><img src="../sections/assets/yard/hangar.jpg" alt="Площадка верфи SLIDER в Конаково"><span>Верфь в Конаково</span></div>
+    <div>
+      <span class="eyebrow">Центральный офис продаж</span>
+      <h2 class="h2">Конаково, верфь SLIDER</h2>
+      <p>Подбор модели, предпродажная подготовка, установка двигателя, приборов и опционного оборудования, доставка.</p>
+      <dl>
+        <dt>Адрес</dt><dd>171252, Тверская обл., г. Конаково, ул. Промышленная, 12</dd>
+        <dt>Дорога</dt><dd>Около двух часов на машине из Москвы</dd>
+        <dt>Телефоны</dt><dd><a href="tel:+74824246050">+7 (4824) 24-60-50</a><a href="tel:+79256494303">+7 925 649-43-03</a><a href="tel:+79251402030">+7 925 140-20-30</a></dd>
+        <dt>Почта</dt><dd><a href="mailto:info@slider-boat.ru">info@slider-boat.ru</a></dd>
+      </dl>
+      <div class="b"><a class="btn dark" href="tel:+74824246050">Записаться на визит</a><a class="btn" href="https://yandex.ru/maps/?text=Конаково%2C%20ул.%20Промышленная%2C%2012" target="_blank">Построить маршрут</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section on-sea">
+  <div class="head2"><div><span class="eyebrow">Официальные дилеры</span><h2 class="h2" style="margin-top:18px">Санкт-Петербург<br>и Тольятти</h2></div>
+    <p>Официальные дилеры торговой марки SLIDER. Адреса и телефоны по данным верфи.</p></div>
+  <div class="cards">
+    <article class="card" id="sankt-peterburg">
+      <span class="city">Санкт-Петербург</span>
+      <h3>Лодочный салон «Беркут»</h3>
+      <p class="adr">Территория яхт-клуба «Восточный», Рыбацкий пр-т, д. 10</p>
+      <ul><li><span>Телефон</span><a href="tel:+79219951859">+7 (921) 995-18-59</a></li><li><span>Сайт</span><a href="https://kater-berkut.ru" target="_blank">kater-berkut.ru</a></li></ul>
+      <div class="b"><a class="btn solid" href="tel:+79219951859">Позвонить</a><a class="btn" href="https://yandex.ru/maps/?text=Санкт-Петербург%2C%20Рыбацкий%20пр-т%2C%2010" target="_blank">Маршрут</a></div>
+    </article>
+    <article class="card" id="tolyatti">
+      <span class="city">Тольятти</span>
+      <h3>Магазин «КлёвОЕ место»</h3>
+      <p class="adr">б-р Приморский, 43</p>
+      <ul><li><span>Телефоны</span><span class="ph2"><a href="tel:+78482517020">+7 8482 51 70 20</a><a href="tel:+79278917171">+7 927 891 71 71</a></span></li><li><span>Почта</span><a href="mailto:kii@klevoe.ru">kii@klevoe.ru</a></li><li><span>Сайт</span><a href="https://klevoe.ru" target="_blank">klevoe.ru</a></li></ul>
+      <div class="b"><a class="btn solid" href="tel:+78482517020">Позвонить</a><a class="btn" href="https://yandex.ru/maps/?text=Тольятти%2C%20бульвар%20Приморский%2C%2043" target="_blank">Маршрут</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="find">
+    <div>
+      <span class="eyebrow">Ваш город</span>
+      <h2 class="h2">Кто вас обслужит</h2>
+      <p>Найдите свой город. Где официального дилера нет, работает центральный офис в Конаково.</p>
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Например, Казань" autocomplete="off" aria-label="Поиск города"></label>
+    </div>
+    <div class="rows" id="rows"></div>
+  </div>
+</section>
+
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<script>
+// cities in the yard's own order (dillers.md); slug = its page dillers__<slug>.md
+const CITIES=[["moskva","Москва"],["sankt-peterburg","Санкт-Петербург"],["kazan","Казань"],["astrakhan","Астрахань"],["balakovo","Балаково"],["volgograd","Волгоград"],["voronezh","Воронеж"],["izhevsk","Ижевск"],["kazakhstan","Казахстан"],["kostroma","Кострома"],["lipetsk","Липецк"],["naberezhnye-chelny","Набережные Челны"],["perm","Пермь"],["samara","Самара"],["saratov","Саратов"],["sevastopol","Севастополь"],["syzran","Сызрань"],["tolyatti","Тольятти"],["yaroslavl","Ярославль"]];
+const DEALER={"sankt-peterburg":["Лодочный салон «Беркут»","+7 (921) 995-18-59","tel:+79219951859"],"tolyatti":["Магазин «КлёвОЕ место»","+7 8482 51 70 20","tel:+78482517020"]};
+// dealer cities keep their card above as #slug; their row here is #slug-row
+document.getElementById("rows").innerHTML=CITIES.map(([s,n])=>{const d=DEALER[s];
+  return d?`<div class="row dealer" id="${s}-row" data-n="${n.toLowerCase()}"><b>${n}</b><span><em>${d[0]}</em></span><a href="#${s}">Контакты →</a></div>`
+          :`<div class="row" id="${s}" data-n="${n.toLowerCase()}"><b>${n}</b><span>Центральный офис продаж в Конаково</span><a href="tel:+74824246050">+7 (4824) 24-60-50</a></div>`}).join("")+`<p class="none" id="none" hidden>Этого города нет в списке верфи. Позвоните в центральный офис в Конаково: <a href="tel:+74824246050">+7 (4824) 24-60-50</a>, катер доставят в ваш город.</p>`;
+const rows=[...document.querySelectorAll(".row")];
+document.getElementById("q").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase();let n=0;
+  rows.forEach(r=>{const ok=!q||r.dataset.n.includes(q);r.hidden=!ok;r.classList.toggle("hit",!!q&&ok);if(ok)n++});
+  document.getElementById("none").hidden=n>0});
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

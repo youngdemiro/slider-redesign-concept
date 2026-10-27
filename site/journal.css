@@ -1,0 +1,91 @@
+/* Journal: the list (journal.html) and the post pages (journal-<slug>.html), built by build_journal.py.
+   List: the newest post as a wide lead card, the rest in a three-column grid of cover, date, title and the
+   post's first sentence. Post: title on the sea, the cover full width, the text on sand with a back link
+   on the left, the gallery on the sea (opens in a lightbox), newer / older post at the end. */
+
+/* list */
+.jl{padding-top:72px}
+.card{display:block}
+.card figure{overflow:hidden;border-radius:10px;background:var(--sand-2);aspect-ratio:4/3}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover img{transform:scale(1.04)}
+.card .t{padding-top:20px}
+.card .d{display:block;margin-bottom:10px;font:500 11px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.card h2{font:300 22px/1.2 var(--f-display);letter-spacing:-.01em}
+.card p{margin-top:10px;font-size:15px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .go{display:inline-block;margin-top:14px;font-size:14px;font-weight:500;border-bottom:1px solid rgba(19,24,27,.3);padding-bottom:2px;transition:border-color .2s}
+.card:hover .go{border-color:var(--ink)}
+.card.big{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,64px);align-items:end;padding-bottom:72px;margin-bottom:72px;border-bottom:1px solid rgba(19,24,27,.14)}
+.card.big figure{aspect-ratio:16/10}
+.card.big h2{font-size:clamp(28px,3vw,44px);line-height:1.05}
+.card.big p{font-size:17px;-webkit-line-clamp:5}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px clamp(24px,3vw,44px)}
+
+/* post */
+.ah{padding-bottom:64px}
+.ah .eyebrow{margin-top:40px}
+.ah .eyebrow+h1{margin-top:18px}
+.ah h1{font-size:clamp(36px,5vw,80px);max-width:20ch}
+.cover{margin:0;background:var(--sea)}
+.cover img{width:100%;max-height:min(78vh,760px);object-fit:cover;object-position:50% 40%}
+.art{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(24px,4vw,64px)}
+.art aside{position:relative}
+.back{position:sticky;top:104px;display:inline-block;font-size:14px;font-weight:500;color:var(--ink-2)}
+.back:hover{color:var(--ink)}
+.art .prose{font-size:18px;line-height:1.65}
+.art .prose p{color:var(--ink)}
+.art .prose p:first-of-type{font-size:22px;line-height:1.5}
+.ml{border-bottom:1px solid rgba(183,154,107,.8);transition:color .2s}
+.ml:hover{color:#82663B}
+.cal{list-style:none;padding:0;margin-top:8px;border-top:1px solid rgba(19,24,27,.14)}
+.cal li{display:grid;grid-template-columns:180px minmax(0,1fr);gap:4px 24px;padding:16px 0;border-bottom:1px solid rgba(19,24,27,.1);font-size:16px}
+.cal time{grid-row:span 2;font-weight:500}
+.cal span{font-size:14px;color:var(--ink-2)}
+.facts{display:grid;gap:0;margin-top:28px;border-top:1px solid rgba(19,24,27,.14)}
+.facts div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:16px 0;border-bottom:1px solid rgba(19,24,27,.1);font-size:16px}
+.facts dt{font-weight:500}
+.facts dd{margin:0}
+.facts ul{list-style:none;padding:0;margin:0}
+.v{position:relative;margin-bottom:36px;border-radius:10px;overflow:hidden;background:var(--sea);cursor:pointer;aspect-ratio:16/9}
+.v img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.v:hover img{transform:scale(1.03)}
+.v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center}
+.play::after{content:"";margin-left:6px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent var(--sea)}
+.vfoot{position:absolute;left:16px;bottom:14px;padding:7px 12px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+.gs .gh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(234,228,217,.14)}
+.gs .cnt{font:300 22px/1 var(--f-display);color:var(--mist)}
+.gal{columns:3;column-gap:16px}
+.gal a{display:block;margin-bottom:16px;break-inside:avoid;border-radius:8px;overflow:hidden;cursor:zoom-in}
+.gal img{width:100%;height:auto;transition:transform .6s var(--ease),opacity .3s}
+.gal a:hover img{transform:scale(1.03)}
+.pns{padding-block:72px}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid rgba(19,24,27,.14);padding-top:32px}
+.pn a{font:300 clamp(20px,2vw,28px)/1.2 var(--f-display);letter-spacing:-.01em;transition:color .2s}
+.pn a:hover{color:#82663B}
+.pn small{display:block;margin-bottom:12px;font:500 11px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.pn .nx{text-align:right}
+.lb{max-width:none;max-height:none;width:100vw;height:100vh;margin:0;padding:0;border:0;background:rgba(9,18,23,.96)}
+.lb::backdrop{background:transparent}
+.lb[open]{display:grid;place-items:center}
+.lb img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:4px}
+.lb button{position:fixed;width:52px;height:52px;border-radius:50%;background:rgba(234,228,217,.12);color:var(--sand);font-size:22px;line-height:1}
+.lb button:hover{background:rgba(234,228,217,.24)}
+.lb .x{top:20px;right:20px;font-size:28px}
+.lb .p{left:20px;top:50%;margin-top:-26px}
+.lb .n{right:20px;top:50%;margin-top:-26px}
+
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){
+  .card.big{grid-template-columns:1fr;gap:0;padding-bottom:48px;margin-bottom:48px}
+  .grid{grid-template-columns:1fr;gap:48px}
+  .art{grid-template-columns:1fr;gap:24px}
+  .back{position:static}
+  .art .prose{font-size:16px}
+  .art .prose p:first-of-type{font-size:19px}
+  .cal li,.facts div{grid-template-columns:1fr;gap:4px}
+  .cal time{grid-row:auto}
+  .gal{columns:2;column-gap:10px}.gal a{margin-bottom:10px}
+  .pn{grid-template-columns:1fr;gap:28px}.pn .nx{text-align:left}
+  .lb .p,.lb .n{top:auto;bottom:20px;margin:0}
+}

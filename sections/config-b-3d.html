@@ -102,7 +102,7 @@
     </div>
     <div class="bar">
       <div class="sum" id="sum"></div>
-      <div class="tot"><div><small>Итого от</small><b id="total"></b></div><a class="btn solid" id="go" href="https://slider-boat.ru/configurator/?cater=52" target="_blank">Продолжить в конфигураторе →</a></div>
+      <div class="tot"><div><small>Итого от</small><b id="total"></b></div><a class="btn solid" id="go" href="../site/configurator.html?m=210" target="_top">Продолжить в конфигураторе →</a></div>
     </div>
   </div>
 </section>
@@ -115,7 +115,6 @@ const $=id=>document.getElementById(id);
 const MODELS={175:{n:"175",t:"Боурайдер",meta:"5,0 м · 5 мест · до 100 л.с."},180:{n:"180",t:"Каютный",meta:"6,02 м · 7 мест · до 150 л.с."},210:{n:"210",t:"Каютный",meta:"6,21 м · 8 мест · до 175 л.с."},
   "210BR":{n:"210 BR",t:"Боурайдер",meta:"6,21 м · 8 мест · до 175 л.с."},"210ST":{n:"210 ST",t:"Хардтоп",meta:"6,21 м · 8 мест · до 175 л.с."},230:{n:"230",t:"Каютный",meta:"6,85 м · 8 мест · до 250 л.с."}};
 const ORDER=["175","180","210","210BR","210ST","230"];
-const CATER={175:50,180:51,210:52,"210BR":53,"210ST":1200,230:54};   // the yard's configurator ids
 // exterior options and prices from the yard's price list (models.json); null = not offered on that model
 // [name, part on the 3D hull, prices for 175, 180, 210, 210 BR, 210 ST, 230]
 const EXTRA=[["Высокий носовой рейлинг","railHigh",[null,125000,125000,125000,null,125000]],["Носовой трап","ladder",[null,115000,115000,115000,115000,115000]],
@@ -170,13 +169,13 @@ function render(){
   const colour=s.zone==="none"?"белый":COLORS.find(c=>c.hex===s.color).name.toLowerCase()+", "+ZONES[s.zone].toLowerCase();
   $("sum").innerHTML=`<em>Slider ${MODELS[s.model].n}</em> · ${colour} · опций: ${st.extra.size}`;
   $("total").textContent=rub(d.base+paint+extra);
-  $("go").href="https://slider-boat.ru/configurator/?cater="+CATER[s.model];
+  $("go").href="../site/configurator.html?m="+s.model;
   sync3d();
 }
 $("opts").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;items[b.dataset.i].act();render()});
 const go=n=>{st.step=n;look(CAM[n]);render()};
 $("steps").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(+b.dataset.s)});
-$("fwd").addEventListener("click",()=>{if(st.step<4)go(st.step+1);else window.open($("go").href,"_blank")});
+$("fwd").addEventListener("click",()=>{if(st.step<4)go(st.step+1);else top.location.href=$("go").href});
 $("back").addEventListener("click",()=>{if(st.step>0)go(st.step-1)});
 $("cams").addEventListener("click",e=>{const b=e.target.closest("button");if(b)look(b.dataset.v)});
 // review: #s=N opens step N already filled in, #v=side|stern|top picks the camera

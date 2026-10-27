@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Интервью &quot;Вести Тверь&quot;</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="journal.css">
+</head>
+<body>
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a class="on" href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head ah">
+  <div class="crumbs"><a href="../index.html">Главная</a> / <a href="journal.html">Журнал</a></div>
+  <h1>Интервью &quot;Вести Тверь&quot;</h1>
+</section>
+<figure class="cover"><img src="assets/journal/covers/intervyu-vesti-tver.jpg" width="1600" height="1200" alt="Интервью &quot;Вести Тверь&quot;"></figure>
+<section class="section art">
+  <aside><a class="back" href="journal.html">← Журнал</a></aside>
+  <div class="prose"><div class="v" data-vk="https://vk.com/video_ext.php?oid=-157382516&amp;id=456257381&amp;hash=879003aab772a2d8&amp;hd=3"><img src="assets/journal/intervyu-vesti-tver/01.jpg" alt="Видео: В городе Конаково производят стеклопластиковые катера Слайдер"><span class="play"></span><span class="vfoot">Видео «Вести Тверь»</span></div><p>Апрель для нашей верфи начался с двух знаковых событий: интервью программе Вести Тверь и поездки на Китайскую международную выставку яхт и катеров CIBS Shanghai 2026. О выставке расскажем позднее, а пока делимся с вами новостным материалом!</p></div>
+</section>
+<section class="section on-sea gs"><div class="gh"><span class="eyebrow">Фото</span><span class="cnt">2</span></div><div class="gal"><a href="assets/journal/intervyu-vesti-tver/01.jpg"><img src="assets/journal/intervyu-vesti-tver/01.jpg" width="1920" height="1439" alt="Интервью &quot;Вести Тверь&quot;, фото 1" loading="lazy"></a><a href="assets/journal/intervyu-vesti-tver/02.jpg"><img src="assets/journal/intervyu-vesti-tver/02.jpg" width="1440" height="1920" alt="Интервью &quot;Вести Тверь&quot;, фото 2" loading="lazy"></a></div></section>
+<section class="section pns"><nav class="pn"><a class="pv" href="journal-komanda-slider-na-cibs-2026-v-shankhae.html"><small>← Новее</small>Команда Slider на CIBS 2026 в Шанхае!</a><a class="nx" href="journal-verf-slider-na-vystavke-moscow-boat-show-2026.html"><small>Раньше →</small>Верфь Slider на Moscow Boat Show</a></nav></section>
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<dialog class="lb" id="lb"><img alt=""><button class="x" aria-label="Закрыть">×</button><button class="p" aria-label="Предыдущее фото">←</button><button class="n" aria-label="Следующее фото">→</button></dialog>
+<script>
+// gallery: a photo opens full size; arrows and ← → keys step through, Esc or a click outside closes
+const lb=document.getElementById("lb"),pics=[...document.querySelectorAll(".gal a")];let at=0;
+const show=i=>{at=(i+pics.length)%pics.length;lb.querySelector("img").src=pics[at].href;lb.querySelector("img").alt=pics[at].querySelector("img").alt};
+pics.forEach((a,i)=>a.addEventListener("click",e=>{e.preventDefault();show(i);lb.showModal()}));
+lb.querySelector(".x").onclick=()=>lb.close();lb.querySelector(".p").onclick=()=>show(at-1);lb.querySelector(".n").onclick=()=>show(at+1);
+lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
+addEventListener("keydown",e=>{if(!lb.open)return;if(e.key==="ArrowLeft")show(at-1);if(e.key==="ArrowRight")show(at+1)});
+document.querySelectorAll("[data-vk]").forEach(v=>v.addEventListener("click",()=>{if(v.querySelector("iframe"))return;
+  v.insertAdjacentHTML("beforeend",`<iframe src="${v.dataset.vk}&autoplay=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="Видео"></iframe>`)}));
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

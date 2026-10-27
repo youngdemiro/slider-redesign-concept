@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Отзывы владельцев</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Owner reviews: all twelve reviews from the yard's reviews pages, texts verbatim with the yard's own footnote,
+   each with its own photos or video (click-to-load youtube-nocookie, as on the model pages). Filter chips by model;
+   a masonry of cards on the sand, the invitation to send a review on the sea at the end. */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{height:40px;padding:0 18px;border-radius:999px;border:1px solid rgba(19,24,27,.22);font:500 14px/1 var(--f-body);color:var(--ink-2);transition:background .2s,color .2s,border-color .2s}
+.chips button small{margin-left:6px;font-size:12px;color:var(--ink-3)}
+.chips button.on{background:var(--sea);border-color:var(--sea);color:var(--sand)}
+.chips button.on small{color:var(--mist)}
+.count{font-size:14px;color:var(--ink-3)}
+.wall{columns:3 340px;column-gap:28px;margin-top:48px}
+.rv{break-inside:avoid;margin-bottom:28px;padding:22px 22px 26px;border-radius:12px;background:rgba(255,255,255,.42);border:1px solid rgba(19,24,27,.07)}
+.rv[hidden]{display:none}
+.rv{scroll-margin-top:96px}
+.ph{display:grid;gap:6px;margin:-8px -8px 22px}
+.ph.two{grid-template-columns:1fr 1fr}
+.ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+.ph.two img{aspect-ratio:3/4}
+.v{position:relative;border-radius:8px;overflow:hidden;background:var(--sea);cursor:pointer;aspect-ratio:16/9}
+.v img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;border-radius:0;transition:transform .6s var(--ease)}
+.v:hover img{transform:scale(1.03)}
+.v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center}
+.play::after{content:"";margin-left:5px;border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent var(--sea)}
+.vfoot{position:absolute;left:12px;bottom:10px;padding:6px 11px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+.who{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.who b{font:400 22px/1.15 var(--f-display);letter-spacing:-.01em}
+.who a,.who span{flex:none;font-size:13px;color:var(--ink-2);border-bottom:1px solid rgba(19,24,27,.25)}
+.who span{border:0;color:var(--ink-3)}
+.who a:hover{color:var(--ink);border-color:var(--ink)}
+.rv h3{margin-top:6px;font:500 12px/1.4 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.rv .t{margin-top:16px;font-size:16px;line-height:1.6;color:var(--ink)}
+.rv .t p+p{margin-top:12px}
+.rv .t .lead{font:300 20px/1.35 var(--f-display);letter-spacing:-.005em}
+.rv details summary{margin-top:12px;cursor:pointer;font-size:14px;color:var(--ink-2);list-style:none}
+.rv details summary::-webkit-details-marker{display:none}
+.rv details summary::after{content:" ↓"}
+.rv details[open] summary{display:none}
+.rv .fn{margin-top:14px;font-size:12px;color:var(--ink-3)}
+.send{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.send p{max-width:46ch;color:var(--sand-3)}
+.send .b{display:flex;gap:10px;flex-wrap:wrap}
+.send .btn:not(.solid){border-color:rgba(234,228,217,.45)}
+@media (max-width:900px){.wall{columns:1}.rv{padding:18px 18px 22px}.chips{overflow-x:auto;flex-wrap:nowrap;margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);scrollbar-width:none}.chips button{flex:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a class="on" href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head">
+  <div class="crumbs"><a href="../index.html">Главная</a> / <a href="about.html">Верфь</a> / Отзывы владельцев</div>
+  <h1>Отзывы владельцев</h1>
+  <p class="lead">Что говорят наши клиенты: двенадцать историй о катерах Slider 175, 180, 210, 210 BR и 230, с фото и видео самих владельцев.</p>
+</section>
+
+<section class="section">
+  <div class="bar">
+    <div class="chips" id="chips"></div>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="wall" id="wall">
+
+    <article class="rv" id="otzyv-artura-o-katere-slider-175" data-m="175">
+      <div class="ph two"><img src="assets/reviews/otzyv-artura-o-katere-slider-175-1.jpg" alt="Slider 175 Артура на ходу" loading="lazy"><img src="assets/reviews/otzyv-artura-o-katere-slider-175-2.jpg" alt="Slider 175 Артура" loading="lazy"></div>
+      <div class="who"><b>Артур</b><a href="../pages/model-175.html">Slider 175</a></div>
+      <div class="t"><p>Заказывали катер в этой фирме. Выполнили всё в срок, над катером работали профессионалы своего дела. Испробовали на воде, всё шикарно, катер безупречный , наслаждаемся морскими прогулками всей семьёй! Рекомендую!</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-aleksa-o-katere-slider-180" data-m="180">
+      <div class="who"><b>Алекс</b><a href="../pages/model-180.html">Slider 180</a></div>
+      <div class="t"><p class="lead">Отличные катера ярких жизнерадостных цветов с отменными ходовыми характеристиками, предлагается тест- драйв на воде.</p><p>Их делают люди - мастера своего дела, способные решить самую сложную техническую проблему. Удобные и красивые кокпиты и каюты, стильный дизайн. Лодка должна приносить эстетическое удовольствие, быть красивой, и на Слайдере эту задачу решают очень успешно. Владелец Slider 180.</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-denisa-o-katere-slider-230" data-m="230">
+      <div class="ph"><img src="assets/reviews/otzyv-denisa-o-katere-slider-230-1.jpg" alt="Денис и его катер Slider" loading="lazy"></div>
+      <div class="who"><b>Денис</b><a href="../pages/model-230.html">Slider 230</a></div>
+      <div class="t"><p>Друзья! Пост восхищения @sliderboat! Год назад я забирал свою лодку Slider 210, а сегодня в нашей марине появился новенький Slider 230. И что радостно и чем можно, действительно, гордиться - делают эти лодки наши ребята в Конаково! Честь и хвала настоящим профессионалам! Пусть наших лодок Slider становится как можно больше!</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-aleksandra-o-slider-210" data-m="210">
+      <div class="ph"><img src="assets/reviews/otzyv-aleksandra-o-slider-210-1.jpg" alt="Александр у своего Slider 210 на верфи" loading="lazy"></div>
+      <div class="who"><b>Александр</b><a href="../pages/model-210.html">Slider 210</a></div>
+      <h3>26.06.2021</h3>
+      <div class="t"><p class="lead">Сегодня первый выезд на Слайдере 210, с лодочным мотором Ямаха 150.</p><p>Впечатления не передоваемые, мы счастливы! Огромное спасибо компании Слайдер и особенно Мухаддину за его отзывчивое отношение к клиентам.</p><p>Поздравляем с днём рождения Валентину! Рекомендуем для приобретения катера эту компанию!!!</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-kirilla-o-katere-210-br" data-m="210BR">
+      <div class="ph two"><img src="assets/reviews/otzyv-kirilla-o-katere-210-br-1.jpg" alt="Кастомный Slider 210 BR Кирилла на верфи" loading="lazy"><img src="assets/reviews/otzyv-kirilla-o-katere-210-br-2.jpg" alt="Кокпит Slider 210 BR Кирилла" loading="lazy"></div>
+      <div class="who"><b>Кирилл</b><a href="../pages/model-210BR.html">Slider 210 BR</a></div>
+      <div class="t"><p>Обновился! Кастомный 210 BR вышел вчера с завода Слайдер в Конаково. Небо и земля в сравнении с производством в Казани. Был до этого 175BR и есть с чем сравнить. Хотелось бы выразить благодарность руководящему составу Валентине и Мухаддину за проделанную работу.</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="aleksandr-i-ego-kater-slider-210" data-m="210">
+      <div class="ph"><div class="v" data-yt="DgXwB99nzUY"><img src="assets/reviews/aleksandr-i-ego-kater-slider-210-1.jpg" alt="Видео: Александр и его Slider 210" loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>Александр</b><a href="../pages/model-210.html">Slider 210</a></div>
+      <div class="t"><p class="lead">Кайф, сплошной кайф! Настроение замечательное, замечательный катер.</p><p>SLIDER 210: идет легко, на глиссер выходит уверенно и быстро, очень комфортно - нет лишних вибраций. Спасибо Мухаддину, спасибо всем остальным, кто его создал!</p></div>
+      <p class="fn">*авторский текст и эмоции сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-o-katere-slider-230" data-m="230">
+      <div class="ph"><div class="v" data-yt="x9SVslxm28s"><img src="assets/reviews/otzyv-o-katere-slider-230-1.jpg" alt="Видео: Slider 230 Andalex" loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>Andalex</b><a href="../pages/model-230.html">Slider 230</a></div>
+      <div class="t">
+        <p>Хочу оставить свое мнение по поводу Slider. Договор я подписал с ними после выставке в марте в Москве оплачено было 90% денег вперед (понимал что может курс скакануть из-за нефти) отдали катер в срок без задержек! Когда приехал забирать , впечатление было у людей нет кризиса , работа в цеху кипела по полной. Я договорился , что катер сдадут на воде чтобы все проверить и вот тут начинается отдельная история!!!</p>
+        <details><summary>Читать полностью</summary>
+          <p>Я много видел производств, дилеров и тп, но у меня останется особенное впечатление о заводе слайдер и их начальнике Мухаддине, когда все проверки на воде были завершены и мы подходили к берегу, мой друг спустил прицеп не в очень удобном месте, а я по неопытности не скинул скорость я думал, что вот вот вьеду в на новом катере в прицеп, так вот Мухаддин долго не думал прямо в джинсах прыгнул в воду и поймал мою лодку. Мне кажется другой бы просто забил и не стал бы мокнуть.</p>
+          <p>Кстати к мотору и качеству сборки вопросов не возникло все супер!!! Время конечно покажет как поведёт себя лодка дальше, но уехал я к себе в Воронеж с отличными впечатлениями о работе завода, качества катера и самое главное отношения к клиентам!!!</p>
+        </details>
+      </div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-yuriya-o-katere-slider-230" data-m="230">
+      <div class="ph"><div class="v" data-yt="LUQ2anyghUY"><img src="assets/reviews/otzyv-yuriya-o-katere-slider-230-1.jpg" alt="Видео: семья Юрия на своём Slider 230" loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>Юрий</b><a href="../pages/model-230.html">Slider 230</a></div>
+      <div class="t"><p>От лица нашей семьи хотелось бы выразить благодарность коллективу «Слайдер», конкретно Валентине и Мухаддину, за то, что они делали-делали и доделали нашу красавицу! Ура!</p></div>
+      <p class="fn">*авторский текст и эмоции сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-andreya-s-pokhodami" data-m="all">
+      <div class="ph two"><div class="v" data-yt="ppEySOO_4PU"><img src="assets/reviews/otzyv-andreya-s-pokhodami-1.jpg" alt="Видео: катера Slider в донском походе" loading="lazy"><span class="play"></span><span class="vfoot">Видео 1</span></div><div class="v" data-yt="zDCe7TvbmaI"><img src="assets/reviews/otzyv-andreya-s-pokhodami-1.jpg" alt="Видео: поход от Волгодонска до Должанки" loading="lazy" style="object-position:80% 50%"><span class="play"></span><span class="vfoot">Видео 2</span></div></div>
+      <div class="who"><b>Андрей и друзья</b><span>Донские походы</span></div>
+      <div class="t"><p>Восхищаемся видео-отзывами клиентов и предлагаем Вам прочувствовать момент, посмотрев видеоролики Андрея и его друзей.</p></div>
+    </article>
+
+    <article class="rv" id="otzyv-aleksandra-kh-o-katere-slider-210" data-m="210">
+      <div class="ph"><div class="v" data-yt="Et5SS7vBESQ"><img src="assets/reviews/otzyv-aleksandra-kh-o-katere-slider-210-1.jpg" alt="Видео: Slider 210 Александра Х." loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>Александр Х.</b><a href="../pages/model-210.html">Slider 210</a></div>
+      <div class="t"><p class="lead">Жил на лодке почти целый сезон, чувствовал себя комфортно, ни в чем практически не нуждался!</p><p>У меня было два феникса 560 и слайдер 210, понравились все лодки, у слайдера побольше каюта, он мореходнее, но поменьше кокпит. Радует, что наше Российское производство шагает уверенными шагами к нормальному качеству.</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="kompaniya-na-katere-spb-o-slider-210-br" data-m="210BR">
+      <div class="ph"><div class="v" data-yt="HB4-zitZVZM"><img src="assets/reviews/kompaniya-na-katere-spb-o-slider-210-br-1.jpg" alt="Видео: Slider 210 BR «Стремительный» на Неве" loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>«На катере СПБ»</b><a href="../pages/model-210BR.html">Slider 210 BR</a></div>
+      <div class="t"><p class="lead">Катер Стремительный — абсолютно новый катер полностью соответствует своему названию.</p><p>Скорость и комфорт – вот основные его характеристики. Катер безупречно ведет себя на воде, даже при наличии волн, обладая прекрасной остойчивостью.</p><p>Мотор 150 л.с. позволяет развивать скорость 65 км/час. Удобство и комфорт пассажиров обеспечивают 2 мягких дивана в открытой носовой части, 2 кресла и мягкий диван в кормовой, музыкальная аудиосистема, подсветка салона и даже розетка для зарядки гаджетов. Максимальная посадка – 8 человек.</p></div>
+      <p class="fn">*орфография и пунктуация автора сохранены</p>
+    </article>
+
+    <article class="rv" id="otzyv-vladimira-o-katere-slider-210" data-m="210">
+      <div class="ph"><div class="v" data-yt="_ir-v_ufNHc"><img src="assets/reviews/video-ir-v_ufNHc.jpg" alt="Видео Владимира об отдыхе на воде" loading="lazy"><span class="play"></span><span class="vfoot">Видео</span></div></div>
+      <div class="who"><b>Владимир</b><a href="../pages/model-210.html">Slider 210</a></div>
+      <div class="t"><p>Предлагаем посмотреть ролик Владимира о насыщенном отдыхе на воде!</p></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section on-sea">
+  <div class="send">
+    <div><span class="eyebrow">Ваш отзыв</span><h2 class="h2" style="margin-top:18px">Расскажите<br>о своём Slider</h2></div>
+    <p>Если вы хотите оставить отзыв, прислать фото или видео отдыха на воде, пожалуйста, напишите нам на странице Контакты.</p>
+    <div class="b"><a class="btn solid" href="contacts.html">Контакты</a><a class="btn" href="press.html">Тесты в прессе</a></div>
+  </div>
+</section>
+
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<script>
+// filter by model; "Донские походы" (no model named) shows only under «Все»
+const cards=[...document.querySelectorAll(".rv")], M=[["all","Все"],["175","175"],["180","180"],["210","210"],["210BR","210 BR"],["230","230"]];
+const n=m=>m==="all"?cards.length:cards.filter(c=>c.dataset.m===m).length;
+const chips=document.getElementById("chips"), count=document.getElementById("count");
+const plural=k=>k%10===1&&k%100!==11?"отзыв":k%10>=2&&k%10<=4&&(k%100<10||k%100>=20)?"отзыва":"отзывов";
+function show(m){
+  chips.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));
+  cards.forEach(c=>c.hidden=m!=="all"&&c.dataset.m!==m);
+  const k=n(m); count.textContent=k+" "+plural(k);
+}
+chips.innerHTML=M.map(([m,l])=>`<button data-m="${m}">${m==="all"?l:"Slider "+l}<small>${n(m)}</small></button>`).join("");
+chips.addEventListener("click",e=>{const b=e.target.closest("button");if(b)show(b.dataset.m)});
+show("all");
+// deep links from model pages (reviews.html#<slug>): show every card, open a collapsed text, land on it
+function toCard(){const c=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));if(!c||!c.classList.contains("rv"))return;
+  if(c.hidden)show("all");c.querySelectorAll("details").forEach(d=>d.open=true);c.scrollIntoView({block:"start"})}
+addEventListener("hashchange",toCard);toCard();
+// owner videos load only on click
+document.querySelectorAll("[data-yt]").forEach(v=>v.addEventListener("click",()=>{if(v.querySelector("iframe"))return;
+  v.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видео владельца"></iframe>`)}));
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

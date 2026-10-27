@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Конфигуратор</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"}}</script>
+<style>
+/* Full configurator, the step after the homepage teaser and the model pages' «Собрать»: the 3D boat holds the
+   left of the screen, the steps run on the right (model, colour and paint zone, the whole option list of the
+   yard's price list, request), the total follows every click. Prices from models.json (site/assets/config-data.js,
+   «по запросу» where the yard gives no price), paint from paint-data.js. ?m=<model> opens a model, #step=N a step.
+   The request ends in a summary to call or e-mail the yard: the concept has no backend to send it to. */
+.app{display:grid;grid-template-columns:minmax(0,1fr) 460px;height:calc(100vh - 72px);min-height:640px;background:var(--sea);color:var(--sand)}
+.stage{position:relative;overflow:hidden;background:radial-gradient(80% 90% at 42% 55%,var(--sea-3) 0%,var(--sea-2) 55%,#10232A 100%)}
+#boat{position:absolute;inset:0;cursor:grab;touch-action:pan-y}
+#boat:active{cursor:grabbing}
+.stage .name{position:absolute;z-index:2;left:var(--gutter);top:36px;pointer-events:none}
+.stage .name b{display:block;font:300 clamp(34px,3.4vw,52px)/1 var(--f-display);letter-spacing:-.02em}
+.stage .name span{display:block;margin-top:10px;font-size:14px;color:var(--mist)}
+.cams{position:absolute;z-index:2;left:var(--gutter);bottom:28px;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(13,28,35,.55);border:1px solid rgba(234,228,217,.12);backdrop-filter:blur(8px)}
+.cams button{height:34px;padding:0 15px;border-radius:999px;font:500 12px/1 var(--f-body);color:var(--mist);transition:background .2s,color .2s}
+.cams button.on{background:var(--sand);color:var(--sea)}
+.stage .drag{position:absolute;z-index:2;right:28px;bottom:38px;font-size:12px;color:var(--mist);pointer-events:none}
+.panel{display:flex;flex-direction:column;min-height:0;border-left:1px solid rgba(234,228,217,.08)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(234,228,217,.1)}
+.steps button{position:relative;height:60px;padding:0 10px;font:500 12px/1.2 var(--f-body);color:var(--mist);text-align:center}
+.steps button i{display:block;margin-bottom:5px;font:400 10px/1 var(--f-display);font-style:normal;color:rgba(147,164,170,.6)}
+.steps button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.steps button.on{color:var(--sand)}.steps button.on::after{transform:none}.steps button.on i{color:var(--brass)}
+.scroll{flex:1;min-height:0;overflow:auto;padding:28px 28px 32px;scrollbar-width:thin}
+.scroll h2{font:300 26px/1.1 var(--f-display);letter-spacing:-.01em}
+.scroll .hint{margin:8px 0 22px;font-size:14px;color:var(--mist)}
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;width:100%;min-height:54px;padding:10px 14px;border-radius:12px;border:1px solid rgba(234,228,217,.1);text-align:left;color:var(--sand);transition:border-color .2s,background .2s}
+.opt+.opt{margin-top:6px}
+.opt:hover{border-color:rgba(234,228,217,.3)}
+.opt.on{border-color:var(--brass);background:rgba(183,154,107,.08)}
+.opt span{font-size:14px;line-height:1.35}
+.opt span small{display:block;margin-top:2px;font-size:12px;color:var(--mist)}
+.opt b{font:500 13px/1 var(--f-body);color:var(--mist);white-space:nowrap}
+.opt.on b{color:var(--sand)}
+.opt .box{width:18px;height:18px;border-radius:5px;border:1px solid rgba(234,228,217,.4);display:grid;place-items:center;font-size:12px;color:var(--sea)}
+.opt.on .box{background:var(--brass);border-color:var(--brass)}
+.opt.on .box::before{content:"✓"}
+.opt .dot{width:22px;height:22px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.sw{display:grid;grid-template-columns:repeat(5,44px);gap:12px}
+.sw button{width:44px;height:44px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(234,228,217,.25);position:relative}
+.sw button.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--sand)}
+.swn{margin:12px 0 30px;font-size:14px;color:var(--sand-3)}
+.sub{margin:30px 0 12px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+.sub:first-of-type{margin-top:0}
+details.grp{border-top:1px solid rgba(234,228,217,.1)}
+details.grp:last-of-type{border-bottom:1px solid rgba(234,228,217,.1)}
+details.grp summary{display:flex;justify-content:space-between;align-items:center;padding:18px 0;cursor:pointer;list-style:none;font-size:15px}
+details.grp summary::-webkit-details-marker{display:none}
+details.grp summary em{font-style:normal;font-size:12px;color:var(--mist)}
+details.grp summary::after{content:"+";margin-left:14px;font:300 20px/1 var(--f-display);color:var(--mist)}
+details.grp[open] summary::after{content:"–"}
+details.grp .list{padding-bottom:18px}
+.std{margin-top:8px;font-size:14px;color:var(--sand-3)}
+.std ul{margin:10px 0 0;padding-left:18px}.std li+li{margin-top:4px}
+.sum-list{border-top:1px solid rgba(234,228,217,.1)}
+.sum-list div{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid rgba(234,228,217,.1);font-size:14px}
+.sum-list div span{color:var(--sand-3)}
+.sum-list div b{font-weight:500;white-space:nowrap}
+form{display:grid;gap:12px;margin-top:26px}
+form label{display:grid;gap:6px;font-size:12px;color:var(--mist)}
+form input,form textarea,form select{width:100%;height:48px;padding:0 16px;border-radius:12px;border:1px solid rgba(234,228,217,.18);background:rgba(234,228,217,.04);color:var(--sand);font:400 15px var(--f-body)}
+form textarea{height:90px;padding:12px 16px;resize:vertical}
+form select option{color:var(--ink)}
+form input:focus,form textarea:focus,form select:focus{outline:none;border-color:var(--brass)}
+form .agree{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.45}
+form .agree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--brass)}
+form .agree a{text-decoration:underline}
+.done{margin-top:26px;padding:22px;border-radius:14px;border:1px solid var(--brass);background:rgba(183,154,107,.08)}
+.done p{font-size:14px;color:var(--sand-3)}.done p+p{margin-top:10px}
+.done .b{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.done .btn:not(.solid){border-color:rgba(234,228,217,.45)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 28px;border-top:1px solid rgba(234,228,217,.1);background:rgba(13,28,35,.7)}
+.bar small{display:block;font-size:12px;color:var(--mist)}
+.bar b{display:block;margin-top:4px;font:300 28px/1 var(--f-display);letter-spacing:-.02em;white-space:nowrap}
+.bar .btn{height:46px}
+@media (max-width:1100px){.app{grid-template-columns:minmax(0,1fr) 400px}}
+@media (max-width:900px){
+  .app{display:block;height:auto;min-height:0}
+  .stage{aspect-ratio:1/1}
+  .stage .name{top:22px}.stage .drag{display:none}
+  .cams{left:12px;right:12px;bottom:12px;justify-content:space-between}.cams button{padding:0 10px}
+  .panel{border-left:0}
+  .steps{position:sticky;top:60px;z-index:5;background:var(--sea)}
+  .scroll{overflow:visible;padding:24px var(--gutter) 28px}
+  .bar{position:sticky;bottom:0;z-index:5;padding:14px var(--gutter);background:rgba(13,28,35,.95)}
+  .bar b{font-size:24px}
+}
+</style>
+</head>
+<body class="on-sea">
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="compare.html">Сравнить модели</a></div>
+</header>
+<main class="app">
+  <div class="stage">
+    <div id="boat"></div>
+    <div class="name"><b id="v-name">Slider 210</b><span id="v-meta"></span></div>
+    <div class="cams" id="cams"><button data-v="three" class="on">Три четверти</button><button data-v="side">Борт</button><button data-v="stern">Корма</button><button data-v="top">Сверху</button></div>
+    <div class="drag">Потяните, чтобы повернуть</div>
+  </div>
+  <div class="panel">
+    <div class="steps" id="steps"><button data-s="0" class="on"><i>01</i>Модель</button><button data-s="1"><i>02</i>Цвет</button><button data-s="2"><i>03</i>Оборудование</button><button data-s="3"><i>04</i>Заявка</button></div>
+    <div class="scroll" id="scroll"></div>
+    <div class="bar"><div><small id="t-note">Итого от</small><b id="total"></b></div><button class="btn solid" id="fwd">Далее</button></div>
+  </div>
+</main>
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="../directions/assets/paint-data.js?v=8"></script>
+<script src="../sections/assets/hull.js?v=8"></script>
+<script src="../sections/assets/boat3d.js?v=8"></script>
+<script src="assets/config-data.js?v=1"></script>
+<script src="site.js"></script>
+<script>
+const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ORDER=["175","180","210","210BR","210ST","230"];
+const MODELS={175:{n:"175",t:"Боурайдер",meta:"5,0 м · 5 мест · до 100 л.с."},180:{n:"180",t:"Каютный",meta:"6,02 м · 7 мест · до 150 л.с."},210:{n:"210",t:"Каютный",meta:"6,21 м · 8 мест · до 175 л.с."},
+  "210BR":{n:"210 BR",t:"Боурайдер",meta:"6,21 м · 8 мест · до 175 л.с."},"210ST":{n:"210 ST",t:"Хардтоп",meta:"6,21 м · 8 мест · до 175 л.с."},230:{n:"230",t:"Каютный",meta:"6,85 м · 8 мест · до 250 л.с."}};
+// options that show on the 3D hull
+const PART={"Высокий носовой рейлинг":"railHigh","Носовой трап":"ladder","Тарга для буксировки водного лыжника":"targa","Тауэр для буксировки вэйкборда":"tower"};
+const ZL=[["none","Белый гелькоут","как в базовой комплектации"],["below","Ниже привального бруса",""],["above","Выше привального бруса",""],["full","Весь корпус",""]];
+const CAM=["three","side","three","three"];
+const q=new URLSearchParams(location.search);
+const st={model:ORDER.includes(q.get("m"))?q.get("m"):"210",color:"#2B2C7C",zone:"full",extra:new Set(),step:+((location.hash.match(/step=(\d)/)||[])[1]||0),sent:null};
+const opts=()=>Object.entries(CONFIG[st.model].options);
+const priceOf=n=>{for(const[,l]of opts())for(const[o,p]of l)if(o===n)return p;return undefined};
+const paintPrice=()=>st.zone==="none"?0:PAINT[st.model].paint[st.zone];
+const total=()=>CONFIG[st.model].base+paintPrice()+[...st.extra].reduce((a,n)=>a+(priceOf(n)||0),0);
+const onRequest=()=>[...st.extra].filter(n=>priceOf(n)==null);
+
+// ---- 3D boat: rebuilt in the same stage when the model changes --------------------------------
+let boat=null, built=null, cam="three", ready=Promise.resolve(null);
+function build(){
+  if(built===st.model)return; const m=built=st.model;
+  ready=ready.then(old=>Boat3D($("boat"),{model:m,zone:st.zone,color:st.color,view:old?undefined:cam,cam:old?old.camera():undefined,carry:!!old}).then(b=>{if(old)old.dispose();boat=b;equip();return b}));
+}
+function equip(){if(!boat)return;const on={};st.extra.forEach(n=>{if(PART[n])on[PART[n]]=1});boat.equip(on)}
+function look(v){cam=v;boat&&boat.view(v);document.querySelectorAll("#cams button").forEach(b=>b.classList.toggle("on",b.dataset.v===v))}
+
+// ---- steps -------------------------------------------------------------------------------------
+function stepModel(){
+  return `<h2>Модель</h2><p class="hint">Цена «от» за базовую комплектацию. Slider 377 считается по запросу, на <a href="../pages/model-377.html#build" style="text-decoration:underline">его странице</a>.</p>`+
+    ORDER.map(m=>`<button class="opt${m===st.model?" on":""}" data-act="model" data-v="${m}"><i></i><span>Slider ${MODELS[m].n}<small>${MODELS[m].t} · ${MODELS[m].meta}</small></span><b>от ${rub(CONFIG[m].base)}</b></button>`).join("");
+}
+function stepPaint(){
+  const name=st.zone==="none"?"Корпус белый":COLORS.find(c=>c.hex===st.color).name;
+  return `<h2>Цвет корпуса</h2><p class="hint">Десять заводских цветов. Любой другой подберём по палитре Ashland.</p>
+    <div class="sw">${COLORS.map(c=>`<button style="--c:${c.hex}" class="${c.hex===st.color&&st.zone!=="none"?"on":""}" data-act="color" data-v="${c.hex}" aria-label="${c.name}"></button>`).join("")}</div><div class="swn">${name}</div>
+    <div class="sub">Что красим</div>`+
+    ZL.map(([z,l,s])=>`<button class="opt${z===st.zone?" on":""}" data-act="zone" data-v="${z}"><i class="dot" style="--c:${z==="none"?"#F4F4F2":st.color}"></i><span>${l}${s?`<small>${s}</small>`:""}</span><b>${z==="none"?"включено":"+ "+rub(PAINT[st.model].paint[z])}</b></button>`).join("");
+}
+function stepKit(){
+  const std=CONFIG[st.model].standard;
+  return `<h2>Оборудование</h2><p class="hint">Весь прайс верфи для Slider ${MODELS[st.model].n}. Отмеченное значком 3D появляется на катере.</p>`+
+    opts().map(([g,l],i)=>{const n=l.filter(([o])=>st.extra.has(o)).length;return `<details class="grp"${i===0?" open":""}><summary>${g}<em>${n?"выбрано: "+n:l.length+" опций"}</em></summary><div class="list">`+
+      l.map(([o,p])=>`<button class="opt${st.extra.has(o)?" on":""}" data-act="extra" data-v="${esc(o)}"><i class="box"></i><span>${esc(o)}${PART[o]?"<small>видно на 3D-модели</small>":""}</span><b>${p==null?"по запросу":"+ "+rub(p)}</b></button>`).join("")+`</div></details>`}).join("")+
+    `<div class="sub" style="margin-top:34px">Уже входит в базовую комплектацию</div>`+
+    Object.entries(std).map(([k,v])=>`<details class="grp"><summary>${esc(k)}<em>${v.length}</em></summary><div class="std"><ul>${v.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div></details>`).join("");
+}
+function lines(){
+  const L=[[`Slider ${MODELS[st.model].n}, базовая комплектация`,rub(CONFIG[st.model].base)]];
+  L.push([st.zone==="none"?"Корпус белый":`${COLORS.find(c=>c.hex===st.color).name}: ${ZL.find(z=>z[0]===st.zone)[1].toLowerCase()}`,st.zone==="none"?"включено":rub(paintPrice())]);
+  st.extra.forEach(n=>{const p=priceOf(n);L.push([n,p==null?"по запросу":rub(p)])});
+  return L;
+}
+function stepSend(){
+  const L=lines(), req=onRequest().length;
+  let h=`<h2>Ваш Slider</h2><p class="hint">Проверьте конфигурацию. Мотор Yamaha или Mercury специалисты верфи подберут под модель и ваши задачи.</p>
+    <div class="sum-list">${L.map(([a,b])=>`<div><span>${esc(a)}</span><b>${b}</b></div>`).join("")}<div><span>Итого от</span><b>${rub(total())}${req?" + по запросу":""}</b></div></div>`;
+  if(st.sent){
+    const body=encodeURIComponent(`Здравствуйте! Хочу Slider ${MODELS[st.model].n}.\n\n${L.map(([a,b])=>`${a}: ${b}`).join("\n")}\nИтого от: ${rub(total())}\nМотор: ${st.sent.motor}\n\n${st.sent.name}, ${st.sent.phone}${st.sent.note?"\n"+st.sent.note:""}`);
+    return h+`<div class="done"><p><b style="font-weight:500;color:var(--sand)">Конфигурация собрана.</b> Это концепт сайта, заявка отсюда никуда не уходит. На рабочем сайте её получат специалисты верфи и свяжутся с вами в течение рабочего дня.</p><p>Сейчас её можно отправить верфи самому:</p>
+      <div class="b"><a class="btn solid" href="mailto:info@slider-boat.ru?subject=${encodeURIComponent("Конфигурация Slider "+MODELS[st.model].n)}&body=${body}">Отправить на почту</a><a class="btn" href="tel:+74824246050">Позвонить</a></div></div>`;
+  }
+  return h+`<form id="form"><label>Имя<input name="name" required autocomplete="name"></label><label>Телефон<input name="phone" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <label>Мотор<select name="motor"><option>Подобрать вместе со специалистом</option><option>Yamaha</option><option>Mercury</option><option>Свой мотор, нужен только катер</option></select></label>
+    <label>Комментарий<textarea name="note" placeholder="Город, сроки, вопросы"></textarea></label>
+    <label class="agree"><input type="checkbox" required><span>Отправляя данные, я соглашаюсь с <a href="privacy.html" target="_blank">политикой конфиденциальности</a> и даю согласие на обработку персональных данных</span></label>
+    <button class="btn solid" type="submit">Отправить заявку</button></form>`;
+}
+const STEPS=[stepModel,stepPaint,stepKit,stepSend];
+
+function render(){
+  const s=st.step;
+  document.querySelectorAll("#steps button").forEach((b,i)=>b.classList.toggle("on",i===s));
+  const open=[...document.querySelectorAll("details.grp[open] summary")].map(e=>e.firstChild.textContent);
+  $("scroll").innerHTML=STEPS[s]();
+  if(s===2&&open.length)document.querySelectorAll("details.grp").forEach(d=>d.open=open.includes(d.querySelector("summary").firstChild.textContent));
+  $("v-name").textContent=`Slider ${MODELS[st.model].n}`; $("v-meta").textContent=MODELS[st.model].meta;
+  $("total").textContent=rub(total())+(onRequest().length?" +":"");
+  $("t-note").textContent=onRequest().length?"Итого от, без позиций по запросу":"Итого от";
+  $("fwd").textContent=s<3?"Далее":"К началу"; $("fwd").style.display=s===3&&!st.sent?"none":"";
+  const f=$("form"); if(f)f.addEventListener("submit",e=>{e.preventDefault();const d=new FormData(f);st.sent={name:d.get("name"),phone:d.get("phone"),motor:d.get("motor"),note:d.get("note")};render()});
+}
+$("scroll").addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]"); if(!b)return; const v=b.dataset.v;
+  if(b.dataset.act==="model"&&v!==st.model){st.model=v;[...st.extra].forEach(n=>{if(priceOf(n)===undefined)st.extra.delete(n)});build();history.replaceState(null,"","?m="+v+location.hash)}
+  if(b.dataset.act==="color"){st.color=v;if(st.zone==="none")st.zone="full";boat&&boat.set({color:st.color,zone:st.zone})}
+  if(b.dataset.act==="zone"){st.zone=v;boat&&boat.set({color:st.color,zone:st.zone})}
+  if(b.dataset.act==="extra"){st.extra.has(v)?st.extra.delete(v):st.extra.add(v);equip()}
+  render();
+});
+const go=n=>{st.step=n;look(CAM[n]);render();if(innerWidth<=900)document.querySelector(".panel").scrollIntoView({behavior:"smooth"});else $("scroll").scrollTop=0};
+$("steps").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(+b.dataset.s)});
+$("fwd").addEventListener("click",()=>{if(st.step<3)go(st.step+1);else{st.sent=null;go(0)}});
+$("cams").addEventListener("click",e=>{const b=e.target.closest("button");if(b)look(b.dataset.v)});
+cam=CAM[st.step]; build(); render();
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

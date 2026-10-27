@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Сравнить модели</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Compare: the yard's comparison table (compare.md, values from models.json) as one page. First the whole line at
+   true scale on one ruler (side profiles, width = length / 11.7 m of the 377), then the table: chips pick which
+   models stand side by side, «только различия» hides rows where they agree. Empty cells are «—», never filled in. */
+.fleet,.ruler{max-width:1040px}
+.fleet{display:grid;gap:2px}
+.fl{display:grid;grid-template-columns:150px minmax(0,1fr) 90px;align-items:end;gap:28px;padding:10px 0;border-bottom:1px solid rgba(19,24,27,.12);transition:background .25s}
+.fl:hover{background:rgba(19,24,27,.03)}
+.fl b{font:300 22px/1 var(--f-display);letter-spacing:-.01em}
+.fl b small{display:block;margin-top:8px;font:400 12px var(--f-body);color:var(--ink-3)}
+.fl .pf{position:relative;padding-bottom:2px}
+.fl .pf img{height:auto;transition:transform .5s var(--ease)}
+.fl:hover .pf img{transform:translateX(6px)}
+.fl .pf::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,rgba(19,24,27,.3),rgba(19,24,27,.04))}
+.fl em{font-style:normal;font:300 18px/1 var(--f-display);text-align:right;color:var(--ink-2)}
+.ruler{display:grid;grid-template-columns:150px minmax(0,1fr) 90px;gap:28px;margin-top:14px;font-size:12px;color:var(--ink-3)}
+.ruler div{position:relative;height:16px}.ruler div span{position:absolute;top:0;white-space:nowrap}
+.head2{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:48px}
+.head2 p{max-width:44ch;color:var(--ink-2)}
+.on-sea .head2 p{color:var(--sand-3)}
+.ctrl{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(234,228,217,.25);font:500 13px/1 var(--f-body);color:var(--sand-3);transition:background .2s,color .2s,border-color .2s}
+.chip.on{background:var(--sand);color:var(--sea);border-color:var(--sand)}
+.diff{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--sand-3);cursor:pointer;user-select:none}
+.diff input{appearance:none;width:38px;height:22px;border-radius:999px;background:rgba(234,228,217,.18);position:relative;cursor:pointer;transition:background .2s}
+.diff input::after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--sand);transition:transform .2s}
+.diff input:checked{background:var(--brass)}.diff input:checked::after{transform:translateX(16px)}
+.wrap{overflow-x:auto;border-top:1px solid rgba(234,228,217,.18);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:14px 18px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(234,228,217,.1);font-size:15px}
+td{color:var(--sand)}
+td.e{color:rgba(147,164,170,.55)}
+tbody th{position:sticky;left:0;z-index:1;width:250px;min-width:180px;background:var(--sea);font-weight:400;color:var(--mist);font-size:14px}
+thead th{padding:26px 18px 22px;vertical-align:bottom}
+thead th:first-child{position:sticky;left:0;z-index:2;background:var(--sea)}
+.mh b{display:block;font:300 26px/1 var(--f-display);letter-spacing:-.01em;color:var(--sand)}
+.mh small{display:block;margin-top:8px;font-size:12px;font-weight:400;color:var(--mist)}
+.mh .pr{display:block;margin-top:14px;font:400 15px var(--f-body);color:var(--sand)}
+.mh .a{display:flex;gap:8px;margin-top:16px}
+.mh .a .btn{height:36px;padding:0 14px;font-size:12px;border-color:rgba(234,228,217,.4)}
+.mh img{width:140px;height:auto;margin-bottom:16px;opacity:.95}
+tr.g th{padding:34px 18px 10px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--brass);border-bottom:0}
+tr.same td{color:var(--sand-3)}
+.note{margin-top:24px;font-size:13px;color:var(--mist);max-width:70ch}
+@media (max-width:900px){
+  .fl,.ruler{grid-template-columns:72px minmax(0,1fr);gap:14px}
+  .fl em,.ruler span:last-child{display:none}
+  .fl b{font-size:16px}.fl b small{font-size:11px}
+  tbody th{width:150px;min-width:130px;font-size:13px}
+  th,td{padding:12px 12px;font-size:14px}
+  .mh img{width:110px}.mh b{font-size:20px}.mh .a{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav><a class="on" href="../index.html#models">Модели</a><a href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head">
+  <div class="crumbs"><a href="../index.html">Главная</a> / <a href="../index.html#models">Модели</a> / Сравнение</div>
+  <h1>Сравнить модели</h1>
+  <p class="lead">Семь катеров SLIDER от 5 до 11,7 метра. Размеры, вместимость, мотор и цена «от» в одной таблице, по данным верфи.</p>
+</section>
+
+<section class="section">
+  <div class="head2"><div><span class="eyebrow" style="color:var(--ink-3)">Линейка в одном масштабе</span><h2 class="h2" style="margin-top:18px">От 5 до 11,7 м</h2></div>
+    <p>Силуэты нарисованы в одном масштабе: длина каждой полосы — длина катера. Нажмите на модель, чтобы открыть её страницу.</p></div>
+  <div class="fleet" id="fleet"></div>
+  <div class="ruler"><span></span><div><span style="left:0.0%">0</span><span style="left:25.6%">3 м</span><span style="left:51.3%">6 м</span><span style="left:76.9%">9 м</span><span style="right:0">11,7 м</span></div><span></span></div>
+</section>
+
+<section class="section on-sea" id="table">
+  <div class="head2"><div><span class="eyebrow">Характеристики</span><h2 class="h2" style="margin-top:18px">Бок о бок</h2></div>
+    <p>Выберите модели, которые сравниваете. Прочерк значит, что верфь эту величину для модели не указывает.</p></div>
+  <div class="ctrl"><div class="chips" id="chips"></div><label class="diff"><input type="checkbox" id="onlyDiff">Только различия</label></div>
+  <div class="wrap"><table id="t"></table></div>
+  <p class="note">Цена «от» указана за базовую комплектацию. Пассажировместимость Slider 377 приведена так, как её указывает верфь.</p>
+</section>
+
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<script>
+const DATA={"175": {"price": "от 1 865 000 ₽", "specs": {"Длина наибольшая": "5,00 м", "Ширина наибольшая": "2,10 м", "Высота борта на миделе": "870 мм", "Высота транца": "510 мм", "Масса оборудованного корпуса": "540 кг", "Грузоподъемность": "480 кг", "Запас топлива": "100 л", "Пассажировместимость": "5 чел", "Максимальная мощность двигателя": "100 л.с.", "Рекомендованная мощность двигателя": "70 л.с.", "Угол килеватости": "15°", "Максимально допустимая высота волны": "0,6 м"}}, "180": {"price": "от 2 400 000 ₽", "specs": {"Длина наибольшая": "6,02 м", "Ширина наибольшая": "2,23 м", "Высота борта на миделе": "1300 мм", "Высота транца": "510 мм", "Масса оборудованного корпуса": "750 кг", "Грузоподъемность": "650 кг", "Водоизмещение порожнем": "800 кг", "Запас топлива": "200 л", "Пассажировместимость": "7 чел", "Количество спальных мест": "3 чел", "Мест для багажа": "5", "Максимальная мощность двигателя": "150 л.с.", "Рекомендованная мощность двигателя": "100 л.с.", "Угол килеватости": "18°", "Минимальная высота надводного борта при полном водоизмещении": "400 мм", "Максимально допустимая высота волны": "0,7 м", "Каюта · длина": "1960 мм", "Каюта · ширина": "1850 мм", "Каюта · высота": "880 мм", "Каюта · глубина рундука": "300 мм"}}, "210": {"price": "от 2 800 000 ₽", "specs": {"Длина наибольшая": "6,21 м", "Ширина наибольшая": "2,30 м", "Высота борта на миделе": "1420 мм", "Высота транца": "510 мм", "Масса оборудованного корпуса": "810 кг", "Грузоподъемность": "800 кг", "Водоизмещение порожнем": "1000 кг", "Запас топлива": "200 л", "Пассажировместимость": "8 чел", "Количество спальных мест": "3 чел", "Мест для багажа": "5", "Максимальная мощность двигателя": "175 л.с.", "Рекомендованная мощность двигателя": "115 л.с.", "Угол килеватости": "19°", "Минимальная высота надводного борта при полном водоизмещении": "400 мм", "Максимально допустимая высота волны": "0,7 м", "Каюта · длина": "1940 мм", "Каюта · ширина": "2200 мм", "Каюта · высота": "910 мм", "Каюта · глубина рундука": "320 мм"}}, "210BR": {"price": "от 2 950 000 ₽", "specs": {"Длина наибольшая": "6,21 м", "Ширина наибольшая": "2,30 м", "Высота борта на миделе": "1420 мм", "Высота транца": "510 мм", "Масса оборудованного корпуса": "840 кг", "Грузоподъемность": "800 кг", "Водоизмещение порожнем": "1000 кг", "Запас топлива": "200 л", "Пассажировместимость": "8 чел", "Мест для багажа": "5", "Максимальная мощность двигателя": "175 л.с.", "Рекомендованная мощность двигателя": "115 л.с.", "Угол килеватости": "19°", "Минимальная высота надводного борта при полном водоизмещении": "400 мм", "Максимально допустимая высота волны": "0,7 м"}}, "210ST": {"price": "от 3 200 000 ₽", "specs": {"Длина наибольшая": "6,21 м", "Ширина наибольшая": "2,30 м", "Высота борта на миделе": "1420 мм", "Высота транца": "510 мм", "Масса оборудованного корпуса": "800 кг", "Грузоподъемность": "800 кг", "Водоизмещение порожнем": "1000 кг", "Запас топлива": "240 л", "Пассажировместимость": "8 чел", "Количество спальных мест": "3 чел", "Мест для багажа": "5", "Максимальная мощность двигателя": "175 л.с.", "Рекомендованная мощность двигателя": "115 л.с.", "Минимальная высота надводного борта при полном водоизмещении": "400 мм", "Максимально допустимая высота волны": "0,7 м"}}, "230": {"price": "от 3 150 000 ₽", "specs": {"Длина наибольшая": "6,85 м", "Ширина наибольшая": "2,30 м", "Высота борта на миделе": "1420 мм", "Высота транца": "635 мм", "Масса оборудованного корпуса": "865 кг", "Грузоподъемность": "800 кг", "Водоизмещение порожнем": "1000 кг", "Запас топлива": "200 л", "Пассажировместимость": "8 чел", "Количество спальных мест": "3 чел", "Мест для багажа": "5", "Максимальная мощность двигателя": "250 л.с.", "Рекомендованная мощность двигателя": "150 л.с.", "Угол килеватости": "19°", "Минимальная высота надводного борта при полном водоизмещении": "400 мм", "Максимально допустимая высота волны": "0,7 м", "Каюта · длина": "1940 мм", "Каюта · ширина": "2200 мм", "Каюта · высота": "910 мм", "Каюта · глубина рундука": "320 мм"}}, "377": {"price": "по запросу", "specs": {"Длина наибольшая": "11,7 м", "Ширина наибольшая": "3,35 м", "Осадка": "0,85 м", "Масса оборудованного корпуса": "3770 кг", "Запас топлива": "700 л", "Пассажировместимость": "В:10 - С:12", "Количество спальных мест": "2 (+2) чел", "Рекомендованная мощность двигателя": "2х-225, 350h, 400 л.с."}}};
+const M=[["175","175","Боурайдер",5.0,"svg"],["180","180","Каютный",6.02,"svg"],["210","210","Каютный",6.21,"svg"],["210BR","210 BR","Боурайдер",6.21,"svg"],["210ST","210 ST","Хардтоп",6.21,"svg"],["230","230","Каютный",6.85,"svg"],["377","377","Sport Cabin",11.7,"png"]];
+const GROUPS=[["Размеры",[["Длина наибольшая","Длина наибольшая"],["Ширина наибольшая","Ширина наибольшая"],["Высота борта на миделе","Высота борта на миделе"],["Высота транца","Высота транца"],["Осадка","Осадка"]]],
+  ["Вес и вместимость",[["Масса оборудованного корпуса","Масса оборудованного корпуса"],["Грузоподъемность","Грузоподъёмность"],["Водоизмещение порожнем","Водоизмещение порожнем"],["Запас топлива","Запас топлива"],["Пассажировместимость","Пассажировместимость"],["Количество спальных мест","Спальных мест"],["Мест для багажа","Мест для багажа"]]],
+  ["Мотор и мореходность",[["Максимальная мощность двигателя","Мощность мотора, максимум"],["Рекомендованная мощность двигателя","Мощность мотора, рекомендованная"],["Угол килеватости","Угол килеватости"],["Минимальная высота надводного борта при полном водоизмещении","Надводный борт при полном водоизмещении, минимум"],["Максимально допустимая высота волны","Допустимая высота волны"]]],
+  ["Каюта",[["Каюта · длина","Длина каюты"],["Каюта · ширина","Ширина каюты"],["Каюта · высота","Высота каюты"],["Каюта · глубина рундука","Глубина рундука"]]]];
+const prof=m=>`../directions/assets/profile-${m[0]}.${m[4]}`;
+const build=m=>m[0]==="377"?"../pages/model-377.html#build":`configurator.html?m=${m[0]}`;
+document.getElementById("fleet").innerHTML=M.map(m=>`<a class="fl" href="../pages/model-${m[0]}.html"><b>${m[1]}<small>${m[2]}</small></b><div class="pf"><img src="${prof(m)}" style="width:${(m[3]/11.7*100).toFixed(1)}%" alt="Slider ${m[1]}, вид сбоку"></div><em>${String(m[3].toFixed(2)).replace(".",",")} м</em></a>`).join("");
+const sel=new Set(["180","210","230"]);
+function chips(){document.getElementById("chips").innerHTML=M.map(m=>`<button class="chip${sel.has(m[0])?" on":""}" data-m="${m[0]}">Slider ${m[1]}</button>`).join("")}
+function table(){
+  const ms=M.filter(m=>sel.has(m[0])), diff=document.getElementById("onlyDiff").checked;
+  let h=`<thead><tr><th></th>${ms.map(m=>`<th class="mh"><img src="${prof(m)}" alt=""><b>${m[1]}</b><small>${m[2]} · ${String(m[3].toFixed(2)).replace(".",",")} м</small><span class="pr">${DATA[m[0]].price}</span><span class="a"><a class="btn" href="../pages/model-${m[0]}.html">Подробнее</a><a class="btn" href="${build(m)}">${m[0]==="377"?"Рассчитать":"Собрать"}</a></span></th>`).join("")}</tr></thead><tbody>`;
+  for(const [g,rows] of GROUPS){
+    const rs=rows.map(([k,l])=>{const v=ms.map(m=>DATA[m[0]].specs[k]||null);return {l,v,same:v.every(x=>x===v[0]),empty:v.every(x=>!x)}}).filter(r=>!r.empty&&!(diff&&r.same));
+    if(!rs.length)continue;
+    h+=`<tr class="g"><th colspan="${ms.length+1}">${g}</th></tr>`+rs.map(r=>`<tr class="${r.same&&ms.length>1?"same":""}"><th>${r.l}</th>${r.v.map(x=>`<td class="${x?"":"e"}">${x||"—"}</td>`).join("")}</tr>`).join("");
+  }
+  document.getElementById("t").innerHTML=h+"</tbody>";
+}
+document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const m=b.dataset.m;if(sel.has(m)){if(sel.size>1)sel.delete(m)}else sel.add(m);chips();table()});
+document.getElementById("onlyDiff").addEventListener("change",table);
+// ?m=210,210BR opens the table with these models
+const q=new URLSearchParams(location.search).get("m");if(q){const l=q.split(",").filter(x=>DATA[x]);if(l.length){sel.clear();l.forEach(x=>sel.add(x))}}
+chips();table();
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

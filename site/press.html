@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Тесты в прессе</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Press: every magazine piece the yard keeps on its tests page (tests.md) plus the 2010 interview from its docs,
+   each with the measured numbers and one quote straight from the PDF. Boats in today's range first on sand,
+   then the earlier Slider 42 and 195 on the sea. Numbers and quotes are checked against the PDFs. */
+.intro{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.intro .h2{max-width:14ch}
+.intro p{max-width:44ch;color:var(--ink-2)}
+.on-sea .intro p{color:var(--sand-3)}
+.a{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);padding:64px 0;border-top:1px solid rgba(19,24,27,.14)}
+.on-sea .a{border-top-color:rgba(234,228,217,.14)}
+.list{margin-top:64px}
+.cover{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--sea-2)}
+.cover img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.a:hover .cover img{transform:scale(1.03)}
+.cover .no{position:absolute;left:14px;top:14px;padding:7px 11px;border-radius:999px;background:rgba(13,28,35,.7);backdrop-filter:blur(6px);color:var(--sand);font:500 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase}
+.src{font:500 11px/1.5 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.on-sea .src{color:var(--mist)}
+.a h3{margin-top:16px;font:300 clamp(26px,2.6vw,40px)/1.1 var(--f-display);letter-spacing:-.015em}
+.models{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.models a,.models span{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;border:1px solid rgba(19,24,27,.25);font-size:13px}
+.models a:hover{background:var(--sea);color:var(--sand);border-color:var(--sea)}
+.models a::after{content:"→";margin-left:6px}
+.on-sea .models span{border-color:rgba(234,228,217,.3);color:var(--sand-3)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(19,24,27,.1)}
+.on-sea .nums{border-top-color:rgba(234,228,217,.1)}
+.nums b{display:block;font:300 clamp(34px,3.4vw,52px)/1 var(--f-display);letter-spacing:-.03em}
+.nums b small{font-size:.36em;margin-left:5px;letter-spacing:0;color:var(--ink-2)}
+.on-sea .nums b small{color:var(--mist)}
+.nums span{display:block;margin-top:10px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.on-sea .nums span{color:var(--mist)}
+blockquote{margin-top:28px;padding-left:20px;border-left:2px solid var(--brass);font:300 19px/1.4 var(--f-display);letter-spacing:-.005em;max-width:44ch}
+.a .btn{margin-top:30px}
+.on-sea .a .btn{border-color:rgba(234,228,217,.45)}
+.note{margin-top:20px;font-size:13px;color:var(--ink-3)}
+.on-sea .note{color:var(--mist)}
+@media (max-width:900px){
+  .a{grid-template-columns:1fr;padding:44px 0}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  blockquote{font-size:17px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a class="on" href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head">
+  <div class="crumbs"><a href="../index.html">Главная</a> / <a href="about.html">Верфь</a> / Тесты в прессе</div>
+  <h1>Тесты в прессе</h1>
+  <p class="lead">Катера Slider проверяли журналисты профильных изданий: замеряли скорость на мерной миле, гоняли по волне, разбирали каждую деталь. Здесь все статьи целиком, в PDF.</p>
+</section>
+
+<section class="section">
+  <div class="intro">
+    <div><span class="eyebrow" style="color:var(--ink-3)">Модели из линейки</span><h2 class="h2" style="margin-top:18px">Замеры на воде</h2></div>
+    <p>Максимальная скорость из таблиц журналов: с указанным мотором и при откинутом моторе, если журнал мерил оба положения.</p>
+  </div>
+  <div class="list">
+    <article class="a">
+      <div class="cover"><img src="assets/press/cover-1.jpg" alt="Slider на воде, фото к тесту «КиЯ» 2012" loading="lazy"><span class="no">Три модели</span></div>
+      <div>
+        <span class="src">«Катера и Яхты» № 5 (239), сентябрь–октябрь 2012 · Андрей Чернавин</span>
+        <h3>«Катера Slider: стиль, дизайн, уверенность»</h3>
+        <div class="models"><a href="../pages/model-175.html">Slider 175</a><a href="../pages/model-210.html">Slider 210</a><a href="../pages/model-210BR.html">Slider 210 BR</a></div>
+        <div class="nums">
+          <div><b>77<small>км/ч</small></b><span>Slider 210<br>175 л.с.</span></div>
+          <div><b>74<small>км/ч</small></b><span>Slider 210 BR<br>150 л.с.</span></div>
+          <div><b>68<small>км/ч</small></b><span>Slider 175<br>90 л.с.</span></div>
+        </div>
+        <blockquote>«Старт и выход на глиссирование у всех трех катеров ровные, без экстремальных «кобр»»</blockquote>
+        <a class="btn" href="assets/press/kiya-2012-slider-175-210-210br.pdf" target="_blank">Читать тест · PDF</a>
+        <p class="note">Тест катеров модельного года 2012.</p>
+      </div>
+    </article>
+    <article class="a">
+      <div class="cover"><img src="assets/press/cover-4.jpg" alt="Slider 180 на ходу" loading="lazy"><span class="no">Мерная миля</span></div>
+      <div>
+        <span class="src">Испытания на Волге, Казань</span>
+        <h3>«Slider 180» и «Slider 180 BR»: под знаком близнецов</h3>
+        <div class="models"><a href="../pages/model-180.html">Slider 180</a></div>
+        <div class="nums">
+          <div><b>74,4<small>км/ч</small></b><span>Slider 180 BR<br>Suzuki DF140</span></div>
+          <div><b>63,3<small>км/ч</small></b><span>Slider 180<br>Yamaha 100 л.с.</span></div>
+        </div>
+        <blockquote>«дизайн «Slider 180», безусловно, является собственной разработкой, причем, на наш взгляд, довольно удачной»</blockquote>
+        <a class="btn" href="assets/press/slider-180-180br-pod-znakom-bliznecov.pdf" target="_blank">Читать тест · PDF</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section on-sea">
+  <div class="intro">
+    <div><span class="eyebrow">Из истории верфи</span><h2 class="h2" style="margin-top:18px">Яхта и&nbsp;стационар</h2></div>
+    <p>Моторная яхта Slider 42 и катер Slider 195 со стационарным мотором. В нынешнем модельном ряду этих лодок нет.</p>
+  </div>
+  <div class="list">
+    <article class="a">
+      <div class="cover"><img src="assets/press/cover-2.jpg" alt="Моторная яхта Slider 42 на ходу" loading="lazy"><span class="no">Slider 42</span></div>
+      <div>
+        <span class="src">«Капитан-клуб» 5/2010 · Сергей Миронов</span>
+        <h3>«Slider 42». Русский круизер</h3>
+        <div class="models"><span>Slider 42 · стальная моторная яхта</span></div>
+        <div class="nums">
+          <div><b>12,6<small>м</small></b><span>длина</span></div>
+          <div><b>18<small>км/ч</small></b><span>Nanni Diesel<br>115 л.с.</span></div>
+          <div><b>800<small>км</small></b><span>дальность<br>плавания</span></div>
+        </div>
+        <blockquote>«“Slider 42” уверенно рассекал волны без ощутимой качки»</blockquote>
+        <a class="btn" href="assets/press/kapitan-klub-2010-slider-42.pdf" target="_blank">Читать статью · PDF</a>
+      </div>
+    </article>
+    <article class="a">
+      <div class="cover"><img src="assets/press/cover-3.jpg" alt="Slider 42 у берега" loading="lazy"><span class="no">Slider 42</span></div>
+      <div>
+        <span class="src">Алексей Захаров</span>
+        <h3>«Slider 42». Рекордные 42 фута</h3>
+        <div class="models"><span>Slider 42 · стальной корпус, пластиковая надстройка</span></div>
+        <blockquote>«Многие принимают борта металлического корпуса за пластиковые!»</blockquote>
+        <a class="btn" href="assets/press/slider-42-rekordnye-42-futa.pdf" target="_blank">Читать статью · PDF</a>
+      </div>
+    </article>
+    <article class="a">
+      <div class="cover"><img src="assets/press/cover-5.jpg" alt="Slider 195 на ходу" loading="lazy"><span class="no">Slider 195</span></div>
+      <div>
+        <span class="src">Испытания на Куйбышевском водохранилище, Казань</span>
+        <h3>«Slider 195»: на круги своя</h3>
+        <div class="models"><span>Slider 195 · cuddy cabin со стационарным мотором</span></div>
+        <div class="nums">
+          <div><b>73,9<small>км/ч</small></b><span>при 5000 об/мин</span></div>
+          <div><b>225<small>л.с.</small></b><span>Volvo Penta GXi</span></div>
+        </div>
+        <blockquote>«окантовка ветрового стекла с откидной центральной «форточкой» от «Слайдера» является, пожалуй, лучшим отечественным изделием этого рода»</blockquote>
+        <a class="btn" href="assets/press/slider-195-na-krugi-svoya.pdf" target="_blank">Читать тест · PDF</a>
+      </div>
+    </article>
+    <article class="a">
+      <div class="cover" style="background:var(--sea-3);display:grid;place-items:center"><span class="no">Интервью</span><b style="font:300 clamp(40px,5vw,72px)/1 var(--f-display);letter-spacing:-.03em;color:var(--sand-3)">Men’s City</b></div>
+      <div>
+        <span class="src">Men’s City, ноябрь 2010 · Гость номера</span>
+        <h3>Интервью с Николаем Подольским, руководителем компании «Slider»</h3>
+        <blockquote>«Всю мебель и тенты на свои катера и яхты мы производим сами.»</blockquote>
+        <a class="btn" href="assets/press/mens-city-2010-intervyu.pdf" target="_blank">Читать интервью · PDF</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>

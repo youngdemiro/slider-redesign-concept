@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Контакты</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Contacts: the yard's address with the route, phones and email as big tap targets, the yard's own requisites
+   line by line (copy button for the whole block), and a pointer to the dealers. All from contacts.md. */
+.grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
+.addr{font:300 clamp(30px,3.4vw,52px)/1.08 var(--f-display);letter-spacing:-.02em;max-width:18ch}
+.addr small{display:block;margin-top:18px;font:400 15px/1.5 var(--f-body);letter-spacing:0;color:var(--ink-2)}
+.go{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.photo{margin-top:56px;border-radius:10px;overflow:hidden}
+.photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:60% 55%}
+.reach{border-top:1px solid rgba(19,24,27,.14)}
+.reach a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid rgba(19,24,27,.12);transition:color .2s}
+.reach a:hover{color:var(--sea-3)}
+.reach span{font-size:13px;color:var(--ink-3);white-space:nowrap}
+.reach b{font:300 clamp(20px,1.9vw,26px)/1.2 var(--f-display);letter-spacing:-.01em;text-align:right;overflow-wrap:anywhere}
+.reach h3{padding:30px 0 10px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.req{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,96px)}
+.req dl{border-top:1px solid rgba(234,228,217,.15)}
+.req dl div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;padding:16px 0;border-bottom:1px solid rgba(234,228,217,.12)}
+.req dt{font-size:13px;color:var(--mist)}
+.req dd{margin:0;font-size:16px;color:var(--sand);overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.req .btn{margin-top:28px;border-color:rgba(234,228,217,.45)}
+.req p{margin-top:16px;color:var(--sand-3);max-width:34ch}
+.more{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.more p{font:300 clamp(24px,2.6vw,38px)/1.15 var(--f-display);letter-spacing:-.02em;max-width:20ch}
+.more div{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:900px){
+  .grid,.req{grid-template-columns:1fr}
+  .req dl div{grid-template-columns:1fr;gap:6px}
+  .reach a{flex-direction:column;gap:6px}
+  .reach b{text-align:left}
+  .photo img{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <nav><a href="../index.html#models">Модели</a><a href="about.html">Верфь</a><a href="../index.html#buy">Владельцам</a><a class="on" href="dealers.html">Где купить</a></nav>
+  <a class="logo" href="../index.html"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+  <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="configurator.html">Конфигуратор</a></div>
+</header>
+<section class="page-head">
+  <div class="crumbs"><a href="../index.html">Главная</a> / Контакты</div>
+  <h1>Контакты</h1>
+  <p class="lead">Производство катеров SLIDER и центральный офис продаж — на верфи в Конаково. Приезжайте посмотреть катера вживую.</p>
+</section>
+
+<section class="section">
+  <div class="grid">
+    <div>
+      <span class="eyebrow" style="color:var(--ink-3)">Производство катеров «SLIDER»</span>
+      <p class="addr" style="margin-top:22px">171252, Тверская обл., г.&nbsp;Конаково, ул.&nbsp;Промышленная, 12<small>ООО «ФОР МАРИН» (Центральный офис продаж «SLIDER»)</small></p>
+      <div class="go"><a class="btn dark" href="https://yandex.ru/maps/?text=Конаково%2C%20ул.%20Промышленная%2C%2012" target="_blank">Как доехать</a><a class="btn" href="tel:+74824246050">Позвонить</a></div>
+      <figure class="photo"><img src="assets/about/hangar.jpg" alt="Верфь SLIDER в Конаково"></figure>
+    </div>
+    <div class="reach">
+      <h3>Позвонить</h3>
+      <a href="tel:+74824246050"><span>Производство</span><b>+7 (4824) 24-60-50</b></a>
+      <a href="tel:+79256494303"><span>Отдел продаж</span><b>+7 925 649-43-03</b></a>
+      <a href="tel:+79288126793"><span>Телефон</span><b>+7 928 812-67-93</b></a>
+      <h3>Написать</h3>
+      <a href="mailto:info@slider-boat.ru"><span>Почта</span><b>info@slider-boat.ru</b></a>
+      <a href="https://t.me/sliderboat" target="_blank"><span>Telegram-канал</span><b>@sliderboat</b></a>
+      <a href="https://rutube.ru/channel/70956989/" target="_blank"><span>RuTube-канал</span><b>SLIDER</b></a>
+      <h3>По почте</h3>
+      <a href="#requisites"><span>Почтовый адрес</span><b>171252, Тверская обл. г&nbsp;Конаково, а/я&nbsp;40</b></a>
+    </div>
+  </div>
+</section>
+
+<section class="section on-sea" id="requisites">
+  <div class="req">
+    <div>
+      <span class="eyebrow">Для договора и оплаты</span>
+      <h2 class="h2" style="margin-top:18px">Реквизиты</h2>
+      <p>ООО «ФОР МАРИН», центральный офис продаж «SLIDER».</p>
+      <button class="btn" id="copy" type="button">Скопировать реквизиты</button>
+    </div>
+    <dl id="reqs">
+      <div><dt>Компания</dt><dd>ООО "ФОР МАРИН"</dd></div>
+      <div><dt>ИНН</dt><dd>6949114901</dd></div>
+      <div><dt>КПП</dt><dd>694901001</dd></div>
+      <div><dt>Почтовый адрес</dt><dd>171252, Тверская обл. г Конаково, а/я 40</dd></div>
+      <div><dt>Р/с</dt><dd>40702810404930002626</dd></div>
+      <div><dt>Корр. счет</dt><dd>30101810945250000297 в ГУ Банка России по ЦФО</dd></div>
+      <div><dt>БИК</dt><dd>044525297</dd></div>
+      <div><dt>Банк</dt><dd>ФИЛИАЛ ЦЕНТРАЛЬНЫЙ ПАО БАНКА "ФК ОТКРЫТИЕ"</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="more">
+    <p>Катера SLIDER продают и дилеры в других городах</p>
+    <div><a class="btn dark" href="dealers.html">Все дилеры</a><a class="btn" href="../index.html#visit">Где посмотреть вживую</a></div>
+  </div>
+</section>
+<iframe class="foot" src="../sections/footer-a-plate.html" title="Подвал"></iframe>
+<script src="site.js"></script>
+<script>
+// copies the requisites as plain lines, "label: value"
+document.getElementById("copy").addEventListener("click", e => {
+  const t = [...document.querySelectorAll("#reqs div")].map(d => d.children[0].textContent + ": " + d.children[1].textContent).join("\n");
+  navigator.clipboard.writeText(t).then(() => { e.target.textContent = "Скопировано"; setTimeout(() => e.target.textContent = "Скопировать реквизиты", 2000) });
+});
+</script>
+<div style="position:fixed;left:12px;bottom:12px;z-index:99;font:600 11px/1 Manrope,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(13,28,35,.82);color:#EAE4D9;padding:9px 12px;border-radius:999px;backdrop-filter:blur(6px)">Концепт редизайна · не официальный сайт</div>
+</body>
+</html>
