@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 180 · Пресса</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 180 press, same as the press of 210 BR: the magazine's measured mile drawn as a track. Top speed of Slider 180
+   and its twin 180 BR from the same test on one 0–80 km/h scale (the article gives no acceleration times, so each run
+   shows its motor and rpm), the tester's notes as short log lines, and the changes the yard made after the test. */
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.head .h2{margin-top:18px}
+.head p{max-width:42ch;color:var(--sand-3)}
+.mile{margin-top:56px;padding:36px 0 8px;border-top:1px solid rgba(234,228,217,.15)}
+.scale{position:relative;height:22px;margin-left:220px;font:400 12px/1 var(--f-body);color:var(--mist)}
+.scale span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.scale span:first-child{transform:none}.scale span:last-child{transform:translateX(-100%)}
+.run{display:grid;grid-template-columns:220px minmax(0,1fr);align-items:center;margin-top:18px}
+.run h4{font:400 15px/1.3 var(--f-body);color:var(--sand-3)}
+.run h4 small{display:block;margin-top:4px;font-size:12px;color:var(--mist)}
+.track{position:relative;height:56px;border-radius:999px;background:repeating-linear-gradient(90deg,rgba(234,228,217,.1) 0 1px,transparent 1px 12.5%),rgba(234,228,217,.04)}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,rgba(183,154,107,.15),rgba(183,154,107,.55));display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.bar b{height:44px;padding:0 18px;border-radius:999px;background:var(--sand);color:var(--sea);display:flex;align-items:center;font:300 22px/1 var(--f-display);white-space:nowrap}
+.bar b small{font:500 12px var(--f-body);margin-left:6px}
+.t{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--sand)}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;border-top:1px solid rgba(234,228,217,.15)}
+.n{padding:24px 28px 0 0}
+.n+.n{padding-left:28px;border-left:1px solid rgba(234,228,217,.12)}
+.n h5{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+.n p{margin-top:14px;font:300 20px/1.3 var(--f-display);letter-spacing:-.01em}
+.after{margin-top:40px;max-width:68ch;font-size:15px;color:var(--sand-3)}
+.after b{font-weight:500;color:var(--sand)}
+.src{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid rgba(234,228,217,.12);font-size:13px;color:var(--mist)}
+.src .btn{border-color:rgba(234,228,217,.45);color:var(--sand)}
+@media (max-width:900px){.scale{margin-left:0}.run{grid-template-columns:1fr;gap:10px}.notes{grid-template-columns:1fr}.n,.n+.n{padding:20px 0;border-left:0;border-bottom:1px solid rgba(234,228,217,.12)}.bar b{font-size:18px;height:40px;padding:0 12px}.t{font-size:11px}}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="head"><div><span class="eyebrow">Тест в прессе</span><h2 class="h2">На мерной миле «КиЯ»</h2></div>
+    <p>Журнал «Катера и Яхты» испытал Slider 180 и его близнеца 180 BR на Волге в Казани и записал скорость на каждых оборотах.</p></div>
+  <div class="mile">
+    <div class="scale"><span style="left:0">0</span><span style="left:25%">20</span><span style="left:50%">40</span><span style="left:75%">60</span><span style="left:100%">80 км/ч</span></div>
+    <div class="run"><h4>Slider 180<small>Yamaha 100 л.с. · 5700 об/мин</small></h4><div class="track"><div class="bar" style="width:79.1%"><b>63,3<small>км/ч</small></b></div></div></div>
+    <div class="run"><h4>Slider 180 BR<small>Suzuki DF140 · 6200 об/мин</small></h4><div class="track"><div class="bar" style="width:93%"><b>74,4<small>км/ч</small></b></div></div></div>
+  </div>
+  <div class="notes">
+    <div class="n"><h5>Дизайн</h5><p>«дизайн «Slider 180», безусловно, является собственной разработкой, причем, на наш взгляд, довольно удачной»</p></div>
+    <div class="n"><h5>Каюта</h5><p>«Общепринятые эргономические нормы даже превышены»</p></div>
+    <div class="n"><h5>На курсе</h5><p>«Устойчивость на курсе тоже хороша»</p></div>
+  </div>
+  <p class="after"><b>После теста.</b> По замечаниям журнала верфь доработала серийные лодки: горловину бензобака перенесли на планширь, консоли получили подножки, передние кресла заменили на новые с боковой поддержкой.</p>
+  <div class="src"><span>«Катера и Яхты», мерная миля. Тест Slider 180 и Slider 180 BR, р. Волга, Казань.</span><a class="btn" href="assets/press/kiya-slider-180-180br.pdf" target="_blank">Читать тест целиком · PDF</a></div>
+</section>
+<div class="variant-tag">Slider 180 · пресса</div>
+</body>
+</html>
