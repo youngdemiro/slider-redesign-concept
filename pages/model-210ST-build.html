@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 210 ST · Собрать</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 210 ST build, same step as the 230 page. There is no 3D model of 210 ST, so the side
+   profile takes the colour instead: the yard's own paint-zone outlines of 210 ST are washed over it (hull.js). */
+.wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,4vw,64px);align-items:stretch}
+.stage{position:relative;min-height:560px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 50% 30%,#1E3943,#0D1C23 70%)}
+#boat{position:absolute;left:6%;right:6%;top:50%;transform:translateY(-42%);filter:drop-shadow(0 24px 22px rgba(0,0,0,.45))}
+.stage .tag{position:absolute;left:24px;top:22px;font:300 26px/1 var(--f-display)}
+.stage .tag small{display:block;margin-top:8px;font:400 13px var(--f-body);color:var(--mist)}
+.stage .drag{position:absolute;left:24px;bottom:20px;font-size:12px;color:var(--mist)}
+.side .h2{margin-top:18px;font-size:clamp(34px,3.4vw,52px)}
+.side>p{margin-top:16px;color:var(--sand-3)}
+.side h3{margin-top:36px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+.sw{display:grid;grid-template-columns:repeat(5,44px);gap:12px;margin-top:16px}
+.sw button{width:44px;height:44px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(234,228,217,.25);position:relative}
+.sw button.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--sand)}
+.sw-name{margin-top:12px;font-size:14px;color:var(--sand-3)}
+.zones{display:grid;margin-top:14px;border-top:1px solid rgba(234,228,217,.12)}
+.zones button{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(234,228,217,.12);font-size:15px;color:var(--sand-3);text-align:left}
+.zones button b{font-weight:400;color:var(--mist)}
+.zones button.on{color:var(--sand)}
+.zones button.on span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brass);margin-right:10px;vertical-align:middle}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:28px;padding-top:20px;border-top:1px solid rgba(234,228,217,.3)}
+.total small{font-size:13px;color:var(--mist)}
+.total b{font:300 30px/1 var(--f-display)}
+.side .btn{width:100%;margin-top:22px}
+.side .fine{margin-top:14px;font-size:13px;color:var(--mist)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.stage{min-height:0;aspect-ratio:4/3}.sw{grid-template-columns:repeat(5,40px)}.sw button{width:40px;height:40px}}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="wrap">
+    <div class="stage">
+      <div id="boat"></div>
+      <div class="tag">Slider 210 ST<small>6,21 м · 8 мест · до 175 л.с.</small></div>
+    </div>
+    <div class="side">
+      <span class="eyebrow">Собрать эту модель</span>
+      <h2 class="h2">Начните с цвета</h2>
+      <p>Десять заводских цветов. Любой другой подберём по палитре Ashland.</p>
+      <h3>Цвет</h3>
+      <div class="sw" id="sw"></div>
+      <div class="sw-name" id="swn"></div>
+      <h3>Что красим</h3>
+      <div class="zones" id="zones"></div>
+      <div class="total"><small>Итого от</small><b id="total"></b></div>
+      <a class="btn solid" href="https://slider-boat.ru/configurator/?cater=1200">Дальше: оборудование и мотор →</a>
+      <p class="fine">Мотор Yamaha или Mercury подберём на следующем шаге.</p>
+    </div>
+  </div>
+</section>
+<div class="variant-tag">Slider 210 ST · собрать</div>
+<script src="../directions/assets/paint-data.js"></script>
+<script src="../sections/assets/hull.js"></script>
+<script>
+const $=id=>document.getElementById(id), P=PAINT["210ST"];
+const st={color:"#2B2C7C",zone:"full"};
+const ZL=[["none","Белый гелькоут, как в базовой комплектации"],["below","Ниже привального бруса"],["above","Выше привального бруса"],["full","Весь корпус"]];
+const boat=Hull($("boat"),{model:"210ST",zone:st.zone,color:st.color});
+function render(){
+  $("sw").innerHTML=COLORS.map(c=>`<button style="--c:${c.hex}" class="${c.hex===st.color&&st.zone!=="none"?"on":""}" data-c="${c.hex}" aria-label="${c.name}"></button>`).join("");
+  $("swn").textContent=st.zone==="none"?"Корпус белый":COLORS.find(c=>c.hex===st.color).name;
+  $("zones").innerHTML=ZL.map(([z,l])=>`<button data-z="${z}" class="${z===st.zone?"on":""}"><span>${l}</span><b>${z==="none"?"включено":"+ "+rub(P.paint[z])}</b></button>`).join("");
+  $("total").textContent=rub(P.base+(st.zone==="none"?0:P.paint[st.zone]));
+  boat.set({color:st.color,zone:st.zone});
+}
+$("sw").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.color=b.dataset.c;if(st.zone==="none")st.zone="full";render()});
+$("zones").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;st.zone=b.dataset.z;render()});
+render();
+</script>
+</body>
+</html>
