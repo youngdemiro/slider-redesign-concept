@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 377 · Рассчитать стоимость</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 377 build step, same frame as the 210 ST page. The yard publishes no price, colours or paint zones of 377,
+   so there is no repaint here: the yard's side drawing on the stage, its recommended engines, «цена по запросу» and the way
+   on to its configurator. Every line is worded as on slider-boat.ru. */
+.wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(32px,4vw,64px);align-items:stretch}
+.stage{position:relative;min-height:560px;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 50% 30%,#1E3943,#0D1C23 70%)}
+#boat{position:absolute;left:5%;right:5%;top:50%;width:90%;transform:translateY(-42%);filter:drop-shadow(0 24px 22px rgba(0,0,0,.45))}
+.stage .tag{position:absolute;left:24px;top:22px;font:300 26px/1 var(--f-display)}
+.stage .tag small{display:block;margin-top:8px;font:400 13px var(--f-body);color:var(--mist)}
+.stage .drag{position:absolute;left:24px;bottom:20px;font-size:12px;color:var(--mist)}
+.side .h2{margin-top:18px;font-size:clamp(34px,3.4vw,52px)}
+.side>p{margin-top:16px;color:var(--sand-3)}
+.side h3{margin-top:36px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+.sw{display:grid;grid-template-columns:repeat(5,44px);gap:12px;margin-top:16px}
+.sw button{width:44px;height:44px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(234,228,217,.25);position:relative}
+.sw button.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--sand)}
+.sw-name{margin-top:12px;font-size:14px;color:var(--sand-3)}
+.zones{display:grid;margin-top:14px;border-top:1px solid rgba(234,228,217,.12)}
+.zones div{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(234,228,217,.12);font-size:15px;color:var(--sand-3);text-align:left}
+.zones div b{font-weight:400;color:var(--mist)}
+.zones button.on{color:var(--sand)}
+.zones button.on span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brass);margin-right:10px;vertical-align:middle}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:28px;padding-top:20px;border-top:1px solid rgba(234,228,217,.3)}
+.total small{font-size:13px;color:var(--mist)}
+.total b{font:300 30px/1 var(--f-display)}
+.side .btn{width:100%;margin-top:22px}
+.side .fine{margin-top:14px;font-size:13px;color:var(--mist)}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.stage{min-height:0;aspect-ratio:4/3}.sw{grid-template-columns:repeat(5,40px)}.sw button{width:40px;height:40px}}
+</style>
+</head>
+<body class="on-sea">
+<section class="section on-sea">
+  <div class="wrap">
+    <div class="stage">
+      <img id="boat" src="../directions/assets/profile-377.png" alt="Slider 377, вид сбоку">
+      <div class="tag">Slider 377<small>11,7 м · до 12 человек · 700 л топлива</small></div>
+    </div>
+    <div class="side">
+      <span class="eyebrow">Рассчитать стоимость</span>
+      <h2 class="h2">Цена по запросу</h2>
+      <p>Зайдите в конфигуратор, чтобы добавить дополнительные опции вашего катера.</p>
+      <h3>Рекомендованная мощность</h3>
+      <div class="zones"><div><span>Два мотора</span><b>2 × 225 л.с.</b></div><div><span>Вариант</span><b>350h</b></div><div><span>Вариант</span><b>400 л.с.</b></div></div>
+      <div class="total"><small>Стоимость</small><b>по запросу</b></div>
+      <a class="btn solid" href="https://slider-boat.ru/configurator/?cater=1333">Перейти в конфигуратор →</a>
+      <p class="fine">Оставьте заявку и наши специалисты свяжутся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</section>
+<div class="variant-tag">Slider 377 · рассчитать стоимость</div>
+</body>
+</html>

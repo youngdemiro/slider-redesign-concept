@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 377 · О модели</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 377, in the owners' slot of the 210 ST page. The yard has no owner review or blog post about 377, so the
+   yard's own words lead and the fine print says there are no reviews yet; quiet rows lead to the request and the yard's page. */
+.top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.top .eyebrow{color:var(--ink-3)}
+blockquote{margin:20px 0 0;font:300 clamp(24px,2.3vw,34px)/1.18 var(--f-display);letter-spacing:-.015em}
+.who{margin-top:24px;font-size:15px;color:var(--ink-2)}
+.who b{font-weight:500;color:var(--ink)}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border-top:1px solid rgba(19,24,27,.14)}
+.pm div{padding:18px 20px 0 0}
+.pm div+div{padding-left:20px;border-left:1px solid rgba(19,24,27,.14)}
+.pm h4{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.pm p{margin-top:12px;font-size:15px;color:var(--ink-2)}
+.fine{margin-top:18px;font-size:12px;color:var(--ink-3)}
+.more{margin-top:80px;border-top:1px solid rgba(19,24,27,.14)}
+.more h3{padding:24px 0 6px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.row{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(19,24,27,.14)}
+.row b{font:300 22px/1.1 var(--f-display)}
+.row p{color:var(--ink-2)}
+.row a{font:500 13px var(--f-body);color:var(--ink);white-space:nowrap;border-bottom:1px solid var(--brass)}
+@media (max-width:900px){.top{grid-template-columns:1fr}.pm{grid-template-columns:1fr}.pm div+div{padding-left:0;border-left:0;border-top:1px solid rgba(19,24,27,.14);margin-top:18px}.row{grid-template-columns:1fr;gap:8px}}
+.v{position:relative;border-radius:10px;overflow:hidden;background:var(--sea);cursor:pointer;aspect-ratio:16/9}
+.v img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.v:hover img{transform:scale(1.03)}
+.v.ph{margin:0;cursor:default}
+.v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(234,228,217,.92);display:grid;place-items:center}
+.play::after{content:"";margin-left:6px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent var(--sea)}
+.vfoot{position:absolute;left:16px;bottom:14px;padding:7px 12px;border-radius:999px;background:rgba(13,28,35,.66);backdrop-filter:blur(6px);color:var(--sand);font-size:12px}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="top">
+    <div>
+      <span class="eyebrow">О Slider 377</span>
+      <blockquote>«SLIDER 377 SC меняет представления о лодках с каютами!»</blockquote>
+      <p class="who"><b>Верфь SLIDER</b> · о модели 377</p>
+      <div class="pm">
+        <div><h4>Характер</h4><p>«Катер с актуальным современным дизайном, универсальностью и потрясающими эксплуатационными характеристиками.»</p></div>
+        <div><h4>Главная черта</h4><p>«Универсальность - главная черта»</p></div>
+      </div>
+      <p class="fine">Отзывов владельцев 377 на сайте верфи пока нет. Орфография и пунктуация сохранены.</p>
+    </div>
+    <figure class="v ph"><img src="assets/377/gal/ext-run.jpg" alt="Slider 377 на ходу" style="object-position:50% 45%"><span class="vfoot">Slider 377 на ходу</span></figure>
+  </div>
+  <div class="more">
+    <h3>Следующий шаг</h3>
+    <div class="row"><b>Заявка</b><p>Цена, моторы и комплектация 377 — по запросу.</p><a href="#">Оставить заявку</a></div>
+    <div class="row"><b>На сайте верфи</b><p>Страница Slider 377: характеристики и конфигуратор.</p><a href="https://slider-boat.ru/catalog/slider-377/" target="_blank">Открыть</a></div>
+  </div>
+</section>
+<div class="variant-tag">Slider 377 · о модели</div>
+<script>
+// the video loads only on click (youtube-nocookie), so the page stays light and makes no requests to YouTube before that
+document.querySelectorAll("[data-yt]").forEach(v=>v.addEventListener("click",()=>{if(v.querySelector("iframe"))return;
+  v.insertAdjacentHTML("beforeend",`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen title="Видео владельца"></iframe>`)}));
+</script>
+</body>
+</html>

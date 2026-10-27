@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 377 · Характеристики</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 377 specs, same layout as the chosen specs C of 210: four numbers that are not on the first screen, then
+   the passport. The yard publishes eight characteristics of 377; all eight are here, worded as on its site. */
+.head .eyebrow{color:var(--ink-3)}
+.head .h2{margin-top:18px}
+.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px}
+.k{padding-right:28px}
+.k+.k{padding-left:28px;border-left:1px solid rgba(19,24,27,.14)}
+.k b{display:block;font:300 clamp(48px,5.4vw,84px)/.95 var(--f-display);letter-spacing:-.03em}
+.k b small{font-size:.32em;letter-spacing:0;margin-left:6px;color:var(--ink-2)}
+.k p{margin-top:16px;font-size:15px;color:var(--ink-2);max-width:24ch}
+.k em{display:block;margin-top:8px;font-style:normal;font-size:12px;color:var(--ink-3)}
+details{margin-top:72px;border-top:1px solid rgba(19,24,27,.14);border-bottom:1px solid rgba(19,24,27,.14)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:26px 0;cursor:pointer;font:300 26px/1 var(--f-display);letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:40px;height:40px;border-radius:50%;border:1px solid rgba(19,24,27,.2);
+  background:linear-gradient(var(--ink),var(--ink)) center/12px 1px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1px 12px no-repeat;transition:transform .3s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+.tbl{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;padding-bottom:32px}
+.tbl dl{display:grid;grid-template-columns:minmax(0,1fr) auto;font-size:15px;align-content:start}
+.tbl dt,.tbl dd{padding:12px 0;border-top:1px solid rgba(19,24,27,.1)}
+.tbl dt{color:var(--ink-3);padding-right:16px}
+.tbl dd{margin:0;text-align:right}
+.tbl h4{grid-column:1/-1;padding:24px 0 8px;font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+@media (max-width:900px){
+  .keys{grid-template-columns:1fr 1fr;gap:40px 0}
+  .k:nth-child(3){padding-left:0;border-left:0}
+  .tbl{grid-template-columns:1fr}
+  summary{font-size:21px}
+}
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="head"><span class="eyebrow">Характеристики</span><h2 class="h2">Главное о Slider 377</h2></div>
+  <div class="keys">
+    <div class="k"><b>11,7<small>м</small></b><p>длина, самый большой катер в линейке</p></div>
+    <div class="k"><b>700<small>л</small></b><p>запас топлива</p></div>
+    <div class="k"><b>0,85<small>м</small></b><p>осадка</p></div>
+    <div class="k"><b>3770<small>кг</small></b><p>масса оборудованного корпуса</p></div>
+  </div>
+
+  <details>
+    <summary>Все характеристики</summary>
+    <div class="tbl">
+      <dl><h4>Корпус</h4>
+        <dt>Длина наибольшая</dt><dd>11,7 м</dd><dt>Ширина наибольшая</dt><dd>3,35 м</dd><dt>Осадка</dt><dd>0,85 м</dd>
+        <dt>Масса оборудованного корпуса</dt><dd>3770 кг</dd></dl>
+      <dl><h4>На борту и моторы</h4>
+        <dt>Пассажировместимость</dt><dd>В:10 - С:12</dd><dt>Спальных мест</dt><dd>2 (+2)</dd><dt>Запас топлива</dt><dd>700 л</dd>
+        <dt>Рекомендованная мощность</dt><dd>2х-225, 350h, 400 л.с.</dd></dl>
+    </div>
+  </details>
+  <div class="dl"><a class="btn dark" href="model-377.html#build" target="_top">Рассчитать стоимость</a><a class="btn" href="model-377.html#similar" target="_top">Сравнить с 230</a></div>
+</section>
+<div class="variant-tag">Slider 377 · характеристики</div>
+</body>
+</html>
