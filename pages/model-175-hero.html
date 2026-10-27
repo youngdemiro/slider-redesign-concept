@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLIDER · Slider 175 · Первый экран</title>
+<link rel="stylesheet" href="../system/tokens.css">
+<style>
+/* Slider 175 hero, same layout as the 180 page. The large 175 photos are all from boat shows, so the
+   white-and-blue 175 from the show takes the place of a water shot — the boat at full bleed, name and price over the photo, the five
+   numbers a buyer compares on a bar along the bottom. After Wajer's and Axopar's model pages. */
+.hero{position:relative;height:100vh;min-height:680px;color:var(--sand);overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;transform:scale(1.04);transform-origin:50% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(65% 60% at 0% 100%,rgba(13,28,35,.88),rgba(13,28,35,0) 78%),linear-gradient(180deg,rgba(13,28,35,.55),rgba(13,28,35,0) 22%,rgba(13,28,35,0) 45%,rgba(13,28,35,.86))}
+header{position:absolute;z-index:3;inset:0 0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px;padding-inline:var(--gutter)}
+header nav{display:flex;gap:30px;font:500 13px/1 var(--f-body);letter-spacing:.06em}
+header nav a.on{color:var(--brass)}
+header .logo img{height:22px}
+header .r{justify-self:end;display:flex;gap:28px;align-items:center;font:500 13px/1 var(--f-body)}
+.crumbs{position:absolute;z-index:3;top:96px;left:var(--gutter);font-size:13px;color:rgba(234,228,217,.7)}
+.body{position:absolute;z-index:2;left:var(--gutter);right:var(--gutter);bottom:150px;display:flex;justify-content:space-between;align-items:end;gap:40px}
+.body .eyebrow{color:var(--sand-3)}
+h1{font:300 clamp(60px,8vw,132px)/.9 var(--f-display);letter-spacing:-.035em}
+.buy .eyebrow{display:block;margin-bottom:16px}
+.body p{margin-top:22px;max-width:44ch;color:rgba(234,228,217,.85)}
+.buy{text-align:right}
+.buy .price{display:block;font:300 30px/1 var(--f-display);letter-spacing:-.01em}
+.buy .b{display:flex;gap:10px;margin-top:22px}
+.buy .btn:not(.solid){border-color:rgba(234,228,217,.5)}
+.bar{position:absolute;z-index:2;left:var(--gutter);right:var(--gutter);bottom:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid rgba(234,228,217,.22);padding:24px 0 34px}
+.bar b{display:block;font:300 24px/1 var(--f-display)}
+.bar span{display:block;margin-top:8px;font-size:12px;color:rgba(234,228,217,.65)}
+/* 901–1279 px: three centred columns no longer fit, so the logo moves to the left and the phone hides */
+/* 175: a bright boat-show hall behind the boat, so the top (menu) and both lower corners are shaded more */
+@media (min-width:901px){
+  .hero::after{background:linear-gradient(180deg,rgba(13,28,35,.78),rgba(13,28,35,.35) 16%,rgba(13,28,35,0) 34%),radial-gradient(60% 55% at 0% 100%,rgba(13,28,35,.85),rgba(13,28,35,0) 80%),radial-gradient(45% 50% at 100% 100%,rgba(13,28,35,.85),rgba(13,28,35,0) 80%),linear-gradient(180deg,rgba(13,28,35,0) 55%,rgba(13,28,35,.86))}
+  .crumbs{color:rgba(234,228,217,.85)}
+  .buy .eyebrow{color:var(--sand)}
+}
+@media (min-width:901px) and (max-width:1279px){
+  header{grid-template-columns:auto 1fr auto;gap:32px}
+  header .logo{order:-1}
+  header nav{justify-content:center;gap:20px;letter-spacing:.02em;white-space:nowrap}
+  header .r .phone{display:none}
+}
+@media (max-width:900px){
+  header nav,header .r .phone{display:none}header{grid-template-columns:auto 1fr auto}header .logo{justify-self:start}
+  .hero{height:auto;min-height:0;display:flex;flex-direction:column;background:var(--sea)}
+  .hero>img{position:relative;height:auto;aspect-ratio:4/5;object-position:58% 50%;transform:none}
+  .hero::after{bottom:auto;aspect-ratio:4/5;height:auto}
+  .body{position:relative;inset:auto;flex-direction:column;align-items:flex-start;margin-top:-170px;padding-inline:var(--gutter);gap:28px}
+  .buy{text-align:left}
+  .buy .b{flex-wrap:wrap}
+  .crumbs{display:none}
+  .bar{position:relative;inset:auto;grid-template-columns:1fr 1fr;gap:20px 0;margin:40px var(--gutter) 0}
+}
+</style>
+</head>
+<body class="on-sea">
+<section class="hero">
+  <img src="assets/175/show-blue.jpg" alt="Slider 175 на выставке">
+  <header>
+    <nav><a class="on" href="#">Модели</a><a href="#">Конфигуратор</a><a href="#">Верфь</a><a href="#">Владельцам</a><a href="#">Где купить</a></nav>
+    <a class="logo" href="#"><img src="../directions/assets/slider-horizontal-white.svg" alt="SLIDER"></a>
+    <div class="r"><a class="phone" href="tel:+74824246050">+7 (4824) 24-60-50</a><a class="btn" href="#">Собрать катер</a></div>
+  </header>
+  <div class="crumbs"><a href="../index.html" target="_top">Модели</a> / Slider 175</div>
+  <div class="body">
+    <div>
+      <h1>Slider 175</h1>
+      <p>Компактный полноценный bowrider, вместительный и быстрый. Эксплуатационные качества на уровне более крупных и дорогих лодок порадуют самых взыскательных.</p>
+    </div>
+    <div class="buy">
+      <span class="eyebrow">Bow rider · до 5 человек</span>
+      <span class="price">от 1 865 000 ₽</span>
+      <div class="b"><a class="btn solid" href="model-175.html#build" target="_top">Собрать этот катер</a><a class="btn" href="#">Записаться на просмотр</a></div>
+    </div>
+  </div>
+  <div class="bar">
+    <div><b>5,0 м</b><span>длина</span></div>
+    <div><b>2,1 м</b><span>ширина</span></div>
+    <div><b>5</b><span>человек</span></div>
+    <div><b>100 л</b><span>запас топлива</span></div>
+    <div><b>до 100 л.с.</b><span>мотор</span></div>
+  </div>
+</section>
+<div class="variant-tag">Slider 175 · первый экран</div>
+</body>
+</html>
